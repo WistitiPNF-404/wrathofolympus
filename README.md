@@ -1,6 +1,6 @@
 # Wrath of Olympus
 
-Hades II mod that, for the 9 regular Olympians, introduces Wrath boons.
+Hades II mod that introduces Wrath boons for the 9 regular Olympians.
 
 ## Features
 
