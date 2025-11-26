@@ -1,11 +1,11 @@
 [config]
-schemaVersion = "0.0.1"
+schemaVersion = "0.0.2"
 
 
 [package]
 namespace = "Wistiti"
-name = "WarthOfOlympus"
-versionNumber = "0.0.1"
+name = "WrathOfOlympus"
+versionNumber = "0.0.2"
 description = "Adds a new Wrath boon for each Olympian."
 websiteUrl = "https://github.com/WistitiPNF-404/WrathOfOlympus"
 containsNsfwContent = false
@@ -17,6 +17,7 @@ SGG_Modding-Chalk = "2.1.1"
 SGG_Modding-ReLoad = "1.0.2"
 SGG_Modding-SJSON = "1.0.0"
 SGG_Modding-ModUtil = "4.0.1"
+zannc-GodsAPI = "1.0.8"
 
 
 [build]
