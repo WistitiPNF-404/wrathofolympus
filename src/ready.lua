@@ -27,13 +27,42 @@ public["not"] = not_public
 mod.HeraRandomCurseBoon_Text = sjson.to_object({
     Id = "BonusOlympianDamageStatDisplay1",
     InheritFrom = "BaseStatLine",
-    DisplayName = "{!Icons.Bullet}{#PropertyFormat}Bonus Olympian Damage:",
+    DisplayName = "{!Icons.Bullet}{#PropertyFormat}Bonus Random Curses:",
+    Description = "{#UpgradeFormat}{$TooltipData.ExtractData.CurseCount}",
+}, Order)
+
+mod.PoseidonWrathBoon_Text = sjson.to_object({
+    Id = "BonusOceanSwellStatDisplay1",
+    InheritFrom = "BaseStatLine",
+    DisplayName = "{!Icons.Bullet}{#PropertyFormat}Wave Bonus Damage:",
     Description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
 }, Order)
 
 sjson.hook(TraitTextFile, function(data)
     table.insert(data.Texts, mod.HeraRandomCurseBoon_Text)
+	table.insert(data.Texts, mod.PoseidonWrathBoon_Text)
 end)
+
+game.TraitData.WrathTrait = {
+    BlockStacking = true,
+    BlockInRunRarify = true,
+    BlockMenuRarify = true,
+    CustomRarityName = "Wrath",
+    CustomRarityColor = Color.BoonPatchHeroic,
+    InfoBackingAnimation = "BoonSlotHeroic",
+    UpgradeChoiceBackingAnimation = "BoonSlotHeroic",
+    Frame = "Untiy",
+    RarityLevels = {
+        Legendary = {
+            MinMultiplier = 1,
+            MaxMultiplier = 1,
+        },
+    },
+}
+
+--[[sjson.hook(TraitData, function(data)
+	table.insert(data.WeaponRarityUpgradeOrder, mod.WrathTrait_Rarity)
+end)]]--
 
 --[[ 
 uid, internal, charactername ,legendary, rarity, slot, blockstacking,  statlines, extractval, elements, displayName
@@ -48,24 +77,28 @@ gods.CreateBoon({
     addToExistingGod = true,
 
     displayName = "Family Discourse",
-    description = "Whenever you inflict {$Keywords.Link}, also randomly inflict a {$Keywords.Status} from other Olympians.",
+    description = "Whenever you inflict {$Keywords.Link}, also randomly inflict {$Keywords.StatusPlural} from other Olympians.",
 	StatLines = { "BonusOlympianDamageStatDisplay1" },
 	requirements = { OneOf = { "HeraWeaponBoon", "HeraSpecialBoon", "HeraCastBoon", "HeraSprintBoon" } },
-    boonIconPath = "GUI\\Screens\\BoonIcons\\Hera_37",
+    boonIconPath = "GUI\\Screens\\BoonIcons\\Hera_33",
 	reuseBaseIcons = true,
 	BlockStacking = true,
 	RarityLevels = {
 			Common = 1.00,
-       		Rare = 4 / 3,
-        	Epic = 5 / 3,
-        	Heroic = 6 / 3,
+       		Rare = 2,
+        	Epic = 3,
+        	Heroic = 4,
 	},	
 
 	ExtractValues = { 
-		{
+		--[[{
 			Key = "ReportedBonusOlympianDamage",
 			ExtractAs = "TooltipDamageBonus",
 			Format = "PercentDelta",
+		},]]--
+		{
+			Key = "ReportedCurseCount",
+			ExtractAs = "CurseCount",
 		},
 		-- Hitch highlight Duration and Share Damage
 		{
@@ -88,32 +121,12 @@ gods.CreateBoon({
 	},
 
 	ExtraFields = {
-		AddOutgoingDamageModifiersArray = 
-		{
-			{
-				ValidProjectiles = WeaponSets.OlympianProjectileNames,
-				BonusOlympianDamageMultiplier =
-				{
-					BaseValue = 1.03,
-					SourceIsMultiplier = true,
-				},
-				ReportValues = { ReportedBonusOlympianDamage = "BonusOlympianDamageMultiplier", },
-			},
-			{
-				ValidEffects = WeaponSets.OlympianEffectNames,
-				BonusOlympianDamageMultiplier =
-				{
-					BaseValue = 1.03,
-					SourceIsMultiplier = true,
-				},
-			},
-		},
 		OnEffectApplyFunction = 
 		{
 			FunctionName = "rom.mods." .. _PLUGIN.guid .. ".not.CheckRandomShareDamageCurse",
 			FunctionArgs = 
 			{
-				Count = 1,
+				CurseCount = { BaseValue = 1 },
 				Effects = 
 				{
 					AmplifyKnockbackEffect = 
@@ -127,7 +140,7 @@ gods.CreateBoon({
 						CopyValuesFromTraits = 
 						{
 							Modifier = {"PoseidonStatusBoon" }
-						}
+						},
 					},
 					BlindEffect = 
 					{
@@ -150,8 +163,8 @@ gods.CreateBoon({
 						DefaultModifier = 1,
 						CopyValuesFromTraits = 
 						{
-							Modifier = {"ZeusWeaponBoon", "ZeusSpecialBoon"}
-						}
+							Modifier = {"ZeusWeaponBoon", "ZeusSpecialBoon"},
+						},
 					},
 					
 					DelayedKnockbackEffect = 
@@ -164,8 +177,8 @@ gods.CreateBoon({
 						},
 						CopyValuesFromTraits = 
 						{
-							TriggerDamage = { "MassiveKnockupBoon" }
-						}
+							TriggerDamage = { "MassiveKnockupBoon" },
+						},
 					},
 					ChillEffect = 
 					{
@@ -211,20 +224,83 @@ gods.CreateBoon({
 								HasAny = { "AresFirstPickUp" },
 							},
 						},
-						CustomFunction = "AresRendApplyPresentation",
-						CopyValuesFromTraits = 
+						AddOutgoingDamageModifiers =
 						{
-							Modifier = {"AresWeaponBoon", "AresSpecialBoon"},
+							ValidEffects = "DamageShareEffect",
+							MissingEffectDamage = EffectData.AresStatus.BonusBaseDamageOnInflict,
+							MissingEffectName = "AresStatus",
+							MissingDamagePresentation = 
+							{
+								TextStartColor = Color.AresDamageLight,
+								TextColor = Color.AresDamage,
+								FunctionName = "AresRendApplyPresentation",
+								SimSlowDistanceThreshold = 180,
+								HitSimSlowCooldown = 0.8,
+								HitSimSlowParameters =
+								{
+									{ ScreenPreWait = 0.02, Fraction = 0.13, LerpTime = 0 },
+									{ ScreenPreWait = 0.10, Fraction = 1.0, LerpTime = 0.05 },
+								},
+							},
 						},
 					},]]--
 				},
-				ReportValues = { ReportedCount = "Count" }
+				ReportValues = { ReportedCurseCount = "CurseCount" },
 			},
 		}
 	}
 })
 
 gods.IsBoonRegistered("RandomCurseBoon", true)
+
+gods.CreateBoon({
+    pluginGUID = _PLUGIN.guid,
+    internalBoonName = "PoseidonWrathBoon",
+    isLegendary = false,
+	InheritFrom = {"WrathTrait"},
+    Elements = {"Water"},
+    characterName = "Poseidon",
+    addToExistingGod = true,
+	reuseBaseIcons = true,
+    BlockStacking = true,
+
+    displayName = "Wrath of Poseidon",
+    description = "Your splash effects fire your effects from {$TraitData.OmegaPoseidonProjectileBoon.Name} with greater {$Keywords.BaseDamage} at no extra cost.",
+	StatLines = { "BonusOceanSwellStatDisplay1" },
+	requirements =
+	{
+		OneFromEachSet =
+		{
+			{ "OmegaPoseidonProjectileBoon" },
+			{ "PoseidonWeaponBoon", "PoseidonSpecialBoon", "FocusDamageShaveBoon" },
+			{ "PoseidonStatusBoon", "PoseidonExCastBoon", "EncounterStartOffenseBuffBoon" },
+		},
+	},
+    flavourText = "The sea covers most of the world's surface already; pray it does not cover the rest.",
+    boonIconPath = "GUI\\Screens\\BoonIcons\\Poseidon_39",
+    
+	ExtractValues =
+	{
+		{
+			Key = "ReportedWaveMultiplier",
+			ExtractAs = "TooltipData",
+			Format = "PercentDelta",
+		},
+	},
+
+	ExtraFields = 
+	{
+        AddOutgoingDamageModifiers = 
+		{
+			ValidProjectiles = { "PoseidonOmegaWave" },
+			ValidWaveDamageAddition = {
+				BaseValue = 2.00,
+				SourceIsMultiplier = true,
+			},
+            ReportValues = { ReportedWaveMultiplier = "ValidWaveDamageAddition" },
+        },
+    },
+})
 
 -- Function Library --
 
@@ -237,8 +313,8 @@ function not_public.CheckRandomShareDamageCurse(victim, functionArgs, triggerArg
 				table.insert( eligibleEffects, name )
 			end
 		end
-		local count = functionArgs.Count or 1
-		for i=1, count do 
+		local CurseCount = functionArgs.CurseCount or 1
+		for i=1, CurseCount do 
 			local effectName = RemoveRandomValue( eligibleEffects )
 			if not effectName then
 				return
@@ -289,6 +365,17 @@ function not_public.CheckRandomShareDamageCurse(victim, functionArgs, triggerArg
 	end
 end
 
+modutil.mod.Path.Context.Wrap.Static("CheckPoseidonSplash", function()
+  modutil.mod.Path.Wrap("CreateProjectileFromUnit",
+    function(base, args, ...)
+      if not HeroHasTrait(PoseidonWrathBoon.pluginGUID) then
+        return base(args, ...)
+      end
+      base(args, ...) -- spawn splash
+      args.Name = "PoseidonOmegaWave"
+      return base(args, ...) -- spawn swell
+    end)
+end)
 
 --[[
 	AirBoon = 

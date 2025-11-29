@@ -1,23 +1,23 @@
 [config]
-schemaVersion = "0.0.2"
+schemaVersion = "0.0.3"
 
 
 [package]
 namespace = "Wistiti"
 name = "WrathOfOlympus"
-versionNumber = "0.0.2"
+versionNumber = "0.0.3"
 description = "Adds a new Wrath boon for each Olympian."
 websiteUrl = "https://github.com/WistitiPNF-404/WrathOfOlympus"
 containsNsfwContent = false
 
 [package.dependencies]
-Hell2Modding-Hell2Modding = "1.0.77"
+Hell2Modding-Hell2Modding = "1.0.83"
 LuaENVY-ENVY = "1.2.0"
 SGG_Modding-Chalk = "2.1.1"
 SGG_Modding-ReLoad = "1.0.2"
 SGG_Modding-SJSON = "1.0.0"
 SGG_Modding-ModUtil = "4.0.1"
-zannc-GodsAPI = "1.0.8"
+zannc-GodsAPI = "1.0.9"
 
 
 [build]
