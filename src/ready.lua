@@ -38,9 +38,25 @@ mod.PoseidonWrathBoon_Text = sjson.to_object({
     Description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
 }, Order)
 
+mod.AresWrathBoon_Text = sjson.to_object({
+    Id = "PlasmaDoubleDamageStatDisplay1",
+    InheritFrom = "BaseStatLine",
+    DisplayName = "{!Icons.Bullet}{#PropertyFormat}Chance per Collected Plasma:",
+    Description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
+}, Order)
+
+mod.AresWrathBoonPicked_Text = sjson.to_object({
+    Id = "PlasmaDoubleDamageStatDisplay2",
+    InheritFrom = "BaseStatLine",
+    DisplayName = "{!Icons.Bullet}{#PropertyFormat}Current Double Damage Chance:",
+    Description = "{#UpgradeFormat}{$TooltipData.ExtractData.CurrentMultiplier:P}",
+}, Order)
+
 sjson.hook(TraitTextFile, function(data)
     table.insert(data.Texts, mod.HeraRandomCurseBoon_Text)
 	table.insert(data.Texts, mod.PoseidonWrathBoon_Text)
+	table.insert(data.Texts, mod.AresWrathBoon_Text)
+	table.insert(data.Texts, mod.AresWrathBoonPicked_Text)
 end)
 
 game.TraitData.WrathTrait = {
@@ -254,13 +270,11 @@ gods.CreateBoon({
 	}
 })
 
-gods.IsBoonRegistered("RandomCurseBoon", true)
-
 gods.CreateBoon({
     pluginGUID = _PLUGIN.guid,
     characterName = "Poseidon",
 	internalBoonName = "PoseidonWrathBoon",
-    isLegendary = false,
+    isLegendary = true,
 	InheritFrom = 
 	{
 		Elements = "WaterBoon",
@@ -276,8 +290,8 @@ gods.CreateBoon({
 	{
 		OneFromEachSet =
 		{
-			{ "OmegaPoseidonProjectileBoon" },
 			{ "PoseidonWeaponBoon", "PoseidonSpecialBoon", "FocusDamageShaveBoon" },
+			{ "OmegaPoseidonProjectileBoon" },
 			{ "PoseidonStatusBoon", "PoseidonExCastBoon", "EncounterStartOffenseBuffBoon" },
 		},
 	},
@@ -304,103 +318,71 @@ gods.CreateBoon({
 			},
             ReportValues = { ReportedWaveMultiplier = "ValidWaveDamageAddition" },
         },
-		OnEnemyDamagedAction =
-		{
-			FunctionName = "rom.mods." .. _PLUGIN.guid .. ".not.CheckPoseidonSplashAndWave",
-			--[[Args = 
-			{
-				CooldownName = "PoseidonPrimary",
-				ProjectileName = "PoseidonSplashSplinter",
-				ExcludeLinked = true,
-				MultihitWeaponWhitelist = 
-				{
-				},
-				MultihitWeaponConditions = 
-				{
-				},
-				MultihitProjectileWhitelist = 
-				{
-					-- Staff
-					"ProjectileSwing5",
-					"ProjectileStaffSingle",
-					"ProjectileStaffWall",
-
-					-- Axe
-					"ProjectileAxe3",
-					"ProjectileAxe2",
-					"ProjectileAxeOverhead",
-					"ProjectileAxeNergalSlow",
-					"ProjectileAxeNergalFast",
-					"ProjectileAxeNergalFastDash",
-					"ProjectileAxeSpin",
-
-					-- Dagger
-					"ProjectileDaggerSliceDouble",
-					"ProjectileDaggerBackstab",
-					"ProjectileDaggerSpinMorrigan",
-					"ProjectileDaggerExecuteMorrigan",
-
-					-- Torch
-					"ProjectileTorchWave",
-					"ProjectileTorchBallEos",
-					"ProjectileTorchRepeatStrike",
-					"ProjectileTorchGhostLarge",
-					"ProjectileTorchGhostExplosion",
-					"ProjectileTorchGhostLargeExplosion",
-					"ProjectileTorchSupayBallEx",
-
-					-- Lob
-					"ProjectileLob",
-					"ProjectileLobCharged",
-					"ProjectileLobChargedPulse",
-					"ProjectileLobOverheat",
-
-					-- Suit
-					"ProjectileSuitCharged",
-					"ProjectileSuitDash",
-				},
-				MultihitProjectileConditions = 
-				{
-					ProjectileSwing5 = { Count = 5, Window = 0.3 },
-					ProjectileStaffSingle = { Count = 3, Window = 0.25 },
-					ProjectileStaffWall = { Count = 3, Window = 0.25 },
-
-					ProjectileAxe3 = { Count = 4, Window = 0.15 },
-					ProjectileAxe2 = { Count = 4, Window = 0.15 },
-					ProjectileAxeOverhead = { Count = 5, Window = 0.45 },
-					ProjectileAxeNergalSlow = { Count = 5, Window = 0.45 },
-					ProjectileAxeNergalFast = { Count = 4, Window = 0.15 },
-					ProjectileAxeNergalFastDash = { Count = 4, Window = 0.15 },
-					ProjectileAxeSpin = { Count = 3, Window = 0.15 },
-
-					ProjectileDaggerSliceDouble = { Count = 3, Window = 0.1 },
-					ProjectileDaggerBackstab = { Count = 3, Window = 0.1 },
-					ProjectileDaggerSpinMorrigan = { Count = 3, Window = 0.3 },
-					ProjectileDaggerExecuteMorrigan = { Count = 3, Window = 0.1 },
-
-					ProjectileTorchWave = { Count = 3, Window = 0.24 },
-					ProjectileTorchBallEos = { Cooldown = 0.12 },
-					ProjectileTorchRepeatStrike = { Count = 3, Window = 0.35 },
-					ProjectileTorchGhostLarge  = { Cooldown = 0.12 },
-					ProjectileTorchGhostExplosion  = { Count = 3, Window = 0.2 },
-					ProjectileTorchGhostLargeExplosion  = { Count = 3, Window = 0.2 },
-					ProjectileTorchSupayBallEx  = { Count = 3, Window = 0.26 },
-
-					ProjectileLob = { Count = 3, Window = 0.08 },
-					ProjectileLobCharged = { Count = 4, Window = 0.24 },
-					ProjectileLobChargedPulse = { Count = 4, Window = 0.24 },
-					ProjectileLobOverheat = { Count = 5, Window = 0.22 },
-
-					ProjectileSuitCharged = { Count = 4, Window = 0.15 },
-					ProjectileSuitDash = { Count = 4, Window = 0.21 },
-				},
-				Cooldown = 0.033,
-			},]]--
-		}
     },
 })
 
--- local PoseidonWrathBoonPluginGUID = _PLUGIN.guid .. '-' .. 'PoseidonWrathBoon'
+gods.CreateBoon({
+    pluginGUID = _PLUGIN.guid,
+    characterName = "Ares",
+	internalBoonName = "AresWrathBoon",
+    isLegendary = true,
+	InheritFrom = 
+	{
+		Elements = "EarthBoon",
+	},
+    addToExistingGod = true,
+	reuseBaseIcons = true,
+    BlockStacking = true,
+
+    displayName = "Wrath of Ares",
+    description = "Gain a chance to deal {$TraitData.AresStatusDoubleDamageBoon.DamagePercent:F} damage based on your current amount of {!Icons.BloodDropWithCountIcon}.",
+	StatLines = { "PlasmaDoubleDamageStatDisplay1" },
+	TrayStatLines = { "PlasmaDoubleDamageStatDisplay2" },
+	requirements =
+	{
+		OneFromEachSet =
+		{
+			{ "AresWeaponBoon", "AresSpecialBoon" },
+			{ "AresManaBoon", "BloodDropRevengeBoon", "RendBloodDropBoon" },
+			{ "AresStatusDoubleDamageBoon", "MissingHealthCritBoon" },
+		},
+	},
+    flavourText = "If the sight of blood was truly so revolting, why then should it have such a striking hue?",
+    boonIconPath = "GUI\\Screens\\BoonIcons\\Ares_34",
+    
+	ExtractValues =
+	{
+		{
+			Key = "ReportedPlasmaCritMultiplier",
+			ExtractAs = "Chance",
+			Format = "LuckModifiedPercent",
+			DecimalPlaces = 2,
+			HideSigns = true,
+		},
+		{
+			Key = "ReportedPlasmaCritMultiplier",
+			ExtractAs = "CurrentMultiplier",
+			Format = "LuckModifiedPercent",
+			MultiplyByPlasmaCount = true,
+			DecimalPlaces = 2,
+			SkipAutoExtract = true,
+			HideSigns = true,
+		},
+	},
+
+	ExtraFields = 
+	{
+        AddOutgoingDoubleDamageModifiers = 
+		{
+			IncreasingPlasmaCritChance =
+			{
+				BaseValue = 0.005,
+				DecimalPlaces = 4,
+			},
+            ReportValues = { ReportedPlasmaCritMultiplier = "IncreasingPlasmaCritChance" },
+        },
+    },
+})
 
 -- Function Library --
 
@@ -466,77 +448,14 @@ function not_public.CheckRandomShareDamageCurse(victim, functionArgs, triggerArg
 end
 
 -- PoseidonWrath custom function
-function not_public.CheckPoseidonSplashAndWave(victim, functionArgs, triggerArgs )
-	local cooldownName = "PoseidonSplash"
-	if functionArgs.CooldownName then
-		cooldownName = functionArgs.CooldownName
-	end
-	if ProjectileHasUnitHit( triggerArgs.ProjectileId, "PoseidonSplash") 
-		and (triggerArgs.SourceWeapon == nil or not functionArgs.MultihitWeaponWhitelistLookup or not functionArgs.MultihitWeaponWhitelistLookup[triggerArgs.SourceWeapon])
-		and (triggerArgs.SourceProjectile == nil or not functionArgs.MultihitProjectileWhitelistLookup or not functionArgs.MultihitProjectileWhitelistLookup[triggerArgs.SourceProjectile]) then
+modutil.mod.Path.Wrap("DamageEnemy", function(baseFunc, victim, triggerArgs)
+	baseFunc(victim, triggerArgs)
+	if not HeroHasTrait(gods.GetInternalBoonName("PoseidonWrathBoon")) then
 		return
 	end
-	--[[local traitData = GetHeroTrait("PoseidonWeaponBoon")
-	if HeroHasTrait("PoseidonWeaponBoon") then
-		if traitData.OnEnemyDamagedAction.Args.MultihitWeaponWhitelist then
-    		if not traitData.OnEnemyDamagedAction.Args.ExcludeLinked then
-        	traitData.OnEnemyDamagedAction.Args.MultihitWeaponWhitelist = AddLinkedWeapons(traitData.OnEnemyDamagedAction.Args.MultihitWeaponWhitelist)
-			end
-    	end
-	end
-	local traitData = GetHeroTrait("PoseidonSpecialBoon")
-	if HeroHasTrait("PoseidonSepcialBoon") then
-		if traitData.OnEnemyDamagedAction.Args.MultihitWeaponWhitelist then
-    		if not traitData.OnEnemyDamagedAction.Args.ExcludeLinked then
-        	traitData.OnEnemyDamagedAction.Args.MultihitWeaponWhitelist = AddLinkedWeapons(traitData.OnEnemyDamagedAction.Args.MultihitWeaponWhitelist)
-			end
-    	end
-	end
-    traitData.OnEnemyDamagedAction.Args.MultihitWeaponWhitelistLookup = ToLookup(traitData.OnEnemyDamagedAction.Args.MultihitWeaponWhitelist)]]--
-	local passesMultihitCheck = true
-	if triggerArgs.SourceProjectile ~= nil and functionArgs.MultihitProjectileWhitelistLookup and functionArgs.MultihitProjectileWhitelistLookup[triggerArgs.SourceProjectile] and functionArgs.MultihitProjectileConditions[triggerArgs.SourceProjectile] then
-		local conditions = ShallowCopyTable(functionArgs.MultihitProjectileConditions[triggerArgs.SourceProjectile])
-		
-		if conditions.TraitNameRequirements then
-			for _, traitConditions in pairs( conditions.TraitNameRequirements ) do
-				if traitConditions.TraitName and HeroHasTrait(traitConditions.TraitName) then
-					conditions = ShallowCopyTable(traitConditions)
-					break
-				end
-			end
-		end
-		if not conditions.Cooldown and not conditions.Window and ProjectileHasUnitHit( triggerArgs.ProjectileId, "PoseidonSplash") then
-			return
-		end
-		if conditions.Cooldown and not CheckCooldown( "PoseidonSplash", conditions.Cooldown ) then
-			return
-		end
-		if conditions.Window and CheckCountInWindow("PoseidonSplash", conditions.Window, conditions.Count ) then
-			return
-		end
-	elseif triggerArgs.SourceWeapon ~= nil and functionArgs.MultihitWeaponWhitelistLookup[triggerArgs.SourceWeapon] and functionArgs.MultihitWeaponConditions[triggerArgs.SourceWeapon] then
-		local conditions = functionArgs.MultihitWeaponConditions[triggerArgs.SourceWeapon]
-		if conditions.Cooldown and not CheckCooldown( "PoseidonSplash", conditions.Cooldown ) then
-			return
-		end
-		if conditions.Window and CheckCountInWindow("PoseidonSplash", conditions.Window, conditions.Count ) then
-			return
-		end
-	else
-		if functionArgs.Cooldown and not CheckCooldown( "PoseidonSplash", functionArgs.Cooldown ) then
-			return
-		end
-		if functionArgs.Window and CheckCountInWindow("PoseidonSplash", functionArgs.Window, functionArgs.Count ) then
-			return
-		end
-	end
-	ProjectileRecordUnitHit( triggerArgs.ProjectileId, "PoseidonSplash" )
-	-- print(triggerArgs.ProjectileId)
-	--[[for k,v in pairs(functionArgs) do
+	for k,v in pairs(triggerArgs) do
 		print(k)
-	end]]--
-	-- print(traitData.OnWeaponFiredFunctions.FunctionArgs.DamageMultiplier)
-	
+	end
 	local traitData = GetHeroTrait("OmegaPoseidonProjectileBoon")
 
 	-- If Hero doesnt have Ocean Swell, dont crash, just dont do it
@@ -545,25 +464,8 @@ function not_public.CheckPoseidonSplashAndWave(victim, functionArgs, triggerArgs
 	end
 	local graphic = nil
 	local count = 1
-	for i=1, count do
-		CreateProjectileFromUnit({ 
-			Name = "PoseidonOmegaWave", 
-			Id = CurrentRun.Hero.ObjectId, 
-			Angle = triggerArgs.ImpactAngle, 
-			DestinationId = victim.ObjectId, 
-			FireFromTarget = true,
-			DamageMultiplier = (traitData.OnWeaponFiredFunctions.FunctionArgs.DamageMultiplier or 1) * 2,
-			DataProperties = 
-			{
-				StartFx = graphic,
-				ImpactVelocity = force,
-				StartDelay = (i - 1 ) * 0.1
-			},
-			ProjectileCap = 1,
-		})
-		local doubleChance = GetTotalHeroTraitValue("DoubleOlympianProjectileChance") * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true })
-		if RandomChance(doubleChance) then
-			wait( GetTotalHeroTraitValue("DoubleOlympianProjectileInterval" ))
+	if (triggerArgs.SourceProjectile == "PoseidonSplashSplinter") then
+		for i=1, count do
 			CreateProjectileFromUnit({ 
 				Name = "PoseidonOmegaWave", 
 				Id = CurrentRun.Hero.ObjectId, 
@@ -577,23 +479,89 @@ function not_public.CheckPoseidonSplashAndWave(victim, functionArgs, triggerArgs
 					ImpactVelocity = force,
 					StartDelay = (i - 1 ) * 0.1
 				},
-				ProjectileCap = 2,
+				ProjectileCap = 1,
 			})
+			local doubleChance = GetTotalHeroTraitValue("DoubleOlympianProjectileChance") * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true })
+			if RandomChance(doubleChance) then
+				wait( GetTotalHeroTraitValue("DoubleOlympianProjectileInterval" ))
+				CreateProjectileFromUnit({ 
+					Name = "PoseidonOmegaWave", 
+					Id = CurrentRun.Hero.ObjectId, 
+					Angle = triggerArgs.ImpactAngle, 
+					DestinationId = victim.ObjectId, 
+					FireFromTarget = true,
+					DamageMultiplier = (traitData.OnWeaponFiredFunctions.FunctionArgs.DamageMultiplier or 1) * 2,
+					DataProperties = 
+					{
+						StartFx = graphic,
+						ImpactVelocity = force,
+						StartDelay = (i - 1 ) * 0.1
+					},
+					ProjectileCap = 2,
+				})
+			end
+		end
+		return
+	end
+end)
+
+-- AresWrath custom function
+modutil.mod.Path.Wrap("CalculateDoubleDamageChance", function(baseFunc, attacker, victim, weaponData, triggerArgs)
+	baseFunc(attacker, victim, weaponData, triggerArgs)
+	return CalculatePlasmaDoubleDamageChance(attacker, victim, weaponData, triggerArgs)
+end)
+
+function CalculatePlasmaDoubleDamageChance( attacker, victim, weaponData, triggerArgs )
+	if attacker ~= nil and attacker.OutgoingDoubleDamageModifiers ~= nil then
+		local appliedEffectTable = {}
+		for i, modifierData in ipairs( attacker.OutgoingDoubleDamageModifiers ) do
+
+			local validWeapon = modifierData.ValidWeaponsLookup == nil or ( modifierData.ValidWeaponsLookup[ triggerArgs.SourceWeapon ] ~= nil and triggerArgs.EffectName == nil )
+			local validTrait = modifierData.RequiredTrait == nil or ( attacker == CurrentRun.Hero and HeroHasTrait( modifierData.RequiredTrait ) )
+			local validActiveEffect = modifierData.ValidActiveEffects == nil or (victim.ActiveEffects and ContainsAnyKey( victim.ActiveEffects, modifierData.ValidActiveEffects))
+			local validEx = true
+			if modifierData.IsEx or modifierData.IsNotEx then
+				validEx = false
+				if weaponData then
+					local baseWeaponData = WeaponData[weaponData.Name]
+					local isEx = IsExWeapon( weaponData.Name, { Combat = true }, triggerArgs )
+					if modifierData.IsEx and isEx then
+						validEx = true
+					elseif modifierData.IsNotEx and not isEx then
+						validEx = true
+					end
+				end
+			end
+			if validWeapon and validTrait and validActiveEffect and validEx then
+				if modifierData.IncreasingPlasmaCritChance then
+					local totalPlasma = CurrentRun.CurrentRoom.BloodDropCount * GetTotalHeroTraitValue( "BloodDropMultiplier", { IsMultiplier = true } )
+					addDdMultiplier( modifierData, modifierData.IncreasingPlasmaCritChance * totalPlasma, triggerArgs)
+					modutil.mod.Hades.PrintOverhead("DoubleDamageChance "..(triggerArgs.DdChance))
+				end
+			end
 		end
 	end
+	return triggerArgs.DdChance
 end
 
---[[modutil.mod.Path.Context.Wrap.Static("CheckPoseidonSplash", function()
-  modutil.mod.Path.Wrap("CreateProjectileFromUnit",
-    function(base, args, ...)
-      if not HeroHasTrait(PoseidonWrathBoonPluginGUID) then
-        return base(args, ...)
-      end
-      base(args, ...) -- spawn splash
-      args.Name = "PoseidonOmegaWave"
-      return base(args, ...) -- spawn swell
-    end)
+modutil.mod.Path.Wrap("FormatExtractedValue", function(baseFunc, value, extractData)
+	if extractData.MultiplyByPlasmaCount then
+		value = value * (CurrentRun.CurrentRoom.BloodDropCount * 0.5)
+	end
+	return baseFunc(value, extractData)
+end)
+
+--[[modutil.mod.Hades.PrintOverhead(config.message)
+modutil.mod.Hades.PrintOverhead("Comme les 5 doigts de la main")]]--
+
+--[[modutil.mod.Path.Wrap("CalculateDoubleDamageChance", function(baseFunc, attacker, victime, weaponData, triggerArgs)
+	baseFunc(attacker, victim, weaponData, triggerArgs)
+	if modifierData.IncreasingPlasmaCritChance then
+		local totalPlasma = CurrentRun.CurrentRoom.BloodDropCount
+		addDdMultiplier( modifierData, modifdierData.IncreasingPlasmaCritChance * totalPlasma, triggerArgs)
+	end
 end)]]--
+
 
 --[[
 	AirBoon = 
