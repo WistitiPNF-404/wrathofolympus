@@ -773,6 +773,15 @@ gods.CreateBoon({
 
 -- Function Library --
 
+---Verify if the victim can die
+---@param victim table see EnemyData ()
+---@return boolean
+function VictimCannotDie(victim)
+	return  victim.IsDead
+		or victim.CannotDieFromDamage
+		or ( victim.Phases and victim.CurrentPhase < victim.Phases )
+end
+
 -- FamilyDiscourse custom function
 function not_public.CheckRandomShareDamageCurse(victim, functionArgs, triggerArgs)
 	if triggerArgs.EffectName == "DamageShareEffect" and not triggerArgs.Reapplied and victim.ActivationFinished then
@@ -837,6 +846,9 @@ end
 -- PoseidonWrath custom function
 modutil.mod.Path.Wrap("DamageEnemy", function(baseFunc, victim, triggerArgs)
 	baseFunc(victim, triggerArgs)
+	
+	if VictimCannotDie(victim) then return end
+
 	if not HeroHasTrait(gods.GetInternalBoonName("PoseidonWrathBoon")) then
 		return
 	end
@@ -968,6 +980,9 @@ end
 --ZeusWrath custom function
 modutil.mod.Path.Wrap("DamageEnemy", function(baseFunc, victim, triggerArgs)
 	baseFunc(victim, triggerArgs)
+
+	if VictimCannotDie(victim) then return end
+
 	if not HeroHasTrait(gods.GetInternalBoonName("ZeusWrathBoon")) then
 		return
 	end
