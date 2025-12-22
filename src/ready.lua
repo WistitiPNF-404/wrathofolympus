@@ -8,7 +8,7 @@
 --	values and functions later defined in `reload.lua`.
 
 -- These are some sample code snippets of what you can do with our modding framework:
-local file = rom.path.combine(rom.paths.Content, 'Game/Text/en/ShellText.en.sjson')
+local file = rom.path.combine(rom.paths.Content, "Game/Text/en/ShellText.en.sjson")
 sjson.hook(file, function(data)
 	return sjson_ShellText(data)
 end)
@@ -18,80 +18,12 @@ modutil.mod.Path.Wrap("SetupMap", function(base, ...)
 	return base(...)
 end)
 
-local TraitTextFile = rom.path.combine(rom.paths.Content, "Game/Text/en/TraitText.en.sjson")
 local HelpTextFile = rom.path.combine(rom.paths.Content, "Game/Text/en/HelpText.en.sjson")
 local PlayerProjectilesFile = rom.path.combine(rom.paths.Content, "Game/Projectiles/PlayerProjectiles.sjson")
 local Order = { "Id", "InheritFrom", "DisplayName", "Description" }
 
 local not_public = {}
 public["not"] = not_public
-
-mod.HeraRandomCurseBoon_Text = sjson.to_object({
-    Id = "BonusOlympianDamageStatDisplay1",
-    InheritFrom = "BaseStatLine",
-    DisplayName = "{!Icons.Bullet}{#PropertyFormat}Bonus Random Curses:",
-    Description = "{#UpgradeFormat}{$TooltipData.ExtractData.CurseCount}",
-}, Order)
-
-mod.PoseidonWrathBoon_Text = sjson.to_object({
-    Id = "BonusOceanSwellStatDisplay1",
-    InheritFrom = "BaseStatLine",
-    DisplayName = "{!Icons.Bullet}{#PropertyFormat}Wave Bonus Damage:",
-    Description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
-}, Order)
-
-mod.AresWrathBoon_Text = sjson.to_object({
-    Id = "PlasmaDoubleDamageStatDisplay1",
-    InheritFrom = "BaseStatLine",
-    DisplayName = "{!Icons.Bullet}{#PropertyFormat}Chance per Collected Plasma:",
-    Description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
-}, Order)
-
-mod.AresWrathBoonPicked_Text = sjson.to_object({
-    Id = "PlasmaDoubleDamageStatDisplay2",
-    InheritFrom = "BaseStatLine",
-    DisplayName = "{!Icons.Bullet}{#PropertyFormat}Current Double Damage Chance:",
-    Description = "{#UpgradeFormat}{$TooltipData.ExtractData.CurrentMultiplier:P}",
-}, Order)
-
-mod.HephWrathBoon_Text = sjson.to_object({
-    Id = "BlastRevengeStatDisplay1",
-    InheritFrom = "BaseStatLine",
-    DisplayName = "{!Icons.Bullet}{#PropertyFormat}Armor Gained Now:",
-    Description = "{#UpgradeFormat}+{$TooltipData.ExtractData.TooltipAmount}",
-}, Order)
-
-mod.ZeusWrathBoon_Text = sjson.to_object({
-    Id = "BlitzVengeanceStatDisplay1",
-    InheritFrom = "BaseStatLine",
-    DisplayName = "{!Icons.Bullet}{#PropertyFormat}Double Strike Chance:",
-    Description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
-}, Order)
-
-mod.DemeterWrathBoon_Text = sjson.to_object({
-    Id = "FrostbiteBurstStatDisplay1",
-    InheritFrom = "BaseStatLine",
-    DisplayName = "{!Icons.Bullet}{#PropertyFormat}Frostbite Damage:",
-    Description = "{#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev}{#ItalicFormat}(per 1 Sec.)",
-}, Order)
-
-mod.AphroWrathBoon_Text = sjson.to_object({
-    Id = "BonusHeartthrobDamageStatDisplay1",
-    InheritFrom = "BaseStatLine",
-    DisplayName = "{!Icons.Bullet}{#PropertyFormat}Bonus Heartthrob Damage:",
-    Description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
-}, Order)
-
-sjson.hook(TraitTextFile, function(data)
-    table.insert(data.Texts, mod.HeraRandomCurseBoon_Text)
-	table.insert(data.Texts, mod.PoseidonWrathBoon_Text)
-	table.insert(data.Texts, mod.AresWrathBoon_Text)
-	table.insert(data.Texts, mod.AresWrathBoonPicked_Text)
-	table.insert(data.Texts, mod.HephWrathBoon_Text)
-	table.insert(data.Texts, mod.ZeusWrathBoon_Text)
-	table.insert(data.Texts, mod.DemeterWrathBoon_Text)
-	table.insert(data.Texts, mod.AphroWrathBoon_Text)
-end)
 
 mod.ZeusWrathBoon_CombatText = sjson.to_object({
 	Id = "ZeusWrath_CombatText",
@@ -127,55 +59,67 @@ end)
 
 sjson.hook(PlayerProjectilesFile, function(data)
 	table.insert(data.Texts, mod.FrostbiteBurst_Data)
-end)]]--
+end)]]
+--
 
-game.TraitData.WrathTrait = {
-    BlockStacking = true,
-    BlockInRunRarify = true,
-    BlockMenuRarify = true,
-    CustomRarityName = "Wrath",
-    CustomRarityColor = Color.BoonPatchHeroic,
-    InfoBackingAnimation = "BoonSlotHeroic",
-    UpgradeChoiceBackingAnimation = "BoonSlotHeroic",
-    Frame = "Unity",
-    RarityLevels = {
-        Legendary = {
-            MinMultiplier = 1,
-            MaxMultiplier = 1,
-        },
-    },
-}
+gods.CreateCustomRarity({
+	Name = "Wrath",
+	BlockStacking = true,
+	BlockInRunRarify = true,
+	BlockMenuRarify = true,
+	RarityLevels = {
+		Legendary = {
+			MinMultiplier = 1,
+			MaxMultiplier = 1,
+		},
+	},
+	Display = {
+		PathOverrides = {
+			framePath = true,
+			backingPath = true,
+		},
+		CustomRarityColor = Color.BoonPatchHeroic,
+		framePath = "GUI\\Screens\\BoonIconFrames\\heroic",
+		backingPath = "GUI\\Screens\\BoonSelect\\BoonSlot_Unity",
+	},
+})
+local wrathTrait = gods.GetInternalRarityName("Wrath")
 
 --[[ 
 uid, internal, charactername ,legendary, rarity, slot, blockstacking,  statlines, extractval, elements, displayName
 extrafields, boonIconPath, requirements, flavourtext
 ]]
 gods.CreateBoon({
-    pluginGUID = _PLUGIN.guid,
-    characterName = "Hera",    
+	pluginGUID = _PLUGIN.guid,
+	characterName = "Hera",
 	internalBoonName = "RandomCurseBoon",
-    isLegendary = false,
-	InheritFrom = 
-	{
+	isLegendary = false,
+	InheritFrom = {
+		wrathTrait,
 		"FireBoon",
 	},
-    addToExistingGod = true,
+	addToExistingGod = true,
 
-    displayName = "Family Discourse",
-    description = "Whenever you inflict {$Keywords.Link}, also randomly inflict {$Keywords.StatusPlural} from other Olympians.",
+	displayName = "Family Discourse",
+	description = "Whenever you inflict {$Keywords.Link}, also randomly inflict {$Keywords.StatusPlural} from other Olympians.",
 	StatLines = { "BonusOlympianDamageStatDisplay1" },
+	customStatLine = {
+		ID = "BonusOlympianDamageStatDisplay1",
+		displayName = "{!Icons.Bullet}{#PropertyFormat}Bonus Random Curses:",
+		description = "{#UpgradeFormat}{$TooltipData.ExtractData.CurseCount}",
+	},
 	requirements = { OneOf = { "HeraWeaponBoon", "HeraSpecialBoon", "HeraCastBoon", "HeraSprintBoon" } },
-    boonIconPath = "GUI\\Screens\\BoonIcons\\Hera_33",
+	boonIconPath = "GUI\\Screens\\BoonIcons\\Hera_33",
 	reuseBaseIcons = true,
 	BlockStacking = true,
 	RarityLevels = {
-			Common = 1.00,
-       		Rare = 2,
-        	Epic = 3,
-        	Heroic = 4,
-	},	
+		Common = 1.00,
+		Rare = 2,
+		Epic = 3,
+		Heroic = 4,
+	},
 
-	ExtractValues = { 
+	ExtractValues = {
 		{
 			Key = "ReportedCurseCount",
 			ExtractAs = "CurseCount",
@@ -201,100 +145,80 @@ gods.CreateBoon({
 	},
 
 	ExtraFields = {
-		OnEffectApplyFunction = 
-		{
+		OnEffectApplyFunction = {
 			FunctionName = "rom.mods." .. _PLUGIN.guid .. ".not.CheckRandomShareDamageCurse",
-			FunctionArgs = 
-			{
+			FunctionArgs = {
 				CurseCount = { BaseValue = 1 },
-				Effects = 
-				{
-					AmplifyKnockbackEffect = 
-					{
-						GameStateRequirements =
-						{
+				Effects = {
+					AmplifyKnockbackEffect = {
+						GameStateRequirements = {
 							{
 								PathTrue = { "GameState", "TextLinesRecord", "PoseidonFirstPickUp" },
 							},
 						},
-						CopyValuesFromTraits = 
-						{
-							Modifier = {"PoseidonStatusBoon" }
+						CopyValuesFromTraits = {
+							Modifier = { "PoseidonStatusBoon" },
 						},
 					},
-					BlindEffect = 
-					{
-						GameStateRequirements =
-						{
+					BlindEffect = {
+						GameStateRequirements = {
 							{
 								PathTrue = { "GameState", "TextLinesRecord", "ApolloFirstPickUp" },
 							},
 						},
 					},
-					DamageEchoEffect = 
-					{ 
-						GameStateRequirements =
-						{
+					DamageEchoEffect = {
+						GameStateRequirements = {
 							{
 								PathTrue = { "GameState", "TextLinesRecord", "ZeusFirstPickUp" },
 							},
 						},
-						ExtendDuration = "EchoDurationIncrease", 
+						ExtendDuration = "EchoDurationIncrease",
 						DefaultModifier = 1,
-						CopyValuesFromTraits = 
-						{
-							Modifier = {"ZeusWeaponBoon", "ZeusSpecialBoon"},
+						CopyValuesFromTraits = {
+							Modifier = { "ZeusWeaponBoon", "ZeusSpecialBoon" },
 						},
 					},
-					
-					DelayedKnockbackEffect = 
-					{
-						GameStateRequirements =
-						{
+
+					DelayedKnockbackEffect = {
+						GameStateRequirements = {
 							{
 								PathTrue = { "GameState", "TextLinesRecord", "HephaestusFirstPickUp" },
 							},
 						},
-						CopyValuesFromTraits = 
-						{
+						CopyValuesFromTraits = {
 							TriggerDamage = { "MassiveKnockupBoon" },
 						},
 					},
-					ChillEffect = 
-					{
-						GameStateRequirements =
-						{
+					ChillEffect = {
+						GameStateRequirements = {
 							{
 								PathTrue = { "GameState", "TextLinesRecord", "DemeterFirstPickUp" },
 							},
 						},
-						CustomFunction = "ApplyRoot"
+						CustomFunction = "ApplyRoot",
 					},
 
-					WeakEffect =
-					{
-						GameStateRequirements =
-						{
+					WeakEffect = {
+						GameStateRequirements = {
 							{
 								PathTrue = { "GameState", "TextLinesRecord", "AphroditeFirstPickUp" },
 							},
 						},
 						CustomFunction = "ApplyAphroditeVulnerability",
-					}, 
-					
-					BurnEffect = 
-					{ 
-						GameStateRequirements =
-						{
+					},
+
+					BurnEffect = {
+						GameStateRequirements = {
 							{
 								PathTrue = { "GameState", "TextLinesRecord", "HestiaFirstPickUp" },
 							},
 						},
-						CustomFunction = "ApplyBurn", 
+						CustomFunction = "ApplyBurn",
 						DefaultNumStacks = 30,
 						CopyNumStacksFromTraits = { "HestiaWeaponBoon", "HestiaSpecialBoon" },
 					},
-					
+
 					--[[AresStatus = 
 					{
 						GameStateRequirements =
@@ -323,45 +247,47 @@ gods.CreateBoon({
 								},
 							},
 						},
-					},]]--
+					},]]
+					--
 				},
 				ReportValues = { ReportedCurseCount = "CurseCount" },
 			},
-		}
-	}
+		},
+	},
 })
 
 gods.CreateBoon({
-    pluginGUID = _PLUGIN.guid,
-    characterName = "Poseidon",
+	pluginGUID = _PLUGIN.guid,
+	characterName = "Poseidon",
 	internalBoonName = "PoseidonWrathBoon",
-    isLegendary = false,
-	InheritFrom = 
-	{
-		"WrathTrait",
+	isLegendary = false,
+	InheritFrom = {
+		wrathTrait,
 		"WaterBoon",
 	},
-    addToExistingGod = true,
+	addToExistingGod = true,
 	reuseBaseIcons = true,
-    BlockStacking = true,
+	BlockStacking = true,
 
-    displayName = "Wrath of Poseidon",
-    description = "Your splash effects fire your waves from {$TraitData.OmegaPoseidonProjectileBoon.Name} with more {$Keywords.BaseDamage} at no extra cost.",
+	displayName = "Wrath of Poseidon",
+	description = "Your splash effects fire your waves from {$TraitData.OmegaPoseidonProjectileBoon.Name} with more {$Keywords.BaseDamage} at no extra cost.",
 	StatLines = { "BonusOceanSwellStatDisplay1" },
-	requirements =
-	{
-		OneFromEachSet =
-		{
+	customStatLine = {
+		ID = "BonusOceanSwellStatDisplay1",
+		displayName = "{!Icons.Bullet}{#PropertyFormat}Wave Bonus Damage:",
+		description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
+	},
+	requirements = {
+		OneFromEachSet = {
 			{ "PoseidonWeaponBoon", "PoseidonSpecialBoon", "FocusDamageShaveBoon" },
 			{ "OmegaPoseidonProjectileBoon" },
 			{ "PoseidonStatusBoon", "PoseidonExCastBoon", "EncounterStartOffenseBuffBoon" },
 		},
 	},
-    flavourText = "The sea covers most of the world's surface already; pray it does not cover the rest.",
-    boonIconPath = "GUI\\Screens\\BoonIcons\\Poseidon_39",
-    
-	ExtractValues =
-	{
+	flavourText = "The sea covers most of the world's surface already; pray it does not cover the rest.",
+	boonIconPath = "GUI\\Screens\\BoonIcons\\Poseidon_39",
+
+	ExtractValues = {
 		{
 			Key = "ReportedWaveMultiplier",
 			ExtractAs = "TooltipData",
@@ -369,52 +295,58 @@ gods.CreateBoon({
 		},
 	},
 
-	ExtraFields = 
-	{
-        AddOutgoingDamageModifiers = 
-		{
+	ExtraFields = {
+		AddOutgoingDamageModifiers = {
 			ValidProjectiles = { "PoseidonOmegaWave" },
 			ValidWaveDamageAddition = {
 				BaseValue = 2.00, -- boon description only
-				SourceIsMultiplier = true, 
+				SourceIsMultiplier = true,
 			},
-            ReportValues = { ReportedWaveMultiplier = "ValidWaveDamageAddition" },
-        },
-    },
+			ReportValues = { ReportedWaveMultiplier = "ValidWaveDamageAddition" },
+		},
+	},
 })
 
 gods.CreateBoon({
-    pluginGUID = _PLUGIN.guid,
-    characterName = "Ares",
+	pluginGUID = _PLUGIN.guid,
+	characterName = "Ares",
 	internalBoonName = "AresWrathBoon",
-    isLegendary = false,
-	InheritFrom = 
-	{
-		"WrathTrait",
+	isLegendary = false,
+	InheritFrom = {
+		wrathTrait,
 		"EarthBoon",
 	},
-    addToExistingGod = true,
+	addToExistingGod = true,
 	reuseBaseIcons = true,
-    BlockStacking = true,
+	BlockStacking = true,
 
-    displayName = "Wrath of Ares",
-    description = "Gain a chance to deal {$TraitData.AresStatusDoubleDamageBoon.DamagePercent:F} damage based on your current amount of {!Icons.BloodDropWithCountIcon}.",
+	displayName = "Wrath of Ares",
+	description = "Gain a chance to deal {$TraitData.AresStatusDoubleDamageBoon.DamagePercent:F} damage based on your current amount of {!Icons.BloodDropWithCountIcon}.",
 	StatLines = { "PlasmaDoubleDamageStatDisplay1" },
 	TrayStatLines = { "PlasmaDoubleDamageStatDisplay2" },
-	requirements =
-	{
-		OneFromEachSet =
+	customStatLine = {
 		{
+			ID = "PlasmaDoubleDamageStatDisplay1",
+			displayName = "{!Icons.Bullet}{#PropertyFormat}Chance per Collected Plasma:",
+			description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
+		},
+		{
+			ID = "PlasmaDoubleDamageStatDisplay2",
+			displayName = "{!Icons.Bullet}{#PropertyFormat}Current Double Damage Chance:",
+			description = "{#UpgradeFormat}{$TooltipData.ExtractData.CurrentMultiplier:P}",
+		},
+	},
+	requirements = {
+		OneFromEachSet = {
 			{ "AresWeaponBoon", "AresSpecialBoon" },
 			{ "AresManaBoon", "BloodDropRevengeBoon", "RendBloodDropBoon" },
 			{ "AresStatusDoubleDamageBoon", "MissingHealthCritBoon" },
 		},
 	},
-    flavourText = "If the sight of blood was truly so revolting, why then should it have such a striking hue?",
-    boonIconPath = "GUI\\Screens\\BoonIcons\\Ares_34",
-    
-	ExtractValues =
-	{
+	flavourText = "If the sight of blood was truly so revolting, why then should it have such a striking hue?",
+	boonIconPath = "GUI\\Screens\\BoonIcons\\Ares_34",
+
+	ExtractValues = {
 		{
 			Key = "ReportedPlasmaCritMultiplier",
 			ExtractAs = "Chance",
@@ -433,52 +365,49 @@ gods.CreateBoon({
 		},
 	},
 
-	ExtraFields = 
-	{
-        AddOutgoingDoubleDamageModifiers = 
-		{
-			IncreasingPlasmaCritChance =
-			{
+	ExtraFields = {
+		AddOutgoingDoubleDamageModifiers = {
+			IncreasingPlasmaCritChance = {
 				BaseValue = 0.005,
 				DecimalPlaces = 4,
 			},
-            ReportValues = { ReportedPlasmaCritMultiplier = "IncreasingPlasmaCritChance" },
-        },
-    },
+			ReportValues = { ReportedPlasmaCritMultiplier = "IncreasingPlasmaCritChance" },
+		},
+	},
 })
 
 gods.CreateBoon({
-    pluginGUID = _PLUGIN.guid,
-    characterName = "Hephaestus",
+	pluginGUID = _PLUGIN.guid,
+	characterName = "Hephaestus",
 	internalBoonName = "HephWrathBoon",
-    isLegendary = false,
-	InheritFrom = 
-	{
-		"WrathTrait",
-		"CostumeTrait",
+	isLegendary = false,
+	InheritFrom = {
+		wrathTrait,
 		"FireBoon",
 	},
-    addToExistingGod = true,
+	addToExistingGod = true,
 	reuseBaseIcons = true,
-    BlockStacking = true,
+	BlockStacking = true,
 
-    displayName = "Explosive Plating",
-    description = "After you take damage while having {!Icons.ArmorTotal}, create a blast that deals {$TooltipData.ExtractData.Damage} damage in an area.",
+	displayName = "Explosive Plating",
+	description = "After you take damage while having {!Icons.ArmorTotal}, create a blast that deals {$TooltipData.ExtractData.Damage} damage in an area.",
 	StatLines = { "BlastRevengeStatDisplay1" },
-	requirements =
-	{
-		OneFromEachSet =
-		{
+	customStatLine = {
+		Id = "BlastRevengeStatDisplay1",
+		displayName = "{!Icons.Bullet}{#PropertyFormat}Armor Gained Now:",
+		description = "{#UpgradeFormat}+{$TooltipData.ExtractData.TooltipAmount}",
+	},
+	requirements = {
+		OneFromEachSet = {
 			{ "HephaestusWeaponBoon", "HephaestusSpecialBoon", "HephaestusSprintBoon" },
 			{ "HeavyArmorBoon", "ArmorBoon", "EncounterStartDefenseBuffBoon" },
 			{ "HephaestusManaBoon", "ManaToHealthBoon" },
 		},
 	},
-    flavourText = "The roughest hands can often be the ones to produce the most immaculate results.",
-    boonIconPath = "GUI\\Screens\\BoonIcons\\Hephaestus_29",
-    
-	ExtractValues =
-	{
+	flavourText = "The roughest hands can often be the ones to produce the most immaculate results.",
+	boonIconPath = "GUI\\Screens\\BoonIcons\\Hephaestus_29",
+
+	ExtractValues = {
 		{
 			Key = "ReportedBlastDamageMultiplier",
 			ExtractAs = "Damage",
@@ -495,78 +424,71 @@ gods.CreateBoon({
 		},
 	},
 
-	ExtraFields = 
-	{
+	ExtraFields = {
 		Frame = "Unity",
 		Invincible = true,
-		OnSelfDamagedFunction =
-		{
+		OnSelfDamagedFunction = {
 			Name = "rom.mods." .. _PLUGIN.guid .. ".not.HephRetaliate",
-			FunctionArgs = 
-			{
+			FunctionArgs = {
 				ProjectileName = "MassiveSlamBlast",
 				Cooldown = 0.4,
 				BlastDelay = 0.08,
 				DamageMultiplier = 3.0,
-				ReportValues = 
-				{
+				ReportValues = {
 					ReportedBlastDamageMultiplier = "DamageMultiplier",
-				}
-			}
+				},
+			},
 		},
 		AcquireFunctionName = "HeavyArmorInitialPresentation",
-		SetupFunctions =
-		{
+		SetupFunctions = {
 			{
 				Name = "CostumeArmor",
-				Args = 
-				{
+				Args = {
 					Source = "Tradeoff",
 					Delay = 0.75,
-					BaseAmount =
-					{
+					BaseAmount = {
 						BaseValue = 100,
 					},
-					ReportValues = 
-					{
+					ReportValues = {
 						ReportedExtraArmor = "BaseAmount",
 					},
 				},
 			},
 		},
-    },
+	},
 })
 
 gods.CreateBoon({
-    pluginGUID = _PLUGIN.guid,
-    characterName = "Zeus",
+	pluginGUID = _PLUGIN.guid,
+	characterName = "Zeus",
 	internalBoonName = "ZeusWrathBoon",
-    isLegendary = false,
-	InheritFrom = 
-	{
-		"WrathTrait",
+	isLegendary = false,
+	InheritFrom = {
+		wrathTrait,
 		"AirBoon",
 	},
-    addToExistingGod = true,
+	addToExistingGod = true,
 	reuseBaseIcons = true,
-    BlockStacking = true,
+	BlockStacking = true,
 
-    displayName = "Wrath of Zeus",
-    description = "Activating {$Keywords.Echo} on foes strikes them with {#BoldFormatGraft}{$TooltipData.ExtractData.BoltsNumber} {#Prev}lightning bolts, each dealing {#BoldFormatGraft}{$TooltipData.ExtractData.WrathBoltDamage} {#Prev}damage.",
+	displayName = "Wrath of Zeus",
+	description = "Activating {$Keywords.Echo} on foes strikes them with {#BoldFormatGraft}{$TooltipData.ExtractData.BoltsNumber} {#Prev}lightning bolts, each dealing {#BoldFormatGraft}{$TooltipData.ExtractData.WrathBoltDamage} {#Prev}damage.",
 	StatLines = { "BlitzVengeanceStatDisplay1" },
-	requirements =
-	{
-		OneFromEachSet =
-		{
+	customStatLine = {
+		Id = "BlitzVengeanceStatDisplay1",
+		displayName = "{!Icons.Bullet}{#PropertyFormat}Double Strike Chance:",
+		description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
+	},
+	requirements = {
+		OneFromEachSet = {
 			{ "SuperSacrificeBoonHera" },
 			{ "ZeusWeaponBoon", "ZeusSpecialBoon" },
 		},
 	},
-    flavourText = "The lightning bolt forever remains a symbol of the impulsive power of the Lord of Olympus.",
-    boonIconPath = "GUI\\Screens\\BoonIcons\\Zeus_33",
+	flavourText = "The lightning bolt forever remains a symbol of the impulsive power of the Lord of Olympus.",
+	boonIconPath = "GUI\\Screens\\BoonIcons\\Zeus_33",
 
-	ExtractValues =
-	{
+	ExtractValues = {
 		{
 			Key = "ReportedBoltChance",
 			ExtractAs = "DoubleChance",
@@ -600,28 +522,22 @@ gods.CreateBoon({
 		},
 	},
 
-	ExtraFields = 
-	{
+	ExtraFields = {
 		BoltDamage = 100, -- used for description only
-		OnEnemyDamagedAction =
-		{
+		OnEnemyDamagedAction = {
 			Name = "ZeusWrath",
-			Args = 
-			{
+			Args = {
 				ProjectileName = "ZeusRetaliateStrike",
 				DoubleBoltChance = 0.4,
 				MinStrikes = 3,
-				MaxStrikes = 
-				{ 
+				MaxStrikes = {
 					BaseValue = 6,
 					MinValue = 3,
-					IdenticalMultiplier = 
-					{
+					IdenticalMultiplier = {
 						Value = -0.5,
 					},
 				},
-				ReportValues = 
-				{ 
+				ReportValues = {
 					ReportedMaxStrikes = "MaxStrikes",
 					ReportedMinStrikes = "MinStrikes",
 					ReportedBoltChance = "DoubleBoltChance",
@@ -638,7 +554,7 @@ gods.CreateBoon({
     isLegendary = false,
 	InheritFrom = 
 	{
-		"WrathTrait",
+		wrathTrait,
 		"WaterBoon",
 	},
     addToExistingGod = true,
@@ -648,6 +564,11 @@ gods.CreateBoon({
     displayName = "Wrath of Demeter",
     description = "After the {$Keywords.Root} duration on your foes expires, they suffer from Frostbite.",
 	StatLines = { "FrostbiteBurstStatDisplay1" },
+    customStatLine = {
+        Id = "FrostbiteBurstStatDisplay1",
+        displayName = "{!Icons.Bullet}{#PropertyFormat}Frostbite Damage:",
+        description = "{#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev}{#ItalicFormat}(per 1 Sec.)",
+    },
 	requirements =
 	{
 		OneFromEachSet =
@@ -709,38 +630,41 @@ gods.CreateBoon({
 			},
 		},
     },
-})]]--
+})]]
+--
 
 gods.CreateBoon({
-    pluginGUID = _PLUGIN.guid,
-    characterName = "Aphrodite",    
+	pluginGUID = _PLUGIN.guid,
+	characterName = "Aphrodite",
 	internalBoonName = "AphroWrathBoon",
-    isLegendary = false,
-	InheritFrom = 
-	{
-		"WrathTrait",
+	isLegendary = false,
+	InheritFrom = {
+		wrathTrait,
 		"WaterBoon",
 	},
-    addToExistingGod = true,
+	addToExistingGod = true,
 	reuseBaseIcons = true,
 	BlockStacking = true,
 
-    displayName = "Lustful Confession",
-    description = "Your {$Keywords.HeartBurstPlural} are stronger and fire your {$Keywords.CastEX} upon striking a foe.",
+	displayName = "Lustful Confession",
+	description = "Your {$Keywords.HeartBurstPlural} are stronger and fire your {$Keywords.CastEX} upon striking a foe.",
 	StatLines = { "BonusHeartthrobDamageStatDisplay1" },
-	requirements = 
-	{
-		OneFromEachSet =
-		{
+	customStatLine = {
+		Id = "BonusHeartthrobDamageStatDisplay1",
+		displayName = "{!Icons.Bullet}{#PropertyFormat}Bonus Heartthrob Damage:",
+		description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
+	},
+	requirements = {
+		OneFromEachSet = {
 			{ "AphroditeWeaponBoon", "AphroditeSpecialBoon" },
 			{ "ManaBurstBoon" },
 			{ "HighHealthOffenseBoon", "HealthRewardBonusBoon", "FocusRawDamageBoon" },
 		},
 	},
 	flavourText = "Love and beauty can be so overwhelming as to strike each of the senses numb.",
-    boonIconPath = "GUI\\Screens\\BoonIcons\\Aphrodite_40",
+	boonIconPath = "GUI\\Screens\\BoonIcons\\Aphrodite_40",
 
-	ExtractValues = { 
+	ExtractValues = {
 		{
 			Key = "ReportedHeartthrobMultiplier",
 			ExtractAs = "HeartthrobMultiplier",
@@ -756,19 +680,16 @@ gods.CreateBoon({
 		},
 	},
 
-	ExtraFields = 
-	{
-		HeartthrobBonusDamageModifiers = 
-		{
+	ExtraFields = {
+		HeartthrobBonusDamageModifiers = {
 			ValidProjectiles = "AphroditeBurst",
-			HeartthrobBonusMultiplier = 
-			{
+			HeartthrobBonusMultiplier = {
 				BaseValue = 1.5,
 			},
 			SourceIsMultiplier = true,
-            ReportValues = { ReportedHeartthrobMultiplier = "HeartthrobBonusMultiplier" },
-        },
-	}
+			ReportValues = { ReportedHeartthrobMultiplier = "HeartthrobBonusMultiplier" },
+		},
+	},
 })
 
 -- Function Library --
