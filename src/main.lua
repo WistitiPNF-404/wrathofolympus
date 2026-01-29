@@ -33,8 +33,8 @@ chalk = mods["SGG_Modding-Chalk"]
 ---@module 'SGG_Modding-ReLoad'
 reload = mods['SGG_Modding-ReLoad']
 
----@module 'zannc-GodsAPI'
-gods = mods['zannc-GodsAPI']
+---@module 'zannc-GodsAPI-auto'
+gods = mods['zannc-GodsAPI'].auto()
 
 ---@module 'config'
 config = chalk.auto 'config.lua'
@@ -47,6 +47,8 @@ local function on_ready()
 	mod = modutil.mod.Mod.Register(_PLUGIN.guid)
 
 	import 'ready.lua'
+
+	import 'gods/zeus.lua'
 end
 
 local function on_reload()
@@ -55,6 +57,8 @@ local function on_reload()
 	if config.enabled == false then return end
 
 	import 'reload.lua'
+
+	import 'gods/zeus_reload.lua'
 end
 
 -- this allows us to limit certain functions to not be reloaded.

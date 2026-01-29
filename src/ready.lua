@@ -8,6 +8,8 @@
 --	values and functions later defined in `reload.lua`.
 
 -- These are some sample code snippets of what you can do with our modding framework:
+ResetKeywords()
+
 local file = rom.path.combine(rom.paths.Content, "Game/Text/en/ShellText.en.sjson")
 sjson.hook(file, function(data)
 	return sjson_ShellText(data)
@@ -19,21 +21,50 @@ modutil.mod.Path.Wrap("SetupMap", function(base, ...)
 end)
 
 local HelpTextFile = rom.path.combine(rom.paths.Content, "Game/Text/en/HelpText.en.sjson")
-local PlayerProjectilesFile = rom.path.combine(rom.paths.Content, "Game/Projectiles/PlayerProjectiles.sjson")
 local Order = { "Id", "InheritFrom", "DisplayName", "Description" }
 
 local not_public = {}
 public["not"] = not_public
 
+
+-- Keywords and help texts
 mod.ZeusWrathBoon_CombatText = sjson.to_object({
 	Id = "ZeusWrath_CombatText",
 	DisplayName = "{#CombatTextHighlightFormat}{$TempTextData.BoonName} {#Prev}{$TempTextData.Amount}x!",
 }, Order)
 
+local newKeywords = {
+	"ModsWistitiFrostbiteDesc",
+}
+game.ConcatTableValuesIPairs(game.KeywordList, newKeywords)
+
+local newData = {
+	Id = "ModsWistitiFrostbiteDesc",
+	DisplayName = "Frostbite",
+	Description = "Burst of damage that increases depending on the duration of {$Keywords.Root}.",
+}
+
+mod.DemeterWrathBoon_FrostbiteDesc = sjson.to_object(newData, Order)
+
 sjson.hook(HelpTextFile, function(data)
 	table.insert(data.Texts, mod.ZeusWrathBoon_CombatText)
+	table.insert(data.Texts, mod.DemeterWrathBoon_FrostbiteDesc)
 end)
 
+--Damage coloring
+game.OverwriteTableKeys( game.ProjectileData, {
+	DemeterAmmoWind =
+	{
+		InheritFrom = { "DemeterColorProjectile" },
+	},
+})
+game.ProcessDataStore(game.ProjectileData)
+
+game.ConcatTableValues(game.WeaponSets.OlympianProjectileNames,{
+    "DemeterAmmoWind",
+})
+
+--Wrath rarity
 gods.CreateCustomRarity({
 	Name = "Wrath",
 	BlockStacking = true,
@@ -51,6 +82,7 @@ gods.CreateCustomRarity({
 			backingPath = true,
 		},
 		CustomRarityColor = Color.AresVoice,
+		frameScale = 1.66,
 		framePath = "Wistiti-WrathOfOlympusBoonFrames\\wrath_1",
 		backingPath = "Wistiti-WrathOfOlympusBoonFrames\\BoonSlot_Wrath",
 	},
@@ -247,7 +279,7 @@ gods.CreateBoon({
 	},
 
 	ExtraFields = {
-		Frame = "Unity",
+		--Frame = "Wrath",
 		Invincible = true,
 		OnSelfDamagedFunction = {
 			Name = "rom.mods." .. _PLUGIN.guid .. ".not.HephRetaliate",
@@ -280,95 +312,7 @@ gods.CreateBoon({
 	},
 })
 
-gods.CreateBoon({
-	pluginGUID = _PLUGIN.guid,
-	characterName = "Zeus",
-	internalBoonName = "ZeusWrathBoon",
-	isLegendary = false,
-	InheritFrom = {
-		wrathTrait,
-		"AirBoon",
-	},
-	addToExistingGod = { boonPosition = 10 },
-	reuseBaseIcons = true,
-	BlockStacking = true,
-
-	displayName = "Spurned Patriarch",
-	description = "Activating {$Keywords.Echo} on foes strikes them with {#BoldFormatGraft}{$TooltipData.ExtractData.BoltsNumber} {#Prev}lightning bolts, each dealing {#BoldFormatGraft}{$TooltipData.ExtractData.WrathBoltDamage} {#Prev}damage.",
-	StatLines = { "BlitzVengeanceStatDisplay1" },
-	customStatLine = {
-		ID = "BlitzVengeanceStatDisplay1",
-		displayName = "{!Icons.Bullet}{#PropertyFormat}Double Strike Chance:",
-		description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
-	},
-	requirements = {
-		OneFromEachSet = {
-			{ "SuperSacrificeBoonHera" },
-			{ "ZeusWeaponBoon", "ZeusSpecialBoon" },
-		},
-	},
-	flavourText = "The lightning bolt forever remains a symbol of the impulsive power of the Lord of Olympus.",
-	boonIconPath = "GUI\\Screens\\BoonIcons\\Zeus_33",
-
-	ExtractValues = {
-		{
-			Key = "ReportedBoltChance",
-			ExtractAs = "DoubleChance",
-			Format = "LuckModifiedPercent",
-		},
-		{
-			Key = "ReportedMinStrikes",
-			ExtractAs = "BoltsNumber",
-			SkipAutoExtract = true,
-		},
-		{
-			Key = "BoltDamage",
-			ExtractAs = "WrathBoltDamage",
-			SkipAutoExtract = true,
-		},
-		{
-			ExtractAs = "EchoDuration",
-			SkipAutoExtract = true,
-			External = true,
-			BaseType = "EffectData",
-			BaseName = "DamageEchoEffect",
-			BaseProperty = "Duration",
-		},
-		{
-			ExtractAs = "EchoThreshold",
-			SkipAutoExtract = true,
-			External = true,
-			BaseType = "EffectData",
-			BaseName = "DamageEchoEffect",
-			BaseProperty = "DamageThreshold",
-		},
-	},
-
-	ExtraFields = {
-		BoltDamage = 100, -- used for description only
-		OnEnemyDamagedAction = {
-			FunctionName = "ZeusWrath",
-			ValidProjectiles = { "ZeusEchoStrike" },
-			Args = {
-				ProjectileName = "ZeusRetaliateStrike",
-				DoubleBoltChance = 0.4,
-				MinStrikes = 3,
-				MaxStrikes = {
-					BaseValue = 6,
-					MinValue = 3,
-					IdenticalMultiplier = {
-						Value = -0.5,
-					},
-				},
-				ReportValues = {
-					ReportedMaxStrikes = "MaxStrikes",
-					ReportedMinStrikes = "MinStrikes",
-					ReportedBoltChance = "DoubleBoltChance",
-				},
-			},
-		},
-	},
-})
+-- Zeus Wrath boon data was here
 
 gods.CreateBoon({
 	pluginGUID = _PLUGIN.guid,
@@ -602,7 +546,7 @@ gods.CreateBoon({
 						Value = -0.5,
 					},
 				},
-				ReportValues = { ReportedMissDamage = "DamageMultiplier" },
+				ReportValues = { ReportedMissDamage = "DamageMultiplier" },--might need to remove that
 			},
 		},
 		AddOutgoingCritModifiers =
@@ -627,7 +571,7 @@ gods.CreateBoon({
 	reuseBaseIcons = true,
 	BlockStacking = true,
 
-	displayName = "Perfidious Matrimony",
+	displayName = "Selfish Arrangement",
 	description = "Your {$Keywords.CastSet} summon a sturdy {$Keywords.Link}-afflicted critter in the binding circle.",
 	StatLines = { "HitchPunchingBagStatDisplay1" },
 	customStatLine = {
@@ -672,7 +616,7 @@ gods.CreateBoon({
 	ExtraFields = {
 		OnWeaponFiredFunctions =
 		{
-			ValidWeapons =  WeaponSets.HeroNonPhysicalWeapons,
+			ValidWeapons = WeaponSets.HeroNonPhysicalWeapons,
 			FunctionName = "HeraMoutonSpawn",
 			FunctionArgs =
 			{
@@ -700,13 +644,13 @@ gods.CreateBoon({
 	reuseBaseIcons = true,
     BlockStacking = true,
 
-    displayName = "Wrath of Demeter",
-    description = "After the {$Keywords.Root} duration on your foes expires, they suffer from Frostbite.",
+    displayName = "Perilous Avalanche",
+    description = "After the {$Keywords.Root} duration on your foes expires, they suffer from {$Keywords.ModsWistitiFrostbiteDesc}.",
 	StatLines = { "FrostbiteBurstStatDisplay1" },
     customStatLine = {
         Id = "FrostbiteBurstStatDisplay1",
         displayName = "{!Icons.Bullet}{#PropertyFormat}Frostbite Damage:",
-        description = "{#UpgradeFormat}{$TooltipData.StatDisplay1} {#Prev}{#ItalicFormat}(per 1 Sec.)",
+        description = "{#UpgradeFormat}{$TooltipData.ExtractData.FrostbiteDamage} {#Prev}{#ItalicFormat}(per 1 Sec.)",
     },
 	requirements =
 	{
@@ -723,12 +667,9 @@ gods.CreateBoon({
 	ExtractValues =
 	{
 		{
-			Key = "ReportedFrostbiteMultiplier",
-			ExtractAs = "Damage",
-			Format = "MultiplyByBase",
-			BaseType = "Projectile",
-			BaseName = "FrostbiteProjectile",
-			BaseProperty = "Damage",
+			Key = "FrostbiteBaseDmg",
+			ExtractAs = "FrostbiteDamage",
+			SkipAutoExtract = true,
 		},
 		{
 			ExtractAs = "ChillDuration",
@@ -750,19 +691,15 @@ gods.CreateBoon({
 
 	ExtraFields = 
 	{
-		OnEnemyDamagedAction =
+		FrostbiteBaseDmg = 75,
+		--[[OnEnemyDamagedAction =
 		{
 			FunctionName = "FrostbiteDamage",
-			FunctionArgs =
-			{
+			FunctionArgs = {
 				EffectName = "ChillEffect",
-				FrostbiteMultiplier = 75,
+				ProjectileName = "DemeterAmmoWind",
 			},
-			ReportedValues =
-			{
-				ReportedFrostbiteMultiplier = "FrostbiteMultipier",
-			},
-		},
+		},]]
     },
 })
 
@@ -882,26 +819,7 @@ function not_public.HephRetaliate( unit, args )
 	end
 end
 
---ZeusWrath custom function 
-modutil.mod.Path.Override("ZeusWrath", function(unit, args)
-	local strikeCount = args.MinStrikes
-	while RandomChance( args.DoubleBoltChance * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true }) ) and strikeCount < args.MaxStrikes do
-		strikeCount = strikeCount + 1
-	end
-	if strikeCount > 1 then
-		thread( InCombatTextArgs, { TargetId = unit.ObjectId, Text = "ZeusWrath_CombatText", LuaKey = "TempTextData", ShadowScaleX = 1.1, LuaValue = { Amount = strikeCount, BoonName = gods.GetInternalBoonName("ZeusWrathBoon") }} )
-	end
-	CreateZeusBolt({
-		ProjectileName = args.ProjectileName, 
-		TargetId = unit.ObjectId, 
-		DamageMultiplier = args.DamageMultiplier,
-		Delay = 0.2, 
-		FollowUpDelay = 0.2, 
-		Count = strikeCount
-		})
-end)
-
---DemeterWrath custom functions
+--ZeusWrath custom functions was here
 
 --AphroWrath custom functions
 modutil.mod.Path.Wrap("DamageEnemy", function(baseFunc, victim, triggerArgs)
@@ -1106,34 +1024,52 @@ end)
 
 --DemeterWrath custom functions
 modutil.mod.Path.Wrap("ApplyRoot", function( baseFunc, victim, functionArgs, triggerArgs )
+	local enemyRooted = false
+	if victim.ActiveEffects["ChillEffect"] and victim.RootActive then
+		enemyRooted = true
+	end
 	baseFunc(victim, functionArgs, triggerArgs)
 	if victim.ActiveEffects then
 		if victim.ActiveEffects["ChillEffect"] and victim.RootActive then
-			thread( FrosbiteDamage, enemy, functionArgs, triggerArgs)
+			if not enemyRooted then
+				thread( FrostbiteDamage, enemy, functionArgs, triggerArgs)
+			end
 		end
 	end
 end)
 
-modutil.mod.Path.Override("FrosbiteDamage", function (victim, functionArgs, triggerArgs)
+modutil.mod.Path.Override("FrostbiteDamage", function (victim, functionArgs, triggerArgs)
+	if not HeroHasTrait(gods.GetInternalBoonName("DemeterWrathBoon")) then
+		return
+	end
 	local victim = triggerArgs.Victim
 	local dataProperties = MergeAllTables({
 		EffectData["ChillEffect"].EffectData, 
 		functionArgs.EffectArgs
 	})
+	
+	local freezeDuration = dataProperties.Duration - (dataProperties.ExpiringTimeThreshold - GetTotalHeroTraitValue("RootDurationExtension"))
+
+	local damageAmount = freezeDuration * 75
+	--modutil.mod.Hades.PrintOverhead("FrosbiteDamage "..(damageAmount))
+	
+	local frostbiteProjectile = {
+		Name = "DemeterAmmoWind",
+		Id = CurrentRun.Hero.ObjectId,
+		DestinationId = victim.ObjectId,
+		FireFromTarget = true,
+		DamageMultiplier = damageAmount / 30, -- divided by projectile base damage
+		DataProperties =
+		{
+			Range = 200,
+			DamageRadius = 250,
+			DamageRadiusScaleY = 0,
+			DamageRadiusScaleX = 0,
+		},
+	}
+
+	wait(freezeDuration - 0.15) --substract to make sure Frostbite hits against faster enemies
 	if victim and not victim.IsDead then
-		local freezeDuration = dataProperties.Duration - (dataProperties.ExpiringTimeThreshold - GetTotalHeroTraitValue("RootDurationExtension"))
-		wait(freezeDuration)
-		damageAmount = freezeDuration * 75
-		modutil.mod.Hades.PrintOverhead("FrosbiteDamage "..(damageAmount))
-		CreateProjectileFromUnit({ 
-				Name = "RubbleFallOlympus", 
-				DestinationId = victim.ObjectId, 
-				Id = CurrentRun.Hero.ObjectId, 
-				DamageMultiplier = damageAmount / 200, --dividing by 4 again because of placeholder projectile
-				FireFromTarget = true,
-				ProjectileCap = 1, 
-				OffsetY = -329,
-			})
-		CreateAnimation({ Name = "OlympusIcicleFalling", DestinationId = victim.ObjectId })
+		CreateProjectileFromUnit(frostbiteProjectile)
 	end
 end)
