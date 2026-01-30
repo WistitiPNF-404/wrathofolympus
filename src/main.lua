@@ -49,6 +49,14 @@ local function on_ready()
 	import 'ready.lua'
 
 	import 'gods/zeus.lua'
+	import 'gods/hera.lua'
+	import 'gods/poseidon.lua'
+	import 'gods/demeter.lua'
+	import 'gods/apollo.lua'
+	import 'gods/aphrodite.lua'
+	import 'gods/hephaestus.lua'
+	import 'gods/hestia.lua'
+	import 'gods/ares.lua'
 end
 
 local function on_reload()
@@ -59,6 +67,14 @@ local function on_reload()
 	import 'reload.lua'
 
 	import 'gods/zeus_reload.lua'
+	import 'gods/hera_reload.lua'
+	import 'gods/poseidon_reload.lua'
+	import 'gods/demeter_reload.lua'
+	import 'gods/apollo_reload.lua'
+	import 'gods/aphrodite_reload.lua'
+	import 'gods/hephaestus_reload.lua'
+	import 'gods/hestia_reload.lua'
+	import 'gods/ares_reload.lua'
 end
 
 -- this allows us to limit certain functions to not be reloaded.

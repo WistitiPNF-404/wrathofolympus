@@ -1,4 +1,4 @@
-modutil.mod.Path.Override("ZeusWrath", function(unit, args)
+function mod.ZeusWrath (unit, args)
 	local strikeCount = args.MinStrikes
 	while RandomChance( args.DoubleBoltChance * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true }) ) and strikeCount < args.MaxStrikes do
 		strikeCount = strikeCount + 1

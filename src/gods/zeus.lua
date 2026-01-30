@@ -4,7 +4,7 @@ gods.CreateBoon({
 	internalBoonName = "ZeusWrathBoon",
 	isLegendary = false,
 	InheritFrom = {
-		wrathTrait,
+		mod.wrathTrait,
 		"AirBoon",
 	},
 	addToExistingGod = { boonPosition = 10 },
@@ -65,7 +65,7 @@ gods.CreateBoon({
 	ExtraFields = {
 		BoltDamage = 100, -- used for description only
 		OnEnemyDamagedAction = {
-			FunctionName = "ZeusWrath",
+			FunctionName = _PLUGIN.guid .. "." .. "ZeusWrath",
 			ValidProjectiles = { "ZeusEchoStrike" },
 			Args = {
 				ProjectileName = "ZeusRetaliateStrike",

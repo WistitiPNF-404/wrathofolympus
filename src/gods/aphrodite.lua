@@ -1,0 +1,58 @@
+gods.CreateBoon({
+	pluginGUID = _PLUGIN.guid,
+	characterName = "Aphrodite",
+	internalBoonName = "AphroWrathBoon",
+	isLegendary = false,
+	InheritFrom = {
+		mod.wrathTrait,
+		"WaterBoon",
+	},
+	addToExistingGod = { boonPosition = 10 },
+	reuseBaseIcons = true,
+	BlockStacking = true,
+
+	displayName = "Lustful Confession",
+	description = "Your {$Keywords.HeartBurstPlural} are stronger and fire your {$Keywords.CastEX} upon striking a foe.",
+	StatLines = { "BonusHeartthrobDamageStatDisplay1" },
+	customStatLine = {
+		ID = "BonusHeartthrobDamageStatDisplay1",
+		displayName = "{!Icons.Bullet}{#PropertyFormat}Bonus Heartthrob Damage:",
+		description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
+	},
+	requirements = {
+		OneFromEachSet = {
+			{ "AphroditeWeaponBoon", "AphroditeSpecialBoon" },
+			{ "ManaBurstBoon" },
+			{ "HighHealthOffenseBoon", "HealthRewardBonusBoon", "FocusRawDamageBoon" },
+		},
+	},
+	flavourText = "Love and beauty can be so overwhelming as to strike each of the senses numb.",
+	boonIconPath = "GUI\\Screens\\BoonIcons\\Aphrodite_40",
+
+	ExtractValues = {
+		{
+			Key = "ReportedHeartthrobMultiplier",
+			ExtractAs = "HeartthrobMultiplier",
+			Format = "PercentDelta",
+		},
+		{
+			ExtractAs = "Duration",
+			SkipAutoExtract = true,
+			External = true,
+			BaseType = "ProjectileBase",
+			BaseName = "AphroditeBurst",
+			BaseProperty = "Fuse",
+		},
+	},
+
+	ExtraFields = {
+		HeartthrobBonusDamageModifiers = {
+			ValidProjectiles = "AphroditeBurst",
+			HeartthrobBonusMultiplier = {
+				BaseValue = 1.5,
+			},
+			SourceIsMultiplier = true,
+			ReportValues = { ReportedHeartthrobMultiplier = "HeartthrobBonusMultiplier" },
+		},
+	},
+})
