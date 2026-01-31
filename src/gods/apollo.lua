@@ -80,7 +80,7 @@ gods.CreateBoon({
 		DazeMissDamage = 100, -- used for description only
 		OnDodgeFunction = 
 		{
-			FunctionName = "ApolloWrath",
+			FunctionName = _PLUGIN.guid .. "." .. "ApolloWrath",
 			RunOnce = true,
 			FunctionArgs =
 			{

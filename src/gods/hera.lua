@@ -57,7 +57,7 @@ gods.CreateBoon({
 		OnWeaponFiredFunctions =
 		{
 			ValidWeapons = WeaponSets.HeroNonPhysicalWeapons,
-			FunctionName = "HeraMoutonSpawn",
+			FunctionName = _PLUGIN.guid .. "." .. "HeraMoutonSpawn",
 			FunctionArgs =
 			{
 				SpawnedEnemy = "Sheep",

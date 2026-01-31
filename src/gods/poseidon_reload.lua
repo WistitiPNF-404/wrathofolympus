@@ -1,4 +1,4 @@
-modutil.mod.Path.Override("PoseidonWrath", function(unit, functionArgs, triggerArgs)
+function mod.PoseidonWrath (unit, functionArgs, triggerArgs)
 	-- If Hero doesnt have Ocean Swell, dont crash, just dont do it
 	if not HeroHasTrait("OmegaPoseidonProjectileBoon") then
 		return
@@ -35,5 +35,4 @@ modutil.mod.Path.Override("PoseidonWrath", function(unit, functionArgs, triggerA
 			CreateProjectileFromUnit(omegaPoseidonProjectile)
 		end
 	end
-	
-end)
+end

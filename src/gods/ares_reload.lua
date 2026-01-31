@@ -1,9 +1,9 @@
 modutil.mod.Path.Wrap("CalculateDoubleDamageChance", function(baseFunc, attacker, victim, weaponData, triggerArgs)
 	baseFunc(attacker, victim, weaponData, triggerArgs)
-	return CalculatePlasmaDoubleDamageChance(attacker, victim, weaponData, triggerArgs)
+	return mod.CalculatePlasmaDoubleDamageChance (attacker, victim, weaponData, triggerArgs)
 end)
 
-modutil.mod.Path.Override("CalculatePlasmaDoubleDamageChance", function( attacker, victim, weaponData, triggerArgs )
+function mod.CalculatePlasmaDoubleDamageChance ( attacker, victim, weaponData, triggerArgs )
 	--[[if not HeroHasTrait(gods.GetInternalBoonName("AresWrathBoon")) then
 		return
 	end]]--
@@ -37,7 +37,7 @@ modutil.mod.Path.Override("CalculatePlasmaDoubleDamageChance", function( attacke
 		end
 	end
 	return triggerArgs.DdChance
-end)
+end
 
 modutil.mod.Path.Wrap("FormatExtractedValue", function(baseFunc, value, extractData)
 	if extractData.MultiplyByPlasmaCount then

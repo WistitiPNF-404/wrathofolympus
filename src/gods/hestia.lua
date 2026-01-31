@@ -49,7 +49,7 @@ gods.CreateBoon({
 
 	ExtraFields = {
 		OnDamageEnemyFunction = {
-			FunctionName = "BurnInstaKill",
+			FunctionName = _PLUGIN.guid .. "." .. "BurnInstaKill",
 			FunctionArgs = {
 				ExecuteImmunities = {
 					Prometheus = {

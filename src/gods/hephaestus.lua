@@ -51,7 +51,7 @@ gods.CreateBoon({
 		--Frame = "Wrath",
 		Invincible = true,
 		OnSelfDamagedFunction = {
-			Name = "HephRetaliate",
+			Name = _PLUGIN.guid .. "." .. "HephRetaliate",
 			FunctionArgs = {
 				ProjectileName = "MassiveSlamBlast",
 				Cooldown = 0.4,

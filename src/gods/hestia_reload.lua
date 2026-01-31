@@ -1,4 +1,4 @@
-modutil.mod.Path.Override("BurnInstaKill", function( args, attacker, victim, triggerArgs )
+function mod.BurnInstaKill ( args, attacker, victim, triggerArgs )
 	--[[for k,v in pairs(victim.ActiveEffects["BurnEffect"]) do
 		print(k)
 	end]]--
@@ -25,7 +25,7 @@ modutil.mod.Path.Override("BurnInstaKill", function( args, attacker, victim, tri
 			CurrentRun.BossHealthBarRecord[victim.Name] = 0 -- Health bar won't get updated again normally
 		end
 	end
-end)
+end
 
 modutil.mod.Path.Override("ApplyBurn", function (victim, functionArgs, triggerArgs)
 	functionArgs = ShallowCopyTable(functionArgs) or { EffectName = "BurnEffect", NumStacks = 1 }

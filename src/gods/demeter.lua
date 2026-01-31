@@ -58,7 +58,7 @@ gods.CreateBoon({
 
 	ExtraFields = 
 	{
-		FrostbiteBaseDmg = 75,
+		FrostbiteBaseDmg = 125,
 		--[[OnEnemyDamagedAction =
 		{
 			FunctionName = "FrostbiteDamage",

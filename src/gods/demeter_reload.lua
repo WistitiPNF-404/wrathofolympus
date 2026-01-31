@@ -7,7 +7,7 @@ modutil.mod.Path.Wrap("ApplyRoot", function( baseFunc, victim, functionArgs, tri
 	if victim.ActiveEffects then
 		if victim.ActiveEffects["ChillEffect"] and victim.RootActive then
 			if not enemyRooted then
-				thread( FrostbiteDamage, enemy, functionArgs, triggerArgs)
+				thread( mod.FrostbiteDamage, enemy, functionArgs, triggerArgs)
 			end
 		end
 	end
@@ -25,7 +25,7 @@ function mod.FrostbiteDamage (victim, functionArgs, triggerArgs)
 	
 	local freezeDuration = dataProperties.Duration - (dataProperties.ExpiringTimeThreshold - GetTotalHeroTraitValue("RootDurationExtension"))
 
-	local damageAmount = freezeDuration * 75
+	local damageAmount = freezeDuration * 125
 	
 	local frostbiteProjectile = {
 		Name = "DemeterAmmoWind",
@@ -47,4 +47,4 @@ function mod.FrostbiteDamage (victim, functionArgs, triggerArgs)
 	if victim and not victim.IsDead then
 		CreateProjectileFromUnit(frostbiteProjectile)
 	end
-end)
+end

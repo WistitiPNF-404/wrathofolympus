@@ -1,8 +1,8 @@
-modutil.mod.Path.Override("HeraMoutonSpawn", function(weaponData, traitArgs, triggerArgs)
-	ShawnSummon(traitArgs.SpawnedEnemy, traitArgs, triggerArgs)
-end)
+function mod.HeraMoutonSpawn (weaponData, traitArgs, triggerArgs)
+	mod.ShawnSummon(traitArgs.SpawnedEnemy, traitArgs, triggerArgs)
+end
 
-modutil.mod.Path.Override("ShawnSummon", function(enemyName, traitArgs, triggerArgs)
+function mod.ShawnSummon (enemyName, traitArgs, triggerArgs)
 	local args = traitArgs or {}
 	local weaponDataMultipliers = 
 	{ 
@@ -63,7 +63,7 @@ modutil.mod.Path.Override("ShawnSummon", function(enemyName, traitArgs, triggerA
 	newEnemy.SummonHealthBarEffect = true
 	ApplyDamageShare( newEnemy, args, triggerArgs )
 	return newEnemy
-end)
+end
 
 modutil.mod.Path.Wrap("ApplyDamageShare", function( baseFunc, victim, functionArgs, triggerArgs )
 	if HeroHasTrait(gods.GetInternalBoonName("HeraWrathBoon")) then

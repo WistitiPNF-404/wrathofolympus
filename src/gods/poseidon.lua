@@ -47,7 +47,7 @@ gods.CreateBoon({
 			ReportValues = { ReportedWaveMultiplier = "ValidWaveDamageAddition" },
 		},
 		OnEnemyDamagedAction = {
-			FunctionName = "PoseidonWrath",
+			FunctionName = _PLUGIN.guid .. "." .. "PoseidonWrath",
 			ValidProjectiles = 
 			{
 				"PoseidonSplashSplinter",

@@ -1,4 +1,4 @@
-modutil.mod.Path.Override("HephRetaliate", function( unit, args )
+function mod.HephRetaliate ( unit, args )
 	if not HeroHasTrait(gods.GetInternalBoonName("HephWrathBoon")) then
 		return
 	end
@@ -19,4 +19,4 @@ modutil.mod.Path.Override("HephRetaliate", function( unit, args )
 	else
 		CreateProjectileFromUnit({ Name = args.ProjectileName, Id = CurrentRun.Hero.ObjectId, ProjectileDestinationId = args.ProjectileId, DamageMultiplier = args.DamageMultiplier, BlastRadiusModifier = blastModifier, FireFromTarget = true })
 	end
-end)
+end

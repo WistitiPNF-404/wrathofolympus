@@ -14,4 +14,4 @@ function mod.ZeusWrath (unit, args)
 		FollowUpDelay = 0.2, 
 		Count = strikeCount
 		})
-end)
+end
