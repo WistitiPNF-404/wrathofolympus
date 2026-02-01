@@ -11,7 +11,7 @@ gods.CreateBoon({
 	reuseBaseIcons = true,
     BlockStacking = true,
 
-    displayName = "Perilous Avalanche",
+    displayName = "Hypothermic Shock",
     description = "After the {$Keywords.Root} duration on your foes expires, they suffer from {$Keywords.ModsWistitiFrostbiteDesc}.",
 	StatLines = { "FrostbiteBurstStatDisplay1" },
     customStatLine = {
@@ -28,7 +28,7 @@ gods.CreateBoon({
 			{ "SlowExAttackBoon", "CastAttachBoon" },
 		},
 	},
-    flavourText = "Life is resilient, and can take root even in cold, harsh environments... but only to a point.",
+    flavourText = "As limbs turn blue and fall, the Goddess of Seasons does not bat an eye.",
     boonIconPath = "GUI\\Screens\\BoonIcons\\Demeter_32",
     
 	ExtractValues =
@@ -58,7 +58,7 @@ gods.CreateBoon({
 
 	ExtraFields = 
 	{
-		FrostbiteBaseDmg = 125,
+		FrostbiteBaseDmg = 250,
 		--[[OnEnemyDamagedAction =
 		{
 			FunctionName = "FrostbiteDamage",

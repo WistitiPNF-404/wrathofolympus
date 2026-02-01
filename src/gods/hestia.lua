@@ -26,7 +26,7 @@ gods.CreateBoon({
 			{ "BurnExplodeBoon", "AloneDamageBoon" },
 		},
 	},
-	flavourText = "Flames can be a source of warmth and comfort, provided one is careful not to draw too close.",
+	flavourText = "Traditions are to be heeded, as once broken can unleash the wrath of the Goddess of Hearth.",
 	boonIconPath = "GUI\\Screens\\BoonIcons\\Hestia_39",
 
 	ExtractValues = {

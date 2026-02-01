@@ -25,7 +25,7 @@ function mod.FrostbiteDamage (victim, functionArgs, triggerArgs)
 	
 	local freezeDuration = dataProperties.Duration - (dataProperties.ExpiringTimeThreshold - GetTotalHeroTraitValue("RootDurationExtension"))
 
-	local damageAmount = freezeDuration * 125
+	local damageAmount = freezeDuration * 250
 	
 	local frostbiteProjectile = {
 		Name = "DemeterAmmoWind",

@@ -25,7 +25,7 @@ gods.CreateBoon({
 			{ "ZeusWeaponBoon", "ZeusSpecialBoon" },
 		},
 	},
-	flavourText = "The lightning bolt forever remains a symbol of the impulsive power of the Lord of Olympus.",
+	flavourText = "Hiding in the Queen's arms shall bring out the worst and ugliest from the King's spite.",
 	boonIconPath = "GUI\\Screens\\BoonIcons\\Zeus_33",
 
 	ExtractValues = {

@@ -34,7 +34,7 @@ gods.CreateBoon({
 			{ "AresStatusDoubleDamageBoon", "MissingHealthCritBoon" },
 		},
 	},
-	flavourText = "If the sight of blood was truly so revolting, why then should it have such a striking hue?",
+	flavourText = "Bloodbaths shall stain one's soul when dangerously consumed by wrath.",
 	boonIconPath = "GUI\\Screens\\BoonIcons\\Ares_34",
 
 	ExtractValues = {

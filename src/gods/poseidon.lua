@@ -26,7 +26,7 @@ gods.CreateBoon({
 			{ "PoseidonStatusBoon", "PoseidonExCastBoon", "EncounterStartOffenseBuffBoon" },
 		},
 	},
-	flavourText = "The sea covers most of the world's surface already; pray it does not cover the rest.",
+	flavourText = "Any and all would get crushed under the sea's astronomical weight, even the sturdiest Titan.",
 	boonIconPath = "GUI\\Screens\\BoonIcons\\Poseidon_39",
 
 	ExtractValues = {

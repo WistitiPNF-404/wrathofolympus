@@ -27,7 +27,7 @@ gods.CreateBoon({
 			{ "HephaestusManaBoon", "ManaToHealthBoon" },
 		},
 	},
-	flavourText = "The roughest hands can often be the ones to produce the most immaculate results.",
+	flavourText = "The best offense is defense. Or was it the other way around?",
 	boonIconPath = "GUI\\Screens\\BoonIcons\\Hephaestus_29",
 
 	ExtractValues = {

@@ -26,7 +26,7 @@ gods.CreateBoon({
 			{ "BlindChanceBoon", "ApolloRetaliateBoon" },
 		},
 	},
-	flavourText = "We cannot all be the best at what we do, for the god of light has much of it covered.",
+	flavourText = "If there's one skill the God of Light never attained, it's his sister's hunting prowesses.",
 	boonIconPath = "GUI\\Screens\\BoonIcons\\Apollo_36",
 
 	ExtractValues = {

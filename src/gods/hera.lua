@@ -11,7 +11,7 @@ gods.CreateBoon({
 	reuseBaseIcons = true,
 	BlockStacking = true,
 
-	displayName = "Selfish Arrangement",
+	displayName = "Wicked Offspring",
 	description = "Your {$Keywords.CastSet} summon a sturdy {$Keywords.Link}-afflicted critter in the binding circle.",
 	StatLines = { "HitchPunchingBagStatDisplay1" },
 	customStatLine = {
@@ -25,7 +25,7 @@ gods.CreateBoon({
 			{ "HeraWeaponBoon", "HeraSpecialBoon", "HeraCastBoon", "HeraSprintBoon" },
 		},
 	},
-	flavourText = "The more disparate personalities a family contains, the stronger it can be; thus says the Queen.",
+	flavourText = "In the Queen's own wise words: To Hell with patriarchy.",
 	boonIconPath = "GUI\\Screens\\BoonIcons\\Hera_37",
 
 	ExtractValues = {

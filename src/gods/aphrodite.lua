@@ -26,7 +26,7 @@ gods.CreateBoon({
 			{ "HighHealthOffenseBoon", "HealthRewardBonusBoon", "FocusRawDamageBoon" },
 		},
 	},
-	flavourText = "Love and beauty can be so overwhelming as to strike each of the senses numb.",
+	flavourText = "Love hits like a truck. What is a truck? They don't know yet.",
 	boonIconPath = "GUI\\Screens\\BoonIcons\\Aphrodite_40",
 
 	ExtractValues = {
