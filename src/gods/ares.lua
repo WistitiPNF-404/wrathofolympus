@@ -35,7 +35,7 @@ gods.CreateBoon({
 		},
 	},
 	flavourText = "Bloodbaths shall stain one's soul when dangerously consumed by wrath.",
-	boonIconPath = "GUI\\Screens\\BoonIcons\\Ares_34",
+	boonIconPath = "GUI\\Screens\\BoonIcons\\Ares_37",
 
 	ExtractValues = {
 		{

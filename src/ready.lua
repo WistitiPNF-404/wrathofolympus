@@ -8,8 +8,6 @@
 --	values and functions later defined in `reload.lua`.
 
 -- These are some sample code snippets of what you can do with our modding framework:
-ResetKeywords()
-
 local file = rom.path.combine(rom.paths.Content, "Game/Text/en/ShellText.en.sjson")
 sjson.hook(file, function(data)
 	return sjson_ShellText(data)
@@ -51,6 +49,8 @@ sjson.hook(HelpTextFile, function(data)
 	table.insert(data.Texts, mod.DemeterWrathBoon_FrostbiteDesc)
 end)
 
+ResetKeywords()
+
 --Damage coloring
 game.OverwriteTableKeys( game.ProjectileData, {
 	DemeterAmmoWind =
@@ -88,3 +88,7 @@ gods.CreateCustomRarity({
 	},
 })
 mod.wrathTrait = gods.GetInternalRarityName("Wrath")
+
+game.OverwriteTableKeys( game.ScreenData.RunClear.DamageSourceMap, {
+    DemeterAmmoWind = "Frostbite",
+})

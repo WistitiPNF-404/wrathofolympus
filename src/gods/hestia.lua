@@ -27,7 +27,8 @@ gods.CreateBoon({
 		},
 	},
 	flavourText = "Traditions are to be heeded, as once broken can unleash the wrath of the Goddess of Hearth.",
-	boonIconPath = "GUI\\Screens\\BoonIcons\\Hestia_39",
+	boonIconPath = "Wistiti-WrathOfOlympusBoonIcons\\HestiaWrath",
+	boonIconScale = 1.66,
 
 	ExtractValues = {
 		{

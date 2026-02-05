@@ -26,7 +26,7 @@ gods.CreateBoon({
 		},
 	},
 	flavourText = "In the Queen's own wise words: To Hell with patriarchy.",
-	boonIconPath = "GUI\\Screens\\BoonIcons\\Hera_37",
+	boonIconPath = "GUI\\Screens\\BoonIcons\\Hera_39",
 
 	ExtractValues = {
 		{

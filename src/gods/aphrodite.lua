@@ -27,7 +27,7 @@ gods.CreateBoon({
 		},
 	},
 	flavourText = "Love hits like a truck. What is a truck? They don't know yet.",
-	boonIconPath = "GUI\\Screens\\BoonIcons\\Aphrodite_40",
+	boonIconPath = "GUI\\Screens\\BoonIcons\\Aphrodite_39",
 
 	ExtractValues = {
 		{

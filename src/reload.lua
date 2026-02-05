@@ -13,6 +13,7 @@ function prefix_SetupMap()
     LoadPackages({ Name = "BiomeP" })
 	LoadPackages({ Name = "Fx" })
 	mod.LoadBoonFramesPackage()
+	mod.LoadBoonIconsPackage()
 end
 
 --[[function trigger_Gift()
@@ -26,6 +27,12 @@ end]]--
 -------------------------------------------------------------------
 function mod.LoadBoonFramesPackage()
 	local packageName = _PLUGIN.guid .. "BoonFrames"
+	print("Wistiti-WrathOfOlympus - Loading package: " .. packageName)
+	LoadPackages({ Name = packageName })
+end
+
+function mod.LoadBoonIconsPackage()
+	local packageName = _PLUGIN.guid .. "BoonIcons"
 	print("Wistiti-WrathOfOlympus - Loading package: " .. packageName)
 	LoadPackages({ Name = packageName })
 end

@@ -27,7 +27,8 @@ gods.CreateBoon({
 		},
 	},
 	flavourText = "Any and all would get crushed under the sea's astronomical weight, even the sturdiest Titan.",
-	boonIconPath = "GUI\\Screens\\BoonIcons\\Poseidon_39",
+	boonIconPath = "Wistiti-WrathOfOlympusBoonIcons\\PoseidonWrath",
+	boonIconScale = 1.66,
 
 	ExtractValues = {
 		{

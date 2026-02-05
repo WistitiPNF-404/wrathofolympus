@@ -27,7 +27,7 @@ gods.CreateBoon({
 		},
 	},
 	flavourText = "If there's one skill the God of Light never attained, it's his sister's hunting prowesses.",
-	boonIconPath = "GUI\\Screens\\BoonIcons\\Apollo_36",
+	boonIconPath = "GUI\\Screens\\BoonIcons\\Apollo_38",
 
 	ExtractValues = {
 		{

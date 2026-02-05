@@ -26,7 +26,8 @@ gods.CreateBoon({
 		},
 	},
 	flavourText = "Hiding in the Queen's arms shall bring out the worst and ugliest from the King's spite.",
-	boonIconPath = "GUI\\Screens\\BoonIcons\\Zeus_33",
+	boonIconPath = "Wistiti-WrathOfOlympusBoonIcons\\ZeusWrath",
+	boonIconScale = 1.66,
 
 	ExtractValues = {
 		{

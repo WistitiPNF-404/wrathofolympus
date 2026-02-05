@@ -28,7 +28,8 @@ gods.CreateBoon({
 		},
 	},
 	flavourText = "The best offense is defense. Or was it the other way around?",
-	boonIconPath = "GUI\\Screens\\BoonIcons\\Hephaestus_29",
+	boonIconPath = "Wistiti-WrathOfOlympusBoonIcons\\HephWrath",
+	boonIconScale = 1.66,
 
 	ExtractValues = {
 		{

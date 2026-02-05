@@ -29,7 +29,8 @@ gods.CreateBoon({
 		},
 	},
     flavourText = "As limbs turn blue and fall, the Goddess of Seasons does not bat an eye.",
-    boonIconPath = "GUI\\Screens\\BoonIcons\\Demeter_32",
+    boonIconPath = "Wistiti-WrathOfOlympusBoonIcons\\DemeterWrath",
+	boonIconScale = 1.66,
     
 	ExtractValues =
 	{
