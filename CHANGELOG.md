@@ -1,6 +1,9 @@
 # Changelog
 
-## [0.9.2] unreleased
+## [1.0.0] - 2026-02-04
+
+- Official release!
+- New boon icons for each Wrath boon
 
 ## [0.9.1] - 2026-02-01
 

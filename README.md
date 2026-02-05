@@ -8,18 +8,38 @@ Even though the mod has been tested thorouhgly, consider backing up your save fi
 ## Features
 
 - Adds 1 boon of a new rarity "Wrath" to each of the normal 9 Olympian gods of Hades II.
+    - Wrath boons are an equivalent to (or even stronger than) an Olympian's Legendary boon.
+    - Their requirements are as strict or even stricter than a Legendary boon, so make sure to check them out in the Book of Shadows!
+    - Their value for Pools of Purging and Vow of Hubris are the same as a Legendary boon.
 
 ## Boon List
 
-- Spurned Patriarch (Zeus): "Activating Blitz on foes strikes them with 3 lightning bolts, each dealing 100 damage."
-- Wicked Offspring (Hera): "Your Casts also summon a sturdy Hitch-afflicted critter in the binding circle."
-- Torrential Submersion (Poseidon): "Your splash effects fire stronger waves from Ocean Swell at no extra cost."
-- Hypothermic Shock (Demeter): "After the Freeze duration on your foes expires, they suffer from Frostbite."
-- Critical Fiasco (Apollo): "Whenever Daze causes a foes to miss, it takes 100 damage and becomes Marked."
-- Lustful Confession (Aphrodite): "Your Heartthrobs are stronger and fire your Omega Cast upon striking a foe."
-- Eruptive Plating (Hephaestus): "After taking damage while having Armor, create a blast that deals 600 damage in an area."
-- Cindered Ritual (Hestia): "Foes combust when their inflicted Scorch exceeds their current remaining Health."
-- Ferocious Ichor (Ares): "Gain a chance to deal 200% damage based on your current Plasma amount."
+### Spurned Patriarch (Zeus)
+<img src="https://github.com/WistitiPNF-404/wrathofolympus/blob/main/imgs/ZeusWrath_BoonPreview.png?raw=true" width="100%"/>
+
+### Wicked Offspring (Hera)
+<img src="https://github.com/WistitiPNF-404/wrathofolympus/blob/main/imgs/HeraWrath_BoonPreview.png?raw=true" width="100%"/>
+
+### Torrential Submersion (Poseidon)
+<img src="https://github.com/WistitiPNF-404/wrathofolympus/blob/main/imgs/PoseidonWrath_BoonPreview.png?raw=true" width="100%"/>
+
+### Hypothermic Shock (Demeter)
+<img src="https://github.com/WistitiPNF-404/wrathofolympus/blob/main/imgs/DemeterWrath_BoonPreview.png?raw=true" width="100%"/>
+
+### Critical Fiasco (Apollo)
+<img src="https://github.com/WistitiPNF-404/wrathofolympus/blob/main/imgs/ApolloWrath_BoonPreview.png?raw=true" width="100%"/>
+
+### Lustful Confession (Aphrodite)
+<img src="https://github.com/WistitiPNF-404/wrathofolympus/blob/main/imgs/AphroditeWrath_BoonPreview.png?raw=true" width="100%"/>
+
+### Eruptive Plating (Hephaestus)
+<img src="https://github.com/WistitiPNF-404/wrathofolympus/blob/main/imgs/HephaestusWrath_BoonPreview.png?raw=true" width="100%"/>
+
+### Cindered Ritual (Hestia)
+<img src="https://github.com/WistitiPNF-404/wrathofolympus/blob/main/imgs/HestiaWrath_BoonPreview.png?raw=true" width="100%"/>
+
+### Ferocious Ichor (Ares)
+<img src="https://github.com/WistitiPNF-404/wrathofolympus/blob/main/imgs/AresWrath_BoonPreview.png?raw=true" width="100%"/>
 
 ## Contributors
 - zanncdwbl [Github](https://github.com/zanncdwbl), created [GodsAPI](https://github.com/excellent-ae/zannc-GodsAPI)
