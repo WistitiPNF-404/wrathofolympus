@@ -57,6 +57,8 @@ local function on_ready()
 	import 'gods/hephaestus.lua'
 	import 'gods/hestia.lua'
 	import 'gods/ares.lua'
+
+	import 'requirements.lua'
 end
 
 local function on_reload()

@@ -36,17 +36,70 @@ local newKeywords = {
 }
 game.ConcatTableValuesIPairs(game.KeywordList, newKeywords)
 
-local newData = {
+--[[local newQuestOrderData = {
+	"ModsWistiti_QuestGetAllWrathBoons",
+}
+game.ConcatTableValuesIPairs(game.QuestOrderData, newQuestOrderData)
+
+local newQuestData = {
+	ModsWistiti_QuestGetAllWrathBoons = {
+		InheritFrom = { "DefaultQuestItem", "DefaultOlympianQuest" },
+		RewardResourceName = "WeaponPointsRare",
+		RewardResourceAmount = 5,
+		UnlockGameStateRequirements = {
+			{
+				Path = { "GameState", "TraitsTaken" },
+				CountOf = {
+					gods.GetInternalBoonName("ZeusWrathBoon"),
+					gods.GetInternalBoonName("HeraWrathBoon"),
+					gods.GetInternalBoonName("PoseidonWrathBoon"),
+					gods.GetInternalBoonName("DemeterWrathBoon"),
+					gods.GetInternalBoonName("ApolloWrathBoon"),
+					gods.GetInternalBoonName("AphroWrathBoon"),
+					gods.GetInternalBoonName("HephWrathBoon"),
+					gods.GetInternalBoonName("HestiaWrathBoon"),
+					gods.GetInternalBoonName("AresWrathBoon"),
+				},
+				Comparison = ">=",
+				Value = 1,
+			},
+		},
+		CompleteGameStateRequirements = {
+			{
+				Path = { "GameState", "TraitsTaken" },
+				HasAll = {
+					gods.GetInternalBoonName("ZeusWrathBoon"),
+					gods.GetInternalBoonName("HeraWrathBoon"),
+					gods.GetInternalBoonName("PoseidonWrathBoon"),
+					gods.GetInternalBoonName("DemeterWrathBoon"),
+					gods.GetInternalBoonName("ApolloWrathBoon"),
+					gods.GetInternalBoonName("AphroWrathBoon"),
+					gods.GetInternalBoonName("HephWrathBoon"),
+					gods.GetInternalBoonName("HestiaWrathBoon"),
+					gods.GetInternalBoonName("AresWrathBoon"),
+				},
+			},
+		},
+	},
+}
+mod.AddTableKeysSkipDupes(game.QuestData, newQuestData)]]
+
+mod.DemeterWrathBoon_FrostbiteDesc = sjson.to_object({
 	Id = "ModsWistitiFrostbiteDesc",
 	DisplayName = "Frostbite",
 	Description = "Burst of damage that increases depending on the duration of {$Keywords.Root}.",
-}
+}, Order)
 
-mod.DemeterWrathBoon_FrostbiteDesc = sjson.to_object(newData, Order)
+--[[mod.WrathBoonProphecy_Quest = sjson.to_object({
+	Id = "ModsWistiti_QuestGetAllWrathBoons",
+	DisplayName = "Vengeful Gods",
+	Description = "The daughter of the god of the dead shall someday earn the most vengeful boons from the Olympians.",
+}, Order)]]
 
 sjson.hook(HelpTextFile, function(data)
 	table.insert(data.Texts, mod.ZeusWrathBoon_CombatText)
 	table.insert(data.Texts, mod.DemeterWrathBoon_FrostbiteDesc)
+	--table.insert(data.Texts, mod.WrathBoonProphecy_Quest)
 end)
 
 ResetKeywords()

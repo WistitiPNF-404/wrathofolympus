@@ -73,7 +73,12 @@ gods.CreateBoon({
 			ExtractAs = "CritRate",
 			Format = "Percent",
 			SkipAutoExtract = true,
-		}
+		},
+		{
+			Key = "ProjectileDelay",
+			ExtractAs = "ProjectileDelay",
+			SkipAutoExtract = true,
+		},
 	},
 
 	ExtraFields = {
@@ -95,6 +100,7 @@ gods.CreateBoon({
 						Value = -0.5,
 					},
 				},
+				ProjectileDelay = 2,
 				ReportValues = { ReportedMissDamage = "DamageMultiplier" },--might need to remove that
 			},
 		},
