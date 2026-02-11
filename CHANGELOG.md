@@ -1,6 +1,13 @@
 # Changelog
 
-## [1.1.0] - 2026-02-08
+## [2.0.0] - 2026-02-XX
+
+- (NEW!) Added Hermes' Wrath boon: ("HermesWrathBoonName")!
+- (NEW!) Added new prophecy: "Vengeful Gods"
+    - Unlocks once you collect your first Wrath boon
+- (NEW!) Added 10 Chaos Trials that highlight each Wrath boons
+
+## [1.1.1] - 2026-02-08
 
 - Added the following boons as requirements for Success Rate (Hermes):
     - Spurned Patriarch (Zeus)

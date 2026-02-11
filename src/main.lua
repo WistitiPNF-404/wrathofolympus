@@ -57,6 +57,7 @@ local function on_ready()
 	import 'gods/hephaestus.lua'
 	import 'gods/hestia.lua'
 	import 'gods/ares.lua'
+	import 'gods/hermes.lua'
 
 	import 'requirements.lua'
 end
@@ -77,6 +78,7 @@ local function on_reload()
 	import 'gods/hephaestus_reload.lua'
 	import 'gods/hestia_reload.lua'
 	import 'gods/ares_reload.lua'
+	import 'gods/hermes_reload.lua'
 end
 
 -- this allows us to limit certain functions to not be reloaded.
