@@ -35,3 +35,14 @@ function mod.EndHermesWrath ( unit, functionArgs )
 	CallFunctionName( functionArgs.EndSlowMotionFunctionName, functionArgs )
 	GameplaySetElapsedTimeMultiplier({ ElapsedTimeMultiplier = functionArgs.Modifier, Reverse = true, Name = "HermesTimeSlow" })
 end
+
+function mod.HermesEndTimeSlow( args )
+	SessionMapState.TimeSlowActive = nil
+	if SessionMapState.TimeSlowSoundId then
+		StopSound({ Id = SessionMapState.TimeSlowSoundId, Duration = 0.2 })
+	end
+	if args.EndSlowMotionSound ~= nil then
+		PlaySound({ Name = args.EndSlowMotionSound, Id = CurrentRun.Hero.ObjectId })
+	end
+	thread(EndSpellSlowPresentation)
+end

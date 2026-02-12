@@ -36,6 +36,9 @@ reload = mods['SGG_Modding-ReLoad']
 ---@module 'zannc-GodsAPI-auto'
 gods = mods['zannc-GodsAPI'].auto()
 
+---@module "Siuhnexus-BountyAPI"
+bountyAPI = mods["Siuhnexus-BountyAPI"]
+
 ---@module 'config'
 config = chalk.auto 'config.lua'
 -- ^ this updates our `.cfg` file in the config folder!
@@ -57,7 +60,7 @@ local function on_ready()
 	import 'gods/hephaestus.lua'
 	import 'gods/hestia.lua'
 	import 'gods/ares.lua'
-	import 'gods/hermes.lua'
+	--import 'gods/hermes.lua'
 
 	import 'requirements.lua'
 end
@@ -78,7 +81,7 @@ local function on_reload()
 	import 'gods/hephaestus_reload.lua'
 	import 'gods/hestia_reload.lua'
 	import 'gods/ares_reload.lua'
-	import 'gods/hermes_reload.lua'
+	--import 'gods/hermes_reload.lua'
 end
 
 -- this allows us to limit certain functions to not be reloaded.

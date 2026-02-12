@@ -75,7 +75,7 @@ gods.CreateBoon({
                 EndWarnNum = 1,
                 EndWarnPresentationFunction = "SpellSlowWarnPresentation",
                 EndSlowMotionSound = "/VO/MelinoeEmotes/EmoteGasping",
-                EndSlowMotionFunctionName = "EndTimeSlow"
+                EndSlowMotionFunctionName = _PLUGIN.guid .. "." .. "HermesEndTimeSlow",
 			},
 		},
 	},

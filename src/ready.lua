@@ -8,11 +8,6 @@
 --	values and functions later defined in `reload.lua`.
 
 -- These are some sample code snippets of what you can do with our modding framework:
-local file = rom.path.combine(rom.paths.Content, "Game/Text/en/ShellText.en.sjson")
-sjson.hook(file, function(data)
-	return sjson_ShellText(data)
-end)
-
 modutil.mod.Path.Wrap("SetupMap", function(base, ...)
 	prefix_SetupMap()
 	return base(...)
@@ -61,7 +56,7 @@ local newQuestData = {
 					gods.GetInternalBoonName("HephWrathBoon"),
 					gods.GetInternalBoonName("HestiaWrathBoon"),
 					gods.GetInternalBoonName("AresWrathBoon"),
-					gods.GetInternalBoonName("HermesWrathBoon"),
+					--gods.GetInternalBoonName("HermesWrathBoon"),
 				},
 				Comparison = ">=",
 				Value = 1,
@@ -80,16 +75,13 @@ local newQuestData = {
 					gods.GetInternalBoonName("HephWrathBoon"),
 					gods.GetInternalBoonName("HestiaWrathBoon"),
 					gods.GetInternalBoonName("AresWrathBoon"),
-					gods.GetInternalBoonName("HermesWrathBoon"),
+					--gods.GetInternalBoonName("HermesWrathBoon"),
 				},
 			},
 		},
 	},
 }
 game.QuestData["ModsWistiti_QuestGetAllWrathBoons"] = newQuestData.ModsWistiti_QuestGetAllWrathBoons
-for k,v in pairs(game.QuestData) do
-  print (k,v)
-end
 
 mod.DemeterWrathBoon_FrostbiteDesc = sjson.to_object({
 	Id = "ModsWistitiFrostbiteDesc",

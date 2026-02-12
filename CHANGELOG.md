@@ -1,11 +1,10 @@
 # Changelog
 
-## [2.0.0] - 2026-02-XX
+## [1.2.0] - 2026-02-12
 
-- (NEW!) Added Hermes' Wrath boon: ("HermesWrathBoonName")!
 - (NEW!) Added new prophecy: "Vengeful Gods"
     - Unlocks once you collect your first Wrath boon
-- (NEW!) Added 10 Chaos Trials that highlight each Wrath boons
+- Fixed leftover prints and mod template functions 
 
 ## [1.1.1] - 2026-02-08
 
@@ -18,7 +17,7 @@
 
 - Official release!
 - New boon icons for each Wrath boon
-- Demeter's Frosbite properly displays as such on the Run Cleared screen
+- Demeter's Frostbite properly displays as such on the Victory screens
 
 ## [0.9.1] - 2026-02-01
 
