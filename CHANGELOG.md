@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.0] - 2026-02-XX
+
+- (NEW!) Added Hermes' Wrath: "Witch Time"
+    - "Whenever you Dodge, make everything else move 75% slower for 1.5 Sec."
+    - Added Witch Time (Hermes) as a requirement to complete the "Vengeful Gods" propechy
+
 ## [1.2.0] - 2026-02-12
 
 - (NEW!) Added new prophecy: "Vengeful Gods"
