@@ -13,7 +13,7 @@ gods.CreateBoon({
 	BlockStacking = true,
 
 	displayName = "Eruptive Plating",
-	description = "After you take damage while having {!Icons.ArmorTotal}, create a blast that deals {$TooltipData.ExtractData.Damage} damage in an area.",
+	description = "After you take damage with {!Icons.ArmorTotal}, strike back foes with a blast that deals {$TooltipData.ExtractData.Damage} damage.",
 	StatLines = { "BlastRevengeStatDisplay1" },
 	customStatLine = {
 		ID = "BlastRevengeStatDisplay1",
@@ -49,7 +49,6 @@ gods.CreateBoon({
 	},
 
 	ExtraFields = {
-		--Frame = "Wrath",
 		Invincible = true,
 		OnSelfDamagedFunction = {
 			Name = _PLUGIN.guid .. "." .. "HephRetaliate",

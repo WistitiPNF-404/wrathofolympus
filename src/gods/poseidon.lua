@@ -42,7 +42,7 @@ gods.CreateBoon({
 		AddOutgoingDamageModifiers = {
 			ValidProjectiles = { "PoseidonOmegaWave" },
 			ValidWaveDamageAddition = {
-				BaseValue = 2.00, -- boon description only
+				BaseValue = 1.50, -- boon description only
 				SourceIsMultiplier = true,
 			},
 			ReportValues = { ReportedWaveMultiplier = "ValidWaveDamageAddition" },
@@ -58,7 +58,7 @@ gods.CreateBoon({
 			Args = {
 				ProjectileName = "PoseidonOmegaWave",
 				FallbackWeaponDamageMultiplier = 1.0,
-				DamageMultiplier = 2.0,
+				DamageMultiplier = 1.50,
 				ImpactVelocity = 600,
 			},
 		},

@@ -4,7 +4,10 @@
 
 - (NEW!) Added Hermes' Wrath: "Witch Time"
     - "Whenever you Dodge, make everything else move 75% slower for 1.5 Sec."
-    - Added Witch Time (Hermes) as a requirement to complete the "Vengeful Gods" propechy
+    - Added Witch Time (Hermes) as a requirement to complete the "Vengeful Gods" prophecy
+- Balancing
+    - Torrential Submersion (Poseidon): reduced bonus wave damage (+100% -> +50%)
+    - Lustful Confession (Aphrodite): reduced bonus Heartthrob damage (+50% -> +25%)
 
 ## [1.2.0] - 2026-02-12
 

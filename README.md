@@ -7,10 +7,11 @@ Even though the mod has been tested thorouhgly, consider backing up your save fi
 
 ## Features
 
-- Adds 1 boon of a new rarity "Wrath" to each of the normal 9 Olympian gods of Hades II.
+- Adds 1 boon of a new rarity "Wrath" to each of the normal 9 Olympian gods (+ Hermes) of Hades II.
     - Wrath boons are an equivalent to (or even stronger than) an Olympian's Legendary boon.
     - Their requirements are as strict or even stricter than a Legendary boon, so make sure to check them out in the Book of Shadows!
     - Their value for Pools of Purging and Vow of Hubris are the same as a Legendary boon.
+- A new prophecy to collect all 10 Wrath boons.
 
 ## Boon List
 
@@ -40,6 +41,9 @@ Even though the mod has been tested thorouhgly, consider backing up your save fi
 
 ### Ferocious Ichor (Ares)
 <img src="https://github.com/WistitiPNF-404/wrathofolympus/blob/main/imgs/AresWrath_BoonPreview.png?raw=true" width="100%"/>
+
+### Witch Time (Hermes)
+<img src="https://github.com/WistitiPNF-404/wrathofolympus/blob/main/imgs/HermesWrath_BoonPreview.png?raw=true" width="100%"/>
 
 ## Contributors
 - zanncdwbl [Github](https://github.com/zanncdwbl), created [GodsAPI](https://github.com/excellent-ae/zannc-GodsAPI)

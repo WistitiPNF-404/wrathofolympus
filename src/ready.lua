@@ -86,7 +86,7 @@ game.QuestData["ModsWistiti_QuestGetAllWrathBoons"] = newQuestData.ModsWistiti_Q
 mod.DemeterWrathBoon_FrostbiteDesc = sjson.to_object({
 	Id = "ModsWistitiFrostbiteDesc",
 	DisplayName = "Frostbite",
-	Description = "Burst of damage that increases depending on the duration of {$Keywords.Root}.",
+	Description = "Burst of damage that increases the longer foes are inflicted by {$Keywords.Root}.",
 }, Order)
 
 mod.WrathBoonProphecy_Quest = sjson.to_object({

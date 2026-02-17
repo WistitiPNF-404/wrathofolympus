@@ -49,7 +49,7 @@ gods.CreateBoon({
 		HeartthrobBonusDamageModifiers = {
 			ValidProjectiles = "AphroditeBurst",
 			HeartthrobBonusMultiplier = {
-				BaseValue = 1.5,
+				BaseValue = 1.25,
 			},
 			SourceIsMultiplier = true,
 			ReportValues = { ReportedHeartthrobMultiplier = "HeartthrobBonusMultiplier" },

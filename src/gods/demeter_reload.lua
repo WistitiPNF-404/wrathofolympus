@@ -1,32 +1,15 @@
-modutil.mod.Path.Wrap("ApplyRoot", function( baseFunc, victim, functionArgs, triggerArgs )
-	local enemyRooted = false
-	if victim.ActiveEffects["ChillEffect"] and victim.RootActive then
-		enemyRooted = true
+function mod.CheckRootFrostbite( victim, functionArgs, triggerArgs )
+	if triggerArgs.EffectName == "ChillEffect" and victim.RootActive and not triggerArgs.Reapplied then
+		thread(mod.FrostbiteDamage, victim, functionArgs )
 	end
-	baseFunc(victim, functionArgs, triggerArgs)
-	if victim.ActiveEffects then
-		if victim.ActiveEffects["ChillEffect"] and victim.RootActive then
-			if not enemyRooted then
-				thread( mod.FrostbiteDamage, enemy, functionArgs, triggerArgs)
-			end
-		end
-	end
-end)
+end
 
-function mod.FrostbiteDamage (victim, functionArgs, triggerArgs)
-	if not HeroHasTrait(gods.GetInternalBoonName("DemeterWrathBoon")) then
-		return
-	end
-	local victim = triggerArgs.Victim
+function mod.FrostbiteDamage (victim, functionArgs)
 	local dataProperties = MergeAllTables({
 		EffectData["ChillEffect"].EffectData, 
 		functionArgs.EffectArgs
 	})
-	
-	local freezeDuration = dataProperties.Duration - (dataProperties.ExpiringTimeThreshold - GetTotalHeroTraitValue("RootDurationExtension"))
-
-	local damageAmount = freezeDuration * 250
-	
+	local damageAmount = functionArgs.FrostbiteBaseDmg
 	local frostbiteProjectile = {
 		Name = "DemeterAmmoWind",
 		Id = CurrentRun.Hero.ObjectId,
@@ -43,8 +26,13 @@ function mod.FrostbiteDamage (victim, functionArgs, triggerArgs)
 		},
 	}
 
-	wait(freezeDuration - 0.15) --substract to make sure Frostbite hits against faster enemies
-	if victim and not victim.IsDead then
+	wait( functionArgs.Interval, RoomThreadName )
+	local count = 1
+	while victim and victim.RootActive and not victim.IsDead and not CurrentRun.Hero.IsDead do
+		frostbiteProjectile.DamageMultiplier = (functionArgs.FrostbiteBaseDmg * count) / 30 -- divided by projectile base damage
+		modutil.mod.Hades.PrintOverhead("Frostbite Damage "..(frostbiteProjectile.DamageMultiplier))
 		CreateProjectileFromUnit(frostbiteProjectile)
+		count = count + 1
+		wait( functionArgs.Interval, RoomThreadName )
 	end
 end

@@ -12,12 +12,12 @@ gods.CreateBoon({
     BlockStacking = true,
 
     displayName = "Hypothermic Shock",
-    description = "After the {$Keywords.Root} duration on your foes expires, they suffer from {$Keywords.ModsWistitiFrostbiteDesc}.",
+    description = "Foes suffer from {$Keywords.ModsWistitiFrostbiteDesc} as long as they're inflicted by {$Keywords.Root}.",
 	StatLines = { "FrostbiteBurstStatDisplay1" },
     customStatLine = {
         Id = "FrostbiteBurstStatDisplay1",
         displayName = "{!Icons.Bullet}{#PropertyFormat}Frostbite Damage:",
-        description = "{#UpgradeFormat}{$TooltipData.ExtractData.FrostbiteDamage} {#Prev}{#ItalicFormat}(per 1 Sec.)",
+        description = "{#UpgradeFormat}+{$TooltipData.ExtractData.FrostbiteDamage} {#Prev}{#ItalicFormat}(every 1 Sec.)",
     },
 	requirements =
 	{
@@ -35,7 +35,7 @@ gods.CreateBoon({
 	ExtractValues =
 	{
 		{
-			Key = "FrostbiteBaseDmg",
+			Key = "ReportedFrostbiteDamage",
 			ExtractAs = "FrostbiteDamage",
 			SkipAutoExtract = true,
 		},
@@ -59,14 +59,18 @@ gods.CreateBoon({
 
 	ExtraFields = 
 	{
-		FrostbiteBaseDmg = 250,
-		--[[OnEnemyDamagedAction =
+		OnEffectApplyFunction =
 		{
-			FunctionName = "FrostbiteDamage",
+			FunctionName = _PLUGIN.guid .. "." .. "CheckRootFrostbite",
 			FunctionArgs = {
+				Interval = 1.0,
 				EffectName = "ChillEffect",
 				ProjectileName = "DemeterAmmoWind",
+				FrostbiteBaseDmg = 100,
+				ReportValues = {
+					ReportedFrostbiteDamage = "FrostbiteBaseDmg",
+				},
 			},
-		},]]
+		},
     },
 })
