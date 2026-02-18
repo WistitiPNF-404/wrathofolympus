@@ -5,8 +5,8 @@ schemaVersion = "0.0.3"
 [package]
 namespace = "Wistiti"
 name = "WrathOfOlympus"
-versionNumber = "1.3.0"
-description = "Adds a new Wrath boon for each Olympian."
+versionNumber = "1.5.2"
+description = "Adds a new Wrath boon for each Olympian, an equivalent (if not better) than Legendary boons."
 websiteUrl = "https://github.com/WistitiPNF-404/WrathOfOlympus"
 containsNsfwContent = false
 
@@ -18,7 +18,7 @@ SGG_Modding-ReLoad = "1.0.2"
 SGG_Modding-SJSON = "1.0.0"
 SGG_Modding-ModUtil = "4.0.1"
 zannc-GodsAPI = "2.1.5"
-
+Siuhnexus-BountyAPI = "1.0.1"
 
 [build]
 icon = "./icon.png"

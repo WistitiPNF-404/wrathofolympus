@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.5.0] - 2026-02-XX
+## [1.5.0] - 2026-02-18
 
 - (NEW!) Added Hermes' Wrath: "Witch Time"
     - "Whenever you Dodge, make everything else move 75% slower for 1.5 Sec."
