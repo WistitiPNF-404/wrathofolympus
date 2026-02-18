@@ -82,6 +82,8 @@ local function on_reload()
 	import 'gods/hestia_reload.lua'
 	import 'gods/ares_reload.lua'
 	import 'gods/hermes_reload.lua'
+
+	--import 'bounties/bounty_aphroditeWrath.lua'
 end
 
 -- this allows us to limit certain functions to not be reloaded.

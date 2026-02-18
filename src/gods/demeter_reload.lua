@@ -30,7 +30,6 @@ function mod.FrostbiteDamage (victim, functionArgs)
 	local count = 1
 	while victim and victim.RootActive and not victim.IsDead and not CurrentRun.Hero.IsDead do
 		frostbiteProjectile.DamageMultiplier = (functionArgs.FrostbiteBaseDmg * count) / 30 -- divided by projectile base damage
-		modutil.mod.Hades.PrintOverhead("Frostbite Damage "..(frostbiteProjectile.DamageMultiplier))
 		CreateProjectileFromUnit(frostbiteProjectile)
 		count = count + 1
 		wait( functionArgs.Interval, RoomThreadName )

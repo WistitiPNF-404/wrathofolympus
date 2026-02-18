@@ -6,8 +6,11 @@
     - "Whenever you Dodge, make everything else move 75% slower for 1.5 Sec."
     - Added Witch Time (Hermes) as a requirement to complete the "Vengeful Gods" prophecy
 - Balancing
-    - Torrential Submersion (Poseidon): reduced bonus wave damage (+100% -> +50%)
-    - Lustful Confession (Aphrodite): reduced bonus Heartthrob damage (+50% -> +25%)
+    - Torrential Submersion (Poseidon): Reduced bonus wave damage (+100% -> +50%)
+    - Hypothermic Shock (Demeter): Reworked effect, Frostbite now deals damage every second an enemy is frozen
+        - Frostbite damage increases on every trigger on a frozen enemy
+        - Frostbite base damage has been reduced (250 -> 100) to compensate
+    - Lustful Confession (Aphrodite): Reduced bonus Heartthrob damage (+50% -> +25%)
 
 ## [1.2.0] - 2026-02-12
 
