@@ -1,8 +1,8 @@
 bountyAPI.RegisterBounty({
     Id = _PLUGIN.guid .. "BountyAphroditeWrath",
-    Title = "Trial of Heartbreak",
-    Description = "Run down the abandonned alleys of Ephyra with the enpowered Wrath of the love-goddess Aphrodite.",
-    Difficulty = 3,
+    Title = "Trial of Lust",
+    Description = "Run down the abandonned alleys of Ephyra with the powerful Wrath of the love-goddess Aphrodite.",
+    Difficulty = 4,
     IsStandardBounty = true,
     BiomeChar = "N",
 
@@ -27,6 +27,7 @@ bountyAPI.RegisterBounty({
         print("Challenge run is ending. Cleaning up...")
     end,
     BaseData = {
+		InheritFrom = { "DefaultPackagedBounty", "BasePackageBountyBiomeN", },
         WeaponKitName = "WeaponSuit",
 		WeaponUpgradeName = "SuitComboAspect",
 		KeepsakeName = "ForceAphroditeBoonKeepsake",
@@ -154,7 +155,7 @@ bountyAPI.RegisterBounty({
 
         ShrineUpgradesActive = --15 Fear total
 		{
-			EnemyHealthShrineUpgrade = 3,
+			EnemyHealthShrineUpgrade = 2,
 			EnemySpeedShrineUpgrade = 1,
 			EnemyCountShrineUpgrade = 3,
 			NextBiomeEnemyShrineUpgrade = 2,
@@ -179,14 +180,14 @@ bountyAPI.RegisterBounty({
 			-- FirstLoot
 			{
 				Path = { "GameState", "TextLinesRecord", },
-				HasAll = { "ApolloFirstPickUp", },
+				HasAll = { "AphroditeFirstPickUp", },
 			},
 
 			-- MetaUpgrades
 			{
 				Path = { "GameState", "MetaUpgradeLimitLevel", },
 				Comparison = ">=",
-				Value = 30,
+				Value = 15,
 			},
 		},
     },

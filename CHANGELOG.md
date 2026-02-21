@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.6.0] - 2026-02-21
+
+- Balancing
+    - Critical Fiasco (Apollo): Added a small delay (0.25 Sec.) before dodge projectile spawns, so it doesn't appear instantaneously
+    - Lustful Confession (Aphrodite): Added a small internal cooldown (0.25 Sec.) for the rate at which Omega Casts can be created from Heartthrobs
+- Bug fixes
+    - Wicked Offspring (Hera): Fixed an issue when the critter would be created on Melinoe instead of the cast's location
+    - Wicked Offspring (Hera): Fixed an issue when Aspect of Circe (Staff) would sometimes create 1 critter instead of 2
+    - Witch Time (Hermes): Fixed an issue where dodging many times would result in an accumulation of wind ambience sounds, which would block other sound cues
+
 ## [1.5.0] - 2026-02-18
 
 - (NEW!) Added Hermes' Wrath: "Witch Time"

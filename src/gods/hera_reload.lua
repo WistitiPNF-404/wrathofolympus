@@ -3,6 +3,10 @@ function mod.HeraMoutonSpawn (weaponData, traitArgs, triggerArgs)
 end
 
 function mod.ShawnSummon (enemyName, traitArgs, triggerArgs)
+	if not triggerArgs.ProjectileX or not triggerArgs.ProjectileY then
+		return
+	end
+
 	local args = traitArgs or {}
 	local weaponDataMultipliers = 
 	{ 
@@ -22,9 +26,10 @@ function mod.ShawnSummon (enemyName, traitArgs, triggerArgs)
 	newEnemy.MaxHealth = newEnemy.MaxHealth * weaponDataMultipliers.MaxHealthMultiplier
 	newEnemy.HealthBarOffsetY = (newEnemy.HealthBarOffsetY or -155 )
 	
-	newEnemy.DefaultAIData.ExitMapAfterDuration = 6
+	newEnemy.DefaultAIData.ExitMapAfterDuration = 5.50
 
 	newEnemy.DamageType = "Enemy"
+	newEnemy.AddToEnemyTeam = true
 	newEnemy.TriggersOnDamageEffects = true
 	newEnemy.CanBeFrozen = true
 
@@ -37,18 +42,31 @@ function mod.ShawnSummon (enemyName, traitArgs, triggerArgs)
 
 	ProcessDataInheritance(newEnemy, EnemyData)
 	
-	local SpawnPoint = SpawnObstacle({ Name = "InvisibleTarget", DestinationId = CurrentRun.Hero.ObjectId, OffsetX = 0, OffsetY = 0, ForceToValidLocation = true})
+	local SpawnPoint = SpawnObstacle({ Name = "InvisibleTarget", LocationX = triggerArgs.ProjectileX, LocationY = triggerArgs.ProjectileY, ForceToValidLocation = true })
 
-	if SessionMapState.CurrentShawn then
-		Kill(ActiveEnemies[SessionMapState.CurrentShawn], { Silent = true })
+	if triggerArgs.triggeredById == nil then
+		--Shawn spawned from 2nd Circe Staff cast
+		if SessionMapState.CirceShawn then
+			Kill(ActiveEnemies[SessionMapState.CirceShawn], { Silent = true })
+		end
+	else
+		if SessionMapState.CurrentShawn then
+			Kill(ActiveEnemies[SessionMapState.CurrentShawn], { Silent = true })
+		end
 	end
 
 	newEnemy.ObjectId = SpawnUnit({
 		Name = enemyData.Name,
 		Group = "Standing",
 		DestinationId = SpawnPoint, OffsetX = 0, OffsetY = 0 })
-	SessionMapState.CurrentShawn = newEnemy.ObjectId
 	
+	if triggerArgs.triggeredById == nil then
+		--Shawn spawned from 2nd Circe Staff cast
+		SessionMapState.CirceShawn = newEnemy.ObjectId
+	else
+		SessionMapState.CurrentShawn = newEnemy.ObjectId
+	end
+
 	thread( CreateAlliedEnemyPresentation, newEnemy )
 	thread( SetupUnit, newEnemy, CurrentRun, { SkipPresentation = true } )
 	SetThingProperty({ Property = "ElapsedTimeMultiplier", Value = GetGameplayElapsedTimeMultiplier(), ValueChangeType = "Absolute", DataValue = false, DestinationId = newEnemy.ObjectId })

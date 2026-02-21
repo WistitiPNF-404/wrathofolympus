@@ -36,6 +36,10 @@ gods.CreateBoon({
 			Format = "PercentDelta",
 		},
 		{
+			Key = "ReportedCooldown",
+			ExtractAs = "WrathCooldown",
+		},
+		{
 			ExtractAs = "Duration",
 			SkipAutoExtract = true,
 			External = true,
@@ -48,11 +52,15 @@ gods.CreateBoon({
 	ExtraFields = {
 		HeartthrobBonusDamageModifiers = {
 			ValidProjectiles = "AphroditeBurst",
+			AphroWrathCooldown = 0.25,
 			HeartthrobBonusMultiplier = {
 				BaseValue = 1.25,
 			},
 			SourceIsMultiplier = true,
-			ReportValues = { ReportedHeartthrobMultiplier = "HeartthrobBonusMultiplier" },
+			ReportValues = { 
+				ReportedHeartthrobMultiplier = "HeartthrobBonusMultiplier",
+				ReportedCooldown = "AphroWrathCooldown", 
+			},
 		},
 	},
 })

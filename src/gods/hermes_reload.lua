@@ -2,6 +2,9 @@ function mod.SetupHermesSlow ( unit, functionArgs ) --based on StartSpellSlow
 	functionArgs = ShallowCopyTable(functionArgs)
 
 	if functionArgs.LoopingSound then
+		if SessionMapState.TimeSlowSoundId then
+			StopSound({ Id = SessionMapState.TimeSlowSoundId, Duration = 0.2 })
+		end
 		SessionMapState.TimeSlowSoundId = PlaySound({ Name = functionArgs.LoopingSound })
 	end
 	SessionMapState.TimeSlowActive = true

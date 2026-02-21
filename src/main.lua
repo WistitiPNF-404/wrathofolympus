@@ -36,7 +36,7 @@ reload = mods['SGG_Modding-ReLoad']
 ---@module 'zannc-GodsAPI-auto'
 gods = mods['zannc-GodsAPI'].auto()
 
----@module "Siuhnexus-BountyAPI"
+---@module 'Siuhnexus-BountyAPI'
 bountyAPI = mods["Siuhnexus-BountyAPI"]
 
 ---@module 'config'
@@ -63,6 +63,9 @@ local function on_ready()
 	import 'gods/hermes.lua'
 
 	import 'requirements.lua'
+
+	--import 'bounties/bounty_demeterWrath.lua'
+	--import 'bounties/bounty_aphroditeWrath.lua'
 end
 
 local function on_reload()
@@ -82,8 +85,6 @@ local function on_reload()
 	import 'gods/hestia_reload.lua'
 	import 'gods/ares_reload.lua'
 	import 'gods/hermes_reload.lua'
-
-	--import 'bounties/bounty_aphroditeWrath.lua'
 end
 
 -- this allows us to limit certain functions to not be reloaded.
