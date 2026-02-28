@@ -45,7 +45,7 @@ function mod.ShawnSummon (enemyName, traitArgs, triggerArgs)
 	local SpawnPoint = SpawnObstacle({ Name = "InvisibleTarget", LocationX = triggerArgs.ProjectileX, LocationY = triggerArgs.ProjectileY, ForceToValidLocation = true })
 
 	if triggerArgs.triggeredById == nil then
-		--Shawn spawned from 2nd Circe Staff cast
+		--Shawn spawned from 2nd Circe Staff cast, kills the old one
 		if SessionMapState.CirceShawn then
 			Kill(ActiveEnemies[SessionMapState.CirceShawn], { Silent = true })
 		end
@@ -69,6 +69,7 @@ function mod.ShawnSummon (enemyName, traitArgs, triggerArgs)
 
 	thread( CreateAlliedEnemyPresentation, newEnemy )
 	thread( SetupUnit, newEnemy, CurrentRun, { SkipPresentation = true } )
+	SetUnitProperty({ DestinationId = newEnemy.ObjectId, Property = "AutoLockable", Value = true })
 	SetThingProperty({ Property = "ElapsedTimeMultiplier", Value = GetGameplayElapsedTimeMultiplier(), ValueChangeType = "Absolute", DataValue = false, DestinationId = newEnemy.ObjectId })
 	
 	if not newEnemy or newEnemy.SkipModifiers or not GetThingDataValue({ Id = newEnemy.ObjectId, Property = "StopsProjectiles" }) or IsInvulnerable({ Id = newEnemy.ObjectId }) or IsUntargetable({ Id = newEnemy.ObjectId }) then
@@ -89,7 +90,7 @@ modutil.mod.Path.Wrap("ApplyDamageShare", function( baseFunc, victim, functionAr
 			functionArgs.EffectArgs = { Amount = 0.3 }
 		end
 		if victim.Name == "Shawn" then
-			functionArgs.EffectArgs.Amount = 1.0 --needs to be modified with tooltip data
+			functionArgs.EffectArgs.Amount = 1.3 --needs to be modified with tooltip data
 		end
 	end
 	baseFunc( victim, functionArgs, triggerArgs )

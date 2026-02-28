@@ -1,13 +1,37 @@
 # Changelog
 
+## [1.8.0] - 2026-02-28
+
+- Balancing
+    - Spurned Patriarch (Zeus): Reduced double strike chance (40% -> 30%)
+    - Torrential Submersion (Poseidon): cut from the game; replaced with...
+    - (NEW!) Merciless Undertow (Poseidon): Your Froth effects are guaranteed, and may fire your waves from Ocean Swell
+
+## [1.7.1] - 2026-02-25
+
+- Bug fix
+    - Wicked Offspring (Hera): Fixed an issue where the bonus Hitch damage from attacking the critter would not be in line with the boon's description
+
+## [1.7.0] - 2026-02-24
+
+- Balancing
+    - Lustful Confession (Aphrodite): Reduced internal cooldown (0.25 -> 0.10 Sec.) for the rate at which Omega Casts can be created from Heartthrobs
+- Bug fixes
+    - Wicked Offspring (Hera): Fixed an issue where Storm Ring (Zeus) could not detect and therefore damage the critter
+    - Wicked Offspring (Hera): Fixed an issue where the critter could not automatically be locked-on (i.e. by Torches attacks)
+
+## [1.6.1] - 2026-02-23
+
+- Removed a print overhead that was shamefully forgotten in Lustful Confession
+
 ## [1.6.0] - 2026-02-21
 
 - Balancing
     - Critical Fiasco (Apollo): Added a small delay (0.25 Sec.) before dodge projectile spawns, so it doesn't appear instantaneously
     - Lustful Confession (Aphrodite): Added a small internal cooldown (0.25 Sec.) for the rate at which Omega Casts can be created from Heartthrobs
 - Bug fixes
-    - Wicked Offspring (Hera): Fixed an issue when the critter would be created on Melinoe instead of the cast's location
-    - Wicked Offspring (Hera): Fixed an issue when Aspect of Circe (Staff) would sometimes create 1 critter instead of 2
+    - Wicked Offspring (Hera): Fixed an issue where the critter would be created on Melinoe instead of the cast's location
+    - Wicked Offspring (Hera): Fixed an issue where Aspect of Circe (Staff) would sometimes create 1 critter instead of 2
     - Witch Time (Hermes): Fixed an issue where dodging many times would result in an accumulation of wind ambience sounds, which would block other sound cues
 
 ## [1.5.0] - 2026-02-18

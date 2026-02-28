@@ -4,10 +4,8 @@ modutil.mod.Path.Wrap("DamageEnemy", function(baseFunc, victim, triggerArgs)
 		return
 	end
 	local graphic = nil
-	local count = 1
 	local cooldown = GetTotalHeroTraitValue("ReportedCooldown")
 	if (triggerArgs.SourceProjectile == "AphroditeBurst") then
-		modutil.mod.Hades.PrintOverhead("Cooldown "..cooldown)
 		if not victim or victim.SkipModifiers or not CheckCooldown( "AphroWrathBoon", cooldown ) then
 			return
 		end

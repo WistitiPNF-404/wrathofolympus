@@ -5,7 +5,7 @@ schemaVersion = "0.0.3"
 [package]
 namespace = "Wistiti"
 name = "WrathOfOlympus"
-versionNumber = "1.6.0"
+versionNumber = "1.7.2"
 description = "Adds a new Wrath boon for each Olympian, an equivalent (if not better) than Legendary boons."
 websiteUrl = "https://github.com/WistitiPNF-404/WrathOfOlympus"
 containsNsfwContent = false

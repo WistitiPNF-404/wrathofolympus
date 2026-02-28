@@ -1,0 +1,37 @@
+{ Units = [
+    {
+        Name = "Shawn"
+        InheritFrom = "1_BaseEnemy"
+        DisplayInEditor = true
+        RotationSpeed = 2000.0
+        Speed = 60.0
+        AutoLockable = true
+        MoveGraphic = "Enemy_Sheep_Move"
+        StartGraphic = null
+        StopGraphic = "Enemy_Sheep_MoveStop"
+        DefaultAngle = 0
+        Life = 
+        {
+            HomingEligible = true
+        }
+        MoveAI =
+        {
+            SlowToRotate = true
+        }
+        Thing = 
+        {
+            EditorOutlineDrawBounds = false
+            Graphic = "Enemy_Sheep_Idle"
+            GrannyModel = "PolyphemusSheep_Mesh"
+            Tallness = 100.0
+            Offset = { X = 0 Y = -25 }
+            Points =
+            [
+                { X = 50 Y = 0 }
+                { X = 0 Y = -25 }
+                { X = -50 Y = 0 }
+                { X = 0 Y = 25 }
+            ]
+        }
+    }
+]}

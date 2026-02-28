@@ -144,3 +144,32 @@ mod.wrathTrait = gods.GetInternalRarityName("Wrath")
 game.OverwriteTableKeys( game.ScreenData.RunClear.DamageSourceMap, {
     DemeterAmmoWind = "Frostbite",
 })
+
+function mod.readSjson(file,data,key)
+    local fileHandle = io.open(file,"r")
+    if fileHandle ~= nil then
+        local sjsonContent = fileHandle:read("*a")
+        local sjsonTable = sjson.decode(sjsonContent)
+        for _, value in pairs(sjsonTable[key]) do
+            table.insert(data[key], value)
+        end
+    end
+end
+
+local GameplayFile = rom.path.combine(rom.paths.Content, "Game/Units/Enemies.sjson")
+
+sjson.hook(GameplayFile, function(data)
+	local enemiesFile = rom.path.combine(rom.paths.plugins(), _PLUGIN.guid .. "\\enemies\\Enemies.sjson")
+    mod.readSjson(enemiesFile, data, "Units")
+end)
+
+local ShawnSheep =
+{
+	Shawn = {},
+}
+
+ShawnSheep.Shawn = DeepCopyTable( EnemyData["Sheep"] )
+game.OverwriteTableKeys( game.EnemyData, ShawnSheep)
+ShawnSheep = game.EnemyData["Shawn"]
+ShawnSheep.Name = "Shawn"
+game.ProcessDataInheritance( ShawnSheep, game.EnemyData )

@@ -12,7 +12,7 @@ gods.CreateBoon({
 	BlockStacking = true,
 
 	displayName = "Lustful Confession",
-	description = "Your {$Keywords.HeartBurstPlural} are stronger and fire your {$Keywords.CastEX} upon striking a foe.",
+	description = "Your {$Keywords.HeartBurstPlural} are stronger, and fire your {$Keywords.CastEX} upon striking a foe.",
 	StatLines = { "BonusHeartthrobDamageStatDisplay1" },
 	customStatLine = {
 		ID = "BonusHeartthrobDamageStatDisplay1",
@@ -52,7 +52,7 @@ gods.CreateBoon({
 	ExtraFields = {
 		HeartthrobBonusDamageModifiers = {
 			ValidProjectiles = "AphroditeBurst",
-			AphroWrathCooldown = 0.25,
+			AphroWrathCooldown = 0.10,
 			HeartthrobBonusMultiplier = {
 				BaseValue = 1.25,
 			},

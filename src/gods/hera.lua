@@ -60,7 +60,7 @@ gods.CreateBoon({
 			FunctionName = _PLUGIN.guid .. "." .. "HeraMoutonSpawn",
 			FunctionArgs =
 			{
-				SpawnedEnemy = "Sheep",
+				SpawnedEnemy = "Shawn",
 				EffectName = "DamageShareEffect",
 				MaxHealthMultiplier = 2,
 				StartDelay = 0.2,

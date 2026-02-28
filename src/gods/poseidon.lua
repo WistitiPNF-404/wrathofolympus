@@ -11,19 +11,19 @@ gods.CreateBoon({
 	reuseBaseIcons = true,
 	BlockStacking = true,
 
-	displayName = "Torrential Submersion",
-	description = "Your splash effects fire stronger waves from {$TraitData.OmegaPoseidonProjectileBoon.Name} at no extra cost.",
-	StatLines = { "BonusOceanSwellStatDisplay1" },
+	displayName = "Merciless Undertow",
+	description = "Your {$Keywords.KnockbackAmplify} effects are guaranteed, and may fire your waves from {$TraitData.OmegaPoseidonProjectileBoon.Name}.",
+	StatLines = { "ChanceOceanSwellStatDisplay1" },
 	customStatLine = {
-		ID = "BonusOceanSwellStatDisplay1",
-		displayName = "{!Icons.Bullet}{#PropertyFormat}Wave Bonus Damage:",
-		description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
+		ID = "ChanceOceanSwellStatDisplay1",
+		displayName = "{!Icons.Bullet}{#PropertyFormat}Waves from Froth Chance:",
+		description = "{#UpgradeFormat}{$TooltipData.ExtractData.FrothWaveChance}%",
 	},
 	requirements = {
 		OneFromEachSet = {
-			{ "PoseidonWeaponBoon", "PoseidonSpecialBoon", "PoseidonCastBoon" },
+			{ "PoseidonWeaponBoon", "PoseidonSpecialBoon", "PoseidonSprintBoon", "PoseidonManaBoon" },
 			{ "OmegaPoseidonProjectileBoon" },
-			{ "PoseidonStatusBoon", "PoseidonExCastBoon", "EncounterStartOffenseBuffBoon" },
+			{ "PoseidonCastBoon", "PoseidonStatusBoon" },
 		},
 	},
 	flavourText = "Any and all would get crushed under the sea's astronomical weight, even the sturdiest Titan.",
@@ -32,35 +32,46 @@ gods.CreateBoon({
 
 	ExtractValues = {
 		{
-			Key = "ReportedWaveMultiplier",
-			ExtractAs = "TooltipData",
-			Format = "PercentDelta",
+			Key = "WaveChance",
+			ExtractAs = "FrothWaveChance",
+			Format = "LuckModifiedPercent",
+			SkipAutoExtract = true,
+		},
+		{
+			ExtractAs = "KnockbackAmplifyDuration",
+			SkipAutoExtract = true,
+			External = true,
+			BaseType = "EffectData",
+			BaseName = "AmplifyKnockbackEffect",
+			BaseProperty = "Duration",
+			DecimalPlaces = 1,
+		},
+		{
+			ExtractAs = "FontChance",
+			SkipAutoExtract = true,
+			External = true,
+			BaseType = "EffectLuaData",
+			BaseName = "AmplifyKnockbackEffect",
+			BaseProperty = "Chance",
+			Format = "LuckModifiedPercent"
+		},
+		{
+			External = true,
+			ExtractAs = "FontDamage",
+			BaseType = "ProjectileBase",
+			BaseName = "PoseidonEffectFont",
+			BaseProperty = "Damage",
 		},
 	},
 
 	ExtraFields = {
-		AddOutgoingDamageModifiers = {
-			ValidProjectiles = { "PoseidonOmegaWave" },
-			ValidWaveDamageAddition = {
-				BaseValue = 1.50, -- boon description only
-				SourceIsMultiplier = true,
-			},
-			ReportValues = { ReportedWaveMultiplier = "ValidWaveDamageAddition" },
-		},
 		OnEnemyDamagedAction = {
-			FunctionName = _PLUGIN.guid .. "." .. "PoseidonWrath",
-			ValidProjectiles = 
-			{
-				"PoseidonSplashSplinter",
-				"PoseidonCastSplashSplinter",
-				"PoseidonSplashBackSplinter",
-			},
 			Args = {
 				ProjectileName = "PoseidonOmegaWave",
 				FallbackWeaponDamageMultiplier = 1.0,
-				DamageMultiplier = 1.50,
 				ImpactVelocity = 600,
 			},
 		},
+		WaveChance = { BaseValue = 0.4 },
 	},
 })

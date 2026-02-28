@@ -70,7 +70,7 @@ gods.CreateBoon({
 			ValidProjectiles = { "ZeusEchoStrike" },
 			Args = {
 				ProjectileName = "ZeusRetaliateStrike",
-				DoubleBoltChance = 0.4,
+				DoubleBoltChance = 0.3,
 				MinStrikes = 3,
 				MaxStrikes = {
 					BaseValue = 6,
