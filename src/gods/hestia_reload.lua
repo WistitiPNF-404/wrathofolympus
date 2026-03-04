@@ -16,9 +16,8 @@ function mod.BurnInstaKill ( args, attacker, victim, triggerArgs )
 			end
 			return
 		end 
-
-		-- Projectile is created but deals no damage, only for visuals
-		CreateProjectileFromUnit({ Name = args.ProjectileName, Id = CurrentRun.Hero.ObjectId, DestinationId = victim.ObjectId, DamageMultiplier = args.DamageMultiplier, FireFromTarget = true})
+		
+		CreateAnimation({ Name = "FireballExplosionIcarus", DestinationId = victim.ObjectId })
 
 		thread( Kill, victim, { ImpactAngle = 0, AttackerTable = CurrentRun.Hero, AttackerId = CurrentRun.Hero.ObjectId })
 		if victim.UseBossHealthBar then

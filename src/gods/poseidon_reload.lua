@@ -31,19 +31,24 @@ function mod.PoseidonWrath (victim, triggerArgs)
 			ImpactVelocity = triggerArgs.ImpactVelocity or 600, --Check ImpactVelocity in PoseidonWrath functionArgs
 			StartDelay = 0
 		},
-		ProjectileCap = 2,
 	}
+	if not HeroHasTrait("OmegaPoseidonProjectileBoon") then
+		return
+	end
 	if CheckCooldown("PoseidonStatusFont", effectData.Cooldown) then
+		local count = 1
 		CreateProjectileFromUnit({ Name = effectData.ProjectileName, DestinationId = victim.ObjectId, Id = CurrentRun.Hero.ObjectId, FireFromTarget = true, DamageMultiplier = GetTotalHeroTraitValue("PoseidonFontMultiplier", { IsMultiplier = true }) })
-		if not HeroHasTrait("OmegaPoseidonProjectileBoon") then
-			return
-		end
 		if RandomChance( omegaWaveChance * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true }) ) then
-			CreateProjectileFromUnit(omegaPoseidonProjectile)
+			local baseWaveAngle = omegaPoseidonProjectile.Angle
 			local doubleChance = GetTotalHeroTraitValue("DoubleOlympianProjectileChance") * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true })
-			if RandomChance(doubleChance) then
-				wait( GetTotalHeroTraitValue("DoubleOlympianProjectileInterval" ))
+			local duoDoubleWave = RandomChance(doubleChance)
+			for i = 0, 2 do
+				omegaPoseidonProjectile.Angle = (90 / 3 * i) + (baseWaveAngle - 30)
 				CreateProjectileFromUnit(omegaPoseidonProjectile)
+				if duoDoubleWave then
+					wait( GetTotalHeroTraitValue("DoubleOlympianProjectileInterval" ))
+					CreateProjectileFromUnit(omegaPoseidonProjectile)
+				end
 			end
 		end
 	end

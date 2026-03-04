@@ -1,11 +1,13 @@
 # Changelog
 
-## [1.8.0] - 2026-02-28
+## [1.8.0] - 2026-03-03
 
 - Balancing
     - Spurned Patriarch (Zeus): Reduced double strike chance (40% -> 30%)
     - Torrential Submersion (Poseidon): cut from the game; replaced with...
-    - (NEW!) Merciless Undertow (Poseidon): Your Froth effects are guaranteed, and may fire your waves from Ocean Swell
+    - (NEW!) Trident Squall (Poseidon): Your Froth effects are guaranteed, and may fire 3 waves from Ocean Swell.
+- Bug fix
+    - Hypothermic Shock (Demeter): Fixed an issue where Frostbite could sometimes miss agile elite foes, Wardens and Guardians.
 
 ## [1.7.1] - 2026-02-25
 

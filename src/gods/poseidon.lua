@@ -11,8 +11,8 @@ gods.CreateBoon({
 	reuseBaseIcons = true,
 	BlockStacking = true,
 
-	displayName = "Merciless Undertow",
-	description = "Your {$Keywords.KnockbackAmplify} effects are guaranteed, and may fire your waves from {$TraitData.OmegaPoseidonProjectileBoon.Name}.",
+	displayName = "Trident Squall",
+	description = "Your {$Keywords.KnockbackAmplify} effects are guaranteed, and may fire {#BoldFormatGraft}3 {#Prev}waves from {$TraitData.OmegaPoseidonProjectileBoon.Name}.",
 	StatLines = { "ChanceOceanSwellStatDisplay1" },
 	customStatLine = {
 		ID = "ChanceOceanSwellStatDisplay1",

@@ -103,9 +103,16 @@ end)
 
 ResetKeywords()
 
+local playerProjectilesFile = rom.path.combine(rom.paths.Content,"Game\\Projectiles\\PlayerProjectiles.sjson")
+
+sjson.hook(playerProjectilesFile, function(data)
+	local projectileFile = rom.path.combine(rom.paths.plugins(), _PLUGIN.guid .. "\\projectiles\\Projectiles.sjson")
+	mod.readSjson(projectileFile, data, "Projectiles")
+end)
+
 --Damage coloring
 game.OverwriteTableKeys( game.ProjectileData, {
-	DemeterAmmoWind =
+	DemeterFrostbite =
 	{
 		InheritFrom = { "DemeterColorProjectile" },
 	},
@@ -113,7 +120,7 @@ game.OverwriteTableKeys( game.ProjectileData, {
 game.ProcessDataStore(game.ProjectileData)
 
 game.ConcatTableValues(game.WeaponSets.OlympianProjectileNames,{
-    "DemeterAmmoWind",
+    "DemeterFrostbite",
 })
 
 --Wrath rarity
@@ -142,7 +149,7 @@ gods.CreateCustomRarity({
 mod.wrathTrait = gods.GetInternalRarityName("Wrath")
 
 game.OverwriteTableKeys( game.ScreenData.RunClear.DamageSourceMap, {
-    DemeterAmmoWind = "Frostbite",
+    DemeterFrostbite = "Frostbite",
 })
 
 function mod.readSjson(file,data,key)

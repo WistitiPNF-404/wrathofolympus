@@ -1,0 +1,52 @@
+{ Projectiles = [ 
+    {
+		Name = "DemeterFrostbite"
+		InheritFrom = "1_BaseProjectile"
+		DetonateFx = "RadialNovaDemeter"
+		Range = 200
+		AutoAdjustForTarget = false
+		CheckObstacleImpact = true
+		UnlimitedUnitPenetration = true
+		Type = "INSTANT"
+		Damage = 1
+		DamageRadius = 10
+		DamageRadiusScaleX = 1.175
+		DamageRadiusScaleY = 0.56
+		ImpactVelocity = 0
+		AffectsFriends = false
+		AffectsSelf = false
+		AffectsEnemies = true
+		MaxVictimZ = 9999
+		UseVulnerability = false
+		IgnoreCoverageAngles = true
+		ClearOnAttackEffects = false
+		Thing =
+		{
+			Graphic = "DemeterSpinIn"
+			OffsetZ = 60
+			AttachedAnim = "null"
+			RotateGeometry = true
+			Grip = 999999
+			Points =
+			[
+				{
+					X = 48
+					Y = 48
+				}
+				{
+					X = 48
+					Y = -48
+				}
+				{
+					X = -48
+					Y = -48
+				}
+				{
+					X = -48
+					Y = 48
+				}
+			]
+		}
+	}
+]
+}

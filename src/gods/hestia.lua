@@ -64,8 +64,6 @@ gods.CreateBoon({
 					}
 				},
 				CombustDeathThreshold = 0.4,
-				ProjectileName = "IcarusExplosion",
-				DamageMultiplier = 0,
 				ReportValues = 
 				{ 
 					ReportedThreshold = "CombustDeathThreshold",
