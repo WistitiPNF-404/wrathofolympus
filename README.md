@@ -21,7 +21,7 @@ Even though the mod has been tested thorouhgly, consider backing up your save fi
 ### Wicked Offspring (Hera)
 <img src="https://github.com/WistitiPNF-404/wrathofolympus/blob/main/imgs/HeraWrath_BoonPreview.png?raw=true" width="100%"/>
 
-### Torrential Submersion (Poseidon)
+### Trident Squall (Poseidon)
 <img src="https://github.com/WistitiPNF-404/wrathofolympus/blob/main/imgs/PoseidonWrath_BoonPreview.png?raw=true" width="100%"/>
 
 ### Hypothermic Shock (Demeter)

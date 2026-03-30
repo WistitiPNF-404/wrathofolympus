@@ -69,7 +69,7 @@ gods.CreateBoon({
 			FunctionName = _PLUGIN.guid .. "." .. "ZeusWrath",
 			ValidProjectiles = { "ZeusEchoStrike" },
 			Args = {
-				ProjectileName = "ZeusRetaliateStrike",
+				ProjectileName = "ZeusWrathBolt",
 				DoubleBoltChance = 0.3,
 				MinStrikes = 3,
 				MaxStrikes = {

@@ -13,7 +13,7 @@ gods.CreateBoon({
 	BlockStacking = true,
 
 	displayName = "Eruptive Plating",
-	description = "After you take damage with {!Icons.ArmorTotal}, strike back foes with a blast that deals {$TooltipData.ExtractData.Damage} damage.",
+	description = "After you take damage while having {!Icons.ArmorTotal}, strike foes with a blast dealing {$TooltipData.ExtractData.Damage} damage.",
 	StatLines = { "BlastRevengeStatDisplay1" },
 	customStatLine = {
 		ID = "BlastRevengeStatDisplay1",
@@ -56,7 +56,7 @@ gods.CreateBoon({
 				ProjectileName = "MassiveSlamBlast",
 				Cooldown = 0.4,
 				BlastDelay = 0.08,
-				DamageMultiplier = 3.0,
+				DamageMultiplier = 6.0,
 				ReportValues = {
 					ReportedBlastDamageMultiplier = "DamageMultiplier",
 				},
@@ -70,7 +70,7 @@ gods.CreateBoon({
 					Source = "Tradeoff",
 					Delay = 0.75,
 					BaseAmount = {
-						BaseValue = 100,
+						BaseValue = 200,
 					},
 					ReportValues = {
 						ReportedExtraArmor = "BaseAmount",

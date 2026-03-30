@@ -39,9 +39,9 @@ function mod.CalculatePlasmaDoubleDamageChance ( attacker, victim, weaponData, t
 	return triggerArgs.DdChance
 end
 
-modutil.mod.Path.Wrap("FormatExtractedValue", function(baseFunc, value, extractData)
+--[[modutil.mod.Path.Wrap("FormatExtractedValue", function(baseFunc, value, extractData)
 	if extractData.MultiplyByPlasmaCount then
 		value = value * (CurrentRun.CurrentRoom.BloodDropCount * 0.5)
 	end
 	return baseFunc(value, extractData)
-end)
+end)]]

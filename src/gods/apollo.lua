@@ -12,7 +12,7 @@ gods.CreateBoon({
 	BlockStacking = true,
 
 	displayName = "Critical Fiasco",
-	description = "Whenever {$Keywords.Blind} causes a foe to miss, it takes {#BoldFormatGraft}{$TooltipData.ExtractData.MissDamage} {#Prev}damage and becomes {$Keywords.Mark}.",
+	description = "Whenever you {$Keywords.Dodge} an enemy attack, it takes {#BoldFormatGraft}{$TooltipData.ExtractData.MissDamage} {#Prev}damage and becomes {$Keywords.Mark}.",
 	StatLines = { "DazeCritStatDisplay1" },
 	customStatLine = {
 		ID = "DazeCritStatDisplay1",
@@ -84,7 +84,7 @@ gods.CreateBoon({
 			RunOnce = true,
 			FunctionArgs =
 			{
-				ProjectileName = "ApolloRetaliateStrike",
+				ProjectileName = "ApolloDodgeRetaliate",
 				EffectName = "ArtemisBoonHuntersMark",
 				DamageMultiplier =
 				{
@@ -95,7 +95,7 @@ gods.CreateBoon({
 						Value = -0.5,
 					},
 				},
-				ProjectileDelay = 0.25,
+				ProjectileDelay = 0.1,
 				ReportValues = { ReportedMissDamage = "DamageMultiplier" },--might need to remove that
 			},
 		},

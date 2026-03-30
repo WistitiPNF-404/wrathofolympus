@@ -25,7 +25,7 @@ gods.CreateBoon({
 		{
 			{ "DemeterWeaponBoon", "DemeterSpecialBoon", "DemeterCastBoon" },
 			{ "DemeterSprintBoon", "CastNovaBoon" },
-			{ "SlowExAttackBoon", "CastAttachBoon" },
+			{ "SlowExAttackBoon", "CastAttachBoon", "RootDurationBoon" },
 		},
 	},
     flavourText = "As limbs turn blue and fall, the Goddess of Seasons does not bat an eye.",

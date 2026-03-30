@@ -1,10 +1,10 @@
 bountyAPI.RegisterBounty({
-    Id = _PLUGIN.guid .. "BountyDemeterWrath",
-    Title = "Trial of Hypothermia",
-    Description = "Drive the enemies invading Mount Olympus to hypothermia with the withering Wrath of the Goddess of Seasons.",
+    Id = _PLUGIN.guid .. "BountyHestiaWrath",
+    Title = "Trial of Cinders",
+    Description = "Incinerate foes that willfully broke traditions by gaining the rarely seen Wrath of the Goddess of Hearth.",
     Difficulty = 4,
     IsStandardBounty = true,
-    BiomeChar = "P",
+    BiomeChar = "O",
 
     DataOverrides = function (RegisterValues)
         print("Overriding all the needed game tables for this challenge run...")
@@ -27,10 +27,10 @@ bountyAPI.RegisterBounty({
         print("Challenge run is ending. Cleaning up...")
     end,
     BaseData = {
-		InheritFrom = { "DefaultPackagedBounty", "BasePackageBountyBiomeP", },
-        WeaponKitName = "WeaponLob",
-		WeaponUpgradeName = "LobImpulseAspect",
-		KeepsakeName = "ForceDemeterBoonKeepsake",
+		InheritFrom = { "DefaultPackagedBounty", "BasePackageBountyBiomeO", },
+        WeaponKitName = "WeaponStaffSwing",
+		WeaponUpgradeName = "StaffSelfHitAspect",
+		KeepsakeName = "ForceHestiaBoonKeepsake",
 		RemoveFamiliar = true,
 
 		RewardStoreOverrides =
@@ -39,13 +39,20 @@ bountyAPI.RegisterBounty({
 			{
 				{
 					Name = "Boon",
-					LootName = "DemeterUpgrade",
+					LootName = "HestiaUpgrade",
 					AllowDuplicates = true,
 				},
 				{
 					Name = "Boon",
-					LootName = "AresUpgrade",
+					LootName = "ZeusUpgrade",
 					AllowDuplicates = true,
+				},
+				{
+					Name = "HermesUpgrade",
+					GameStateRequirements =
+					{
+						--None
+					}
 				},
 				{
 					Name = "StackUpgrade",
@@ -71,29 +78,29 @@ bountyAPI.RegisterBounty({
 			MaxGodsPerRun = 2,
 			LootTypeHistory =
 			{
-                DemeterUpgrade = 3,
-				AresUpgrade = 6,
-                WeaponUpgrade = 2,
+                HestiaUpgrade = 5,
+				ZeusUpgrade = 2,
+                WeaponUpgrade = 1,
 			},
 		},
 
         StartingTraits =
 		{
-			{ Name = "DemeterCastBoon", Rarity = "Epic", },
-			{ Name = "DemeterSpecialBoon", Rarity = "Epic", },
-			{ Name = "DemeterManaBoon", Rarity = "Epic", },
-			{ Name = "RootDurationBoon", Rarity = "Epic", },
-			{ Name = "BoonGrowthBoon", Rarity = "Epic", },
-			{ Name = "ReserveManaHitShieldBoon", Rarity = "Epic", },
-			{ Name = "ElementalOlympianDamageBoon", },
-			{ Name = gods.GetInternalBoonName("DemeterWrathBoon"), },
-			{ Name = "LobOneSideTrait", },
-			{ Name = "LobAmmoMagnetismTrait", },
+			{ Name = "HestiaWeaponBoon", Rarity = "Epic", },
+			{ Name = "ZeusSpecialBoon", Rarity = "Epic", },
+			{ Name = "HestiaCastBoon", Rarity = "Epic", },
+			{ Name = "ZeusManaBoon", Rarity = "Epic", },
+			{ Name = "OmegaZeroBurnBoon", Rarity = "Epic", },
+			{ Name = "HermesSpecialBoon", Rarity = "Epic", },
+			{ Name = gods.GetInternalBoonName("HestiaWrathBoon"), },
+			{ Name = "StaffAttackRecoveryTrait", },
+			{ Name = "StaffOneWayAttackTrait", },
+			{ Name = "RoomRewardMaxHealthTrait", },
 			{ Name = "RoomRewardMaxHealthTrait", },
 			{ Name = "RoomRewardMaxHealthTrait", },
 			{ Name = "RoomRewardMaxHealthTrait", },
 			{ Name = "RoomRewardMaxManaTrait", },
-			{ Name = "RoomRewardMaxManaTrait", },
+        	{ Name = "RoomRewardMaxManaTrait", },
 		},
 
 		MetaUpgradeStateEquipped =
@@ -105,7 +112,7 @@ bountyAPI.RegisterBounty({
 			"StatusVulnerability", --5
 		},
 
-        ShrineUpgradesActive = --15 Fear total
+         ShrineUpgradesActive = --15 Fear total
 		{
 			EnemyHealthShrineUpgrade = 2,
 			EnemySpeedShrineUpgrade = 1,
@@ -116,7 +123,7 @@ bountyAPI.RegisterBounty({
         UnlockGameStateRequirements =
 		{
 			-- Biome and Shrine unlocks
-			NamedRequirements = { "PackageBountyBiomeP", "ShrineUnlocked", },
+			NamedRequirements = { "PackageBountyBiomeO", "ShrineUnlocked", },
 			-- Bounty progress
 			{
 				Path = { "GameState", "PackagedBountyClears" },
@@ -125,12 +132,12 @@ bountyAPI.RegisterBounty({
 			-- Weapon
 			{
 				Path = { "GameState", "WeaponsUnlocked", },
-				HasAll = { "WeaponLob", "LobImpulseAspect", },
+				HasAll = { "WeaponStaffSwing", "StaffSelfHitAspect", },
 			},
 			-- FirstLoot
 			{
 				Path = { "GameState", "TextLinesRecord", },
-				HasAll = { "DemeterFirstPickUp", },
+				HasAll = { "HestiaFirstPickUp", },
 			},
 
 			-- MetaUpgrades

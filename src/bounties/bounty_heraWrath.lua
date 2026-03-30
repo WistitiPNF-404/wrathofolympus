@@ -1,8 +1,8 @@
 bountyAPI.RegisterBounty({
-    Id = _PLUGIN.guid .. "BountyDemeterWrath",
-    Title = "Trial of Hypothermia",
-    Description = "Drive the enemies invading Mount Olympus to hypothermia with the withering Wrath of the Goddess of Seasons.",
-    Difficulty = 4,
+    Id = _PLUGIN.guid .. "BountyHeraWrath",
+    Title = "Trial of the Queen",
+    Description = "With the Wrath of the Queen of Olympus, project the summoned Shawn's pain to the invading foes of Mount Olympus (but worry not, Shawn is fine).",
+    Difficulty = 5,
     IsStandardBounty = true,
     BiomeChar = "P",
 
@@ -28,9 +28,9 @@ bountyAPI.RegisterBounty({
     end,
     BaseData = {
 		InheritFrom = { "DefaultPackagedBounty", "BasePackageBountyBiomeP", },
-        WeaponKitName = "WeaponLob",
-		WeaponUpgradeName = "LobImpulseAspect",
-		KeepsakeName = "ForceDemeterBoonKeepsake",
+        WeaponKitName = "WeaponDagger",
+		WeaponUpgradeName = "DaggerTripleAspect",
+		KeepsakeName = "ForceHeraBoonKeepsake",
 		RemoveFamiliar = true,
 
 		RewardStoreOverrides =
@@ -39,19 +39,24 @@ bountyAPI.RegisterBounty({
 			{
 				{
 					Name = "Boon",
-					LootName = "DemeterUpgrade",
+					LootName = "HeraUpgrade",
 					AllowDuplicates = true,
 				},
 				{
 					Name = "Boon",
-					LootName = "AresUpgrade",
+					LootName = "HephaestusUpgrade",
 					AllowDuplicates = true,
 				},
 				{
-					Name = "StackUpgrade",
+					Name = "Boon",
+					LootName = "ApolloUpgrade",
+					AllowDuplicates = true,
+				},
+				{
+					Name = "HermesUpgrade",
 					GameStateRequirements =
 					{
-						NamedRequirements = { "StackUpgradeLegal", },
+						--None
 					}
 				},
 				{
@@ -68,30 +73,32 @@ bountyAPI.RegisterBounty({
 
 		RunOverrides =
 		{
-			MaxGodsPerRun = 2,
+			MaxGodsPerRun = 3,
 			LootTypeHistory =
 			{
-                DemeterUpgrade = 3,
-				AresUpgrade = 6,
-                WeaponUpgrade = 2,
+                HeraUpgrade = 4,
+				HephaestusUpgrade = 3,
+				ApolloUpgrade = 3,
 			},
 		},
 
         StartingTraits =
 		{
-			{ Name = "DemeterCastBoon", Rarity = "Epic", },
-			{ Name = "DemeterSpecialBoon", Rarity = "Epic", },
-			{ Name = "DemeterManaBoon", Rarity = "Epic", },
-			{ Name = "RootDurationBoon", Rarity = "Epic", },
-			{ Name = "BoonGrowthBoon", Rarity = "Epic", },
-			{ Name = "ReserveManaHitShieldBoon", Rarity = "Epic", },
-			{ Name = "ElementalOlympianDamageBoon", },
-			{ Name = gods.GetInternalBoonName("DemeterWrathBoon"), },
-			{ Name = "LobOneSideTrait", },
-			{ Name = "LobAmmoMagnetismTrait", },
+			{ Name = "HeraWeaponBoon", Rarity = "Epic", },
+			{ Name = "HephaestusSpecialBoon", Rarity = "Epic", },
+            { Name = "HeraCastBoon", Rarity = "Epic", }, 
+			{ Name = "HeraManaBoon", Rarity = "Epic", }, 
+            { Name = "MassiveKnockupBoon", Rarity = "Epic", }, 
+            { Name = "ArmorBoon", Rarity = "Epic", }, 
+			{ Name = "ApolloCastAreaBoon", Rarity = "Epic", }, 
+			{ Name = "HermesSpecialBoon", Rarity = "Epic", }, 
+			{ Name = gods.GetInternalBoonName("HeraWrathBoon"), },
+			{ Name = "DaggerRapidAttackTrait", },
+			{ Name = "DaggerTripleRepeatWomboTrait", },
 			{ Name = "RoomRewardMaxHealthTrait", },
+            { Name = "RoomRewardMaxHealthTrait", },
 			{ Name = "RoomRewardMaxHealthTrait", },
-			{ Name = "RoomRewardMaxHealthTrait", },
+			{ Name = "RoomRewardMaxManaTrait", },
 			{ Name = "RoomRewardMaxManaTrait", },
 			{ Name = "RoomRewardMaxManaTrait", },
 		},
@@ -125,7 +132,7 @@ bountyAPI.RegisterBounty({
 			-- Weapon
 			{
 				Path = { "GameState", "WeaponsUnlocked", },
-				HasAll = { "WeaponLob", "LobImpulseAspect", },
+				HasAll = { "WeaponDagger", "DaggerTripleAspect", },
 			},
 			-- FirstLoot
 			{

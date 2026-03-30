@@ -16,7 +16,6 @@ function mod.PoseidonWrath (victim, triggerArgs)
 	local effectData = EffectData.AmplifyKnockbackEffect
 	local omegaWaveChance = GetTotalHeroTraitValue("WaveChance")
 	local traitData = GetHeroTrait("OmegaPoseidonProjectileBoon")
-	local dataProperties = GetProjectileProperty({ ProjectileId = triggerArgs.ProjectileId, Property = "DataProperties" })
 	local omegaPoseidonProjectile = 
 	{
 		Name = "PoseidonOmegaWave",
@@ -27,7 +26,6 @@ function mod.PoseidonWrath (victim, triggerArgs)
 		DamageMultiplier = (traitData.OnWeaponFiredFunctions.FunctionArgs.DamageMultiplier or 1.0),
 		DataProperties =
 		{
-			StartFx = dataProperties.StartFx,
 			ImpactVelocity = triggerArgs.ImpactVelocity or 600, --Check ImpactVelocity in PoseidonWrath functionArgs
 			StartDelay = 0
 		},

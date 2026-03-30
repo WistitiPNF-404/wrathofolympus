@@ -1,7 +1,7 @@
 bountyAPI.RegisterBounty({
-    Id = _PLUGIN.guid .. "BountyAphroditeWrath",
-    Title = "Trial of Lust",
-    Description = "Run down the abandonned alleys of Ephyra with the powerful Wrath of the Goddess of Love.",
+    Id = _PLUGIN.guid .. "BountyDodgeWraths",
+    Title = "Trial of Evasiveness",
+    Description = "Dance around foes at the edge of the Underworld with the Wraths of the Gods of Sun and Switfness.",
     Difficulty = 3,
     IsStandardBounty = true,
     BiomeChar = "N",
@@ -28,31 +28,31 @@ bountyAPI.RegisterBounty({
     end,
     BaseData = {
 		InheritFrom = { "DefaultPackagedBounty", "BasePackageBountyBiomeN", },
-        WeaponKitName = "WeaponSuit",
-		WeaponUpgradeName = "SuitComboAspect",
-		KeepsakeName = "ForceAphroditeBoonKeepsake",
+        WeaponKitName = "WeaponAxe",
+		WeaponUpgradeName = "AxeRecoveryAspect",
+		KeepsakeName = "TimedBuffKeepsake",
 		RemoveFamiliar = true,
 
 		ForcedRewards =
 		{
 			{
 				Name = "Boon",
-				LootName = "AphroditeUpgrade",
+				LootName = "ApolloUpgrade",
 				ForcedUpgradeOptions =
 				{
 					{
 						Type = "Trait",
-						ItemName = "AphroditeWeaponBoon",
+						ItemName = "PerfectDamageBonusBoon",
 						Rarity = "Epic",
 					},
 					{
 						Type = "Trait",
-						ItemName = "AphroditeSpecialBoon",
+						ItemName = "ApolloRetaliateBoon",
 						Rarity = "Epic",
 					},
 					{
 						Type = "Trait",
-						ItemName = gods.GetInternalBoonName("AphroWrathBoon"),
+						ItemName = gods.GetInternalBoonName("ApolloWrathBoon"),
 						Rarity = gods.GetInternalRarityName("Wrath"),
 					},
 				},
@@ -61,42 +61,58 @@ bountyAPI.RegisterBounty({
 
 		RunOverrides =
 		{
-			MaxGodsPerRun = 4,
+			MaxGodsPerRun = 2,
 			LootTypeHistory =
 			{
-                AphroditeUpgrade = 5,
-				ApolloUpgrade = 1,
-                AresUpgrade = 1,
-                PoseidonUpgrade = 1,
+                ApolloUpgrade = 2,
+                ZeusUpgrade = 4,
+				HermesUpgrade = 1,
+                WeaponUpgrade = 1,
 			},
 		},
 
         StartingTraits =
 		{
-			{ Name = "AphroditeCastBoon", Rarity = "Epic", },
-			{ Name = "AphroditeSprintBoon", Rarity = "Epic", },
+			{ Name = "ApolloSpecialBoon", Rarity = "Epic", },
+			{ Name = "ApolloCastBoon", Rarity = "Epic", },
 			{ Name = "ApolloManaBoon", Rarity = "Epic", },
-			{ Name = "ManaBurstBoon", Rarity = "Epic", },
-			{ Name = "OmegaPoseidonProjectileBoon", Rarity = "Rare", },
-			{ Name = "OmegaDelayedDamageBoon", Rarity = "Rare", },
-			{ Name = "RoomRewardMaxManaTrait", },
-			{ Name = "RoomRewardMaxManaTrait", },
+            { Name = "ApolloCastAreaBoon", Rarity = "Epic", },
+            { Name = "BoltRetaliateBoon", Rarity = "Epic", },
+            { Name = "DodgeChanceBoon", Rarity = "Epic", },
+            { Name = "ElementalDodgeBoon", },
+            { Name = gods.GetInternalBoonName("HermesWrathBoon"), },
+            { Name = "CoverRegenerationBoon", Rarity = "Duo", },
+            { Name = "AxeThirdStrikeTrait", },
+			{ Name = "RoomRewardMaxHealthTrait", },
+            { Name = "RoomRewardMaxHealthTrait", },
+            { Name = "RoomRewardMaxManaTrait", },
+        	{ Name = "RoomRewardMaxManaTrait", },
 		},
 
-		RewardStoreOverrides = {
+		MetaUpgradeStateEquipped =
+		{
+			"ChanneledCast", --1
+			"HealthRegen", --1
+			"LowHealthBonus", --4
+			"ScreenReroll", --4
+			"StatusVulnerability", --5
+		},
+
+        ShrineUpgradesActive = --15 Fear total
+		{
+            EnemyHealthShrineUpgrade = 2,
+			EnemySpeedShrineUpgrade = 2,
+			EnemyCountShrineUpgrade = 3,
+			NextBiomeEnemyShrineUpgrade = 1,
+			EnemyEliteShrineUpgrade = 1,
+			BossDifficultyShrineUpgrade = 1,
+		},
+
+        RewardStoreOverrides = {
 			HubRewards =
 			{
 				{
 					Name = "MaxHealthDropBig",
-				},
-				{
-					Name = "Boon",
-					ForceLootName = "AphroditeUpgrade",
-					AllowDuplicates = true,
-					GameStateRequirements =
-					{
-						-- None
-					},
 				},
 				{
 					Name = "Boon",
@@ -109,7 +125,7 @@ bountyAPI.RegisterBounty({
 				},
 				{
 					Name = "Boon",
-					ForceLootName = "PoseidonUpgrade",
+					ForceLootName = "ZeusUpgrade",
 					AllowDuplicates = true,
 					GameStateRequirements =
 					{
@@ -118,7 +134,16 @@ bountyAPI.RegisterBounty({
 				},
 				{
 					Name = "Boon",
-					ForceLootName = "AresUpgrade",
+					ForceLootName = "ZeusUpgrade",
+					AllowDuplicates = true,
+					GameStateRequirements =
+					{
+						-- None
+					},
+				},
+				{
+					Name = "Boon",
+					ForceLootName = "ZeusUpgrade",
 					AllowDuplicates = true,
 					GameStateRequirements =
 					{
@@ -179,25 +204,6 @@ bountyAPI.RegisterBounty({
 			},
 		},
 
-		MetaUpgradeStateEquipped =
-		{
-			"ChanneledCast", --1
-			"HealthRegen", --1
-			"LowHealthBonus", --4
-			"ScreenReroll", --4
-			"StatusVulnerability", --5
-		},
-
-        ShrineUpgradesActive = --15 Fear total
-		{
-			EnemyHealthShrineUpgrade = 2,
-			EnemySpeedShrineUpgrade = 1,
-			EnemyCountShrineUpgrade = 3,
-			NextBiomeEnemyShrineUpgrade = 2,
-			EnemyEliteShrineUpgrade = 1,
-			BossDifficultyShrineUpgrade = 1,
-		},
-
         UnlockGameStateRequirements =
 		{
 			-- Biome and Shrine unlocks
@@ -210,12 +216,12 @@ bountyAPI.RegisterBounty({
 			-- Weapon
 			{
 				Path = { "GameState", "WeaponsUnlocked", },
-				HasAll = { "WeaponSuit", "SuitComboAspect", },
+				HasAll = { "WeaponAxe", "AxeRecoveryAspect", },
 			},
 			-- FirstLoot
 			{
 				Path = { "GameState", "TextLinesRecord", },
-				HasAll = { "AphroditeFirstPickUp", },
+				HasAll = { "HestiaFirstPickUp", },
 			},
 
 			-- MetaUpgrades

@@ -1,10 +1,10 @@
 bountyAPI.RegisterBounty({
-    Id = _PLUGIN.guid .. "BountyDemeterWrath",
-    Title = "Trial of Hypothermia",
-    Description = "Drive the enemies invading Mount Olympus to hypothermia with the withering Wrath of the Goddess of Seasons.",
+    Id = _PLUGIN.guid .. "BountyPoseidonWrath",
+    Title = "Trial of Undertow",
+    Description = "Drown foes before they get to Scylla's nightly concert with the submerging Wrath of the God of the Sea.",
     Difficulty = 4,
     IsStandardBounty = true,
-    BiomeChar = "P",
+    BiomeChar = "G",
 
     DataOverrides = function (RegisterValues)
         print("Overriding all the needed game tables for this challenge run...")
@@ -27,10 +27,10 @@ bountyAPI.RegisterBounty({
         print("Challenge run is ending. Cleaning up...")
     end,
     BaseData = {
-		InheritFrom = { "DefaultPackagedBounty", "BasePackageBountyBiomeP", },
-        WeaponKitName = "WeaponLob",
-		WeaponUpgradeName = "LobImpulseAspect",
-		KeepsakeName = "ForceDemeterBoonKeepsake",
+		InheritFrom = { "DefaultPackagedBounty", "BasePackageBountyBiomeG", },
+        WeaponKitName = "WeaponDagger",
+		WeaponUpgradeName = "DaggerHomingThrowAspect",
+		KeepsakeName = "ForcePoseidonBoonKeepsake",
 		RemoveFamiliar = true,
 
 		RewardStoreOverrides =
@@ -39,26 +39,26 @@ bountyAPI.RegisterBounty({
 			{
 				{
 					Name = "Boon",
-					LootName = "DemeterUpgrade",
+					LootName = "PoseidonUpgrade",
 					AllowDuplicates = true,
 				},
 				{
 					Name = "Boon",
-					LootName = "AresUpgrade",
+					LootName = "HeraUpgrade",
 					AllowDuplicates = true,
 				},
 				{
-					Name = "StackUpgrade",
+					Name = "HermesUpgrade",
 					GameStateRequirements =
 					{
-						NamedRequirements = { "StackUpgradeLegal", },
+						--None
 					}
 				},
 				{
 					Name = "MaxHealthDrop",
 				},
 				{
-					Name = "MaxHealthDrop",
+					Name = "MaxManaDrop",
 				},
 				{
 					Name = "MaxManaDrop",
@@ -71,29 +71,25 @@ bountyAPI.RegisterBounty({
 			MaxGodsPerRun = 2,
 			LootTypeHistory =
 			{
-                DemeterUpgrade = 3,
-				AresUpgrade = 6,
-                WeaponUpgrade = 2,
+                PoseidonUpgrade = 3,
+				HeraUpgrade = 2,
+                WeaponUpgrade = 1,
 			},
 		},
 
         StartingTraits =
 		{
-			{ Name = "DemeterCastBoon", Rarity = "Epic", },
-			{ Name = "DemeterSpecialBoon", Rarity = "Epic", },
-			{ Name = "DemeterManaBoon", Rarity = "Epic", },
-			{ Name = "RootDurationBoon", Rarity = "Epic", },
-			{ Name = "BoonGrowthBoon", Rarity = "Epic", },
-			{ Name = "ReserveManaHitShieldBoon", Rarity = "Epic", },
-			{ Name = "ElementalOlympianDamageBoon", },
-			{ Name = gods.GetInternalBoonName("DemeterWrathBoon"), },
-			{ Name = "LobOneSideTrait", },
-			{ Name = "LobAmmoMagnetismTrait", },
-			{ Name = "RoomRewardMaxHealthTrait", },
+            { Name = "HeraWeaponBoon", Rarity = "Epic", },
+			{ Name = "PoseidonSpecialBoon", Rarity = "Epic", },
+			{ Name = "PoseidonStatusBoon", Rarity = "Epic", },
+			{ Name = "OmegaPoseidonProjectileBoon", Rarity = "Epic", },
+            { Name = gods.GetInternalBoonName("PoseidonWrathBoon"), },
+            { Name = "DaggerSpecialFanTrait", },
+            { Name = "DaggerSpecialJumpTrait", },
 			{ Name = "RoomRewardMaxHealthTrait", },
 			{ Name = "RoomRewardMaxHealthTrait", },
 			{ Name = "RoomRewardMaxManaTrait", },
-			{ Name = "RoomRewardMaxManaTrait", },
+            { Name = "RoomRewardMaxManaTrait", },
 		},
 
 		MetaUpgradeStateEquipped =
@@ -107,16 +103,18 @@ bountyAPI.RegisterBounty({
 
         ShrineUpgradesActive = --15 Fear total
 		{
-			EnemyHealthShrineUpgrade = 2,
-			EnemySpeedShrineUpgrade = 1,
-			NextBiomeEnemyShrineUpgrade = 2,
-			BossDifficultyShrineUpgrade = 3,
+			EnemyHealthShrineUpgrade = 3,
+            EnemyCountShrineUpgrade = 3,
+			EnemyShieldShrineUpgrade = 1,
+            EnemyEliteShrineUpgrade = 1,
+			NextBiomeEnemyShrineUpgrade = 1,
+			BossDifficultyShrineUpgrade = 2,
 		},
 
         UnlockGameStateRequirements =
 		{
 			-- Biome and Shrine unlocks
-			NamedRequirements = { "PackageBountyBiomeP", "ShrineUnlocked", },
+			NamedRequirements = { "PackageBountyBiomeH", "ShrineUnlocked", },
 			-- Bounty progress
 			{
 				Path = { "GameState", "PackagedBountyClears" },
@@ -125,12 +123,12 @@ bountyAPI.RegisterBounty({
 			-- Weapon
 			{
 				Path = { "GameState", "WeaponsUnlocked", },
-				HasAll = { "WeaponLob", "LobImpulseAspect", },
+				HasAll = { "WeaponDagger", "DaggerHomingThrowAspect", },
 			},
 			-- FirstLoot
 			{
 				Path = { "GameState", "TextLinesRecord", },
-				HasAll = { "DemeterFirstPickUp", },
+				HasAll = { "PoseidonFirstPickUp", },
 			},
 
 			-- MetaUpgrades

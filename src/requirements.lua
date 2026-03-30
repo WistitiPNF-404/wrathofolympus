@@ -19,6 +19,13 @@ function DeepMergeUptoDepth(base, incoming, depth, currentDepth)
 end
 
 local traitRequirements = {
+	AutoRevengeBoon = {
+		OneFromEachSet = 
+		{
+			[3] = { "BloodDropRevengeBoon", "ApolloRetaliateBoon", "BoltRetaliateBoon", gods.GetInternalBoonName("HephWrathBoon") }
+		},
+	},
+
     LuckyBoon = {
         OneOf =
 		{

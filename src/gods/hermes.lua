@@ -12,7 +12,7 @@ gods.CreateBoon({
 	BlockStacking = true,
 
 	displayName = "Witch Time",
-	description = "Whenever you {$Keywords.Dodge}, make everything else move {#BoldFormatGraft}{$TooltipData.ExtractData.SlowAmount}% {#Prev} slower for {#BoldFormatGraft}1.5 Sec.",
+	description = "Whenever you {$Keywords.Dodge}, make everything else move {#BoldFormatGraft}{$TooltipData.ExtractData.SlowAmount}% {#Prev} slower for {#BoldFormatGraft}2 Sec.",
 	StatLines = { "HermesWrathDodgeStatDisplay1" },
 	customStatLine = {
 		ID = "HermesWrathDodgeStatDisplay1",
@@ -53,7 +53,7 @@ gods.CreateBoon({
 		{
 			{
 				LifeProperty = "DodgeChance",
-				BaseValue = 0.15,
+				BaseValue = 0.10,
 				ChangeType = "Add",
 				DataValue = false,
 				ReportValues = 
@@ -70,9 +70,9 @@ gods.CreateBoon({
 			FunctionArgs =
 			{
 				Modifier = 0.25, 
-                Duration = 1.5, 
+                Duration = 2, 
                 LoopingSound = "/SFX/Player Sounds/TimeSlowLoop",
-                EndWarnNum = 1,
+                EndWarnNum = 2,
                 EndWarnPresentationFunction = "SpellSlowWarnPresentation",
                 EndSlowMotionSound = "/VO/MelinoeEmotes/EmoteGasping",
                 EndSlowMotionFunctionName = _PLUGIN.guid .. "." .. "HermesEndTimeSlow",

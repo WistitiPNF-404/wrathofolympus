@@ -16,7 +16,7 @@ gods.CreateBoon({
 	StatLines = { "HitchPunchingBagStatDisplay1" },
 	customStatLine = {
 		ID = "HitchPunchingBagStatDisplay1",
-		displayName = "{!Icons.Bullet}{#PropertyFormat}Hitch Damage from Critter:",
+		displayName = "{!Icons.Bullet}{#PropertyFormat}Hitch Damage when Striking Critter:",
 		description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
 	},
 	requirements = {

@@ -112,15 +112,25 @@ end)
 
 --Damage coloring
 game.OverwriteTableKeys( game.ProjectileData, {
+	ZeusWrathBolt =
+	{
+		InheritFrom = { "ZeusColorProjectile" },
+	},
 	DemeterFrostbite =
 	{
 		InheritFrom = { "DemeterColorProjectile" },
+	},
+	ApolloDodgeRetaliate =
+	{
+		InheritFrom = { "ApolloColorProjectile" },
 	},
 })
 game.ProcessDataStore(game.ProjectileData)
 
 game.ConcatTableValues(game.WeaponSets.OlympianProjectileNames,{
-    "DemeterFrostbite",
+    "ZeusWrathBolt",
+	"DemeterFrostbite",
+	"ApolloDodgeRetaliate",
 })
 
 --Wrath rarity
@@ -149,7 +159,9 @@ gods.CreateCustomRarity({
 mod.wrathTrait = gods.GetInternalRarityName("Wrath")
 
 game.OverwriteTableKeys( game.ScreenData.RunClear.DamageSourceMap, {
-    DemeterFrostbite = "Frostbite",
+    ZeusWrathBolt = gods.GetInternalBoonName("ZeusWrathBoon"),
+	DemeterFrostbite = "Frostbite",
+	ApolloDodgeRetaliate = gods.GetInternalBoonName("ApolloWrathBoon"),
 })
 
 function mod.readSjson(file,data,key)

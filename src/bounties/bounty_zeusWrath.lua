@@ -1,8 +1,8 @@
 bountyAPI.RegisterBounty({
-    Id = _PLUGIN.guid .. "BountyDemeterWrath",
-    Title = "Trial of Hypothermia",
-    Description = "Drive the enemies invading Mount Olympus to hypothermia with the withering Wrath of the Goddess of Seasons.",
-    Difficulty = 4,
+    Id = _PLUGIN.guid .. "BountyZeusWrath",
+    Title = "Trial of the King",
+    Description = "With the Wrath of the King of Olympus, disintegrate anyone—and really anyone!—who dares to cross your path on Mount Olympus.",
+    Difficulty = 5,
     IsStandardBounty = true,
     BiomeChar = "P",
 
@@ -28,9 +28,9 @@ bountyAPI.RegisterBounty({
     end,
     BaseData = {
 		InheritFrom = { "DefaultPackagedBounty", "BasePackageBountyBiomeP", },
-        WeaponKitName = "WeaponLob",
-		WeaponUpgradeName = "LobImpulseAspect",
-		KeepsakeName = "ForceDemeterBoonKeepsake",
+        WeaponKitName = "WeaponTorch",
+		WeaponUpgradeName = "TorchAutofireAspect",
+		KeepsakeName = "ForceZeusBoonKeepsake",
 		RemoveFamiliar = true,
 
 		RewardStoreOverrides =
@@ -39,23 +39,27 @@ bountyAPI.RegisterBounty({
 			{
 				{
 					Name = "Boon",
-					LootName = "DemeterUpgrade",
+					LootName = "ZeusUpgrade",
 					AllowDuplicates = true,
 				},
 				{
 					Name = "Boon",
-					LootName = "AresUpgrade",
+					LootName = "AphroditeUpgrade",
 					AllowDuplicates = true,
 				},
 				{
-					Name = "StackUpgrade",
+					Name = "HermesUpgrade",
 					GameStateRequirements =
 					{
-						NamedRequirements = { "StackUpgradeLegal", },
+						--None
 					}
 				},
 				{
-					Name = "MaxHealthDrop",
+					Name = "WeaponUpgrade",
+					GameStateRequirements =
+					{
+						--None
+					}
 				},
 				{
 					Name = "MaxHealthDrop",
@@ -63,37 +67,34 @@ bountyAPI.RegisterBounty({
 				{
 					Name = "MaxManaDrop",
 				},
+				{
+					Name = "MaxManaDrop",
+				},
 			},
 		},
-
+		
 		RunOverrides =
 		{
 			MaxGodsPerRun = 2,
 			LootTypeHistory =
 			{
-                DemeterUpgrade = 3,
-				AresUpgrade = 6,
-                WeaponUpgrade = 2,
+                ZeusUpgrade = 4,
+				AphroditeUpgrade = 4,
+                WeaponUpgrade = 1,
 			},
 		},
 
         StartingTraits =
 		{
-			{ Name = "DemeterCastBoon", Rarity = "Epic", },
-			{ Name = "DemeterSpecialBoon", Rarity = "Epic", },
-			{ Name = "DemeterManaBoon", Rarity = "Epic", },
-			{ Name = "RootDurationBoon", Rarity = "Epic", },
-			{ Name = "BoonGrowthBoon", Rarity = "Epic", },
-			{ Name = "ReserveManaHitShieldBoon", Rarity = "Epic", },
-			{ Name = "ElementalOlympianDamageBoon", },
-			{ Name = gods.GetInternalBoonName("DemeterWrathBoon"), },
-			{ Name = "LobOneSideTrait", },
-			{ Name = "LobAmmoMagnetismTrait", },
+			{ Name = "ZeusSpecialBoon", Rarity = "Epic", },
+            { Name = "AphroditeManaBoon", Rarity = "Epic", },
+            { Name = "ZeusManaBoltBoon", Rarity = "Epic", }, 
+			{ Name = gods.GetInternalBoonName("ZeusWrathBoon"), },
+			{ Name = "TorchSpecialImpactTrait", },
+			{ Name = "TorchOrbitPointTrait", },
 			{ Name = "RoomRewardMaxHealthTrait", },
 			{ Name = "RoomRewardMaxHealthTrait", },
-			{ Name = "RoomRewardMaxHealthTrait", },
-			{ Name = "RoomRewardMaxManaTrait", },
-			{ Name = "RoomRewardMaxManaTrait", },
+            { Name = "RoomRewardMaxHealthTrait", },
 		},
 
 		MetaUpgradeStateEquipped =
@@ -125,7 +126,7 @@ bountyAPI.RegisterBounty({
 			-- Weapon
 			{
 				Path = { "GameState", "WeaponsUnlocked", },
-				HasAll = { "WeaponLob", "LobImpulseAspect", },
+				HasAll = { "WeaponDagger", "DaggerTripleAspect", },
 			},
 			-- FirstLoot
 			{

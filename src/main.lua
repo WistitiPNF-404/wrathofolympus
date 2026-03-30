@@ -64,8 +64,15 @@ local function on_ready()
 
 	import 'requirements.lua'
 
-	--import 'bounties/bounty_demeterWrath.lua'
-	--import 'bounties/bounty_aphroditeWrath.lua'
+	import 'bounties/bounty_zeusWrath.lua'
+	import 'bounties/bounty_heraWrath.lua'
+	import 'bounties/bounty_poseidonWrath.lua'
+	import 'bounties/bounty_demeterWrath.lua'
+	import 'bounties/bounty_dodgeWraths.lua'
+	import 'bounties/bounty_aphroditeWrath.lua'
+	import 'bounties/bounty_hephaestusWrath.lua'
+	import 'bounties/bounty_hestiaWrath.lua'
+	import 'bounties/bounty_aresWrath.lua'
 end
 
 local function on_reload()
