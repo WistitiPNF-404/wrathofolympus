@@ -3,7 +3,7 @@
 Ever wondered if the boon pools really reflected a god's full power? How about unleashing the full wrath of these gods? Well look no further!
 
 ## Installation
-Even though the mod has been tested thorouhgly, consider backing up your save files from `%USERPROFILE%\Saved Games\Hades II\[ProfileName].sav`.
+Even though the mod has been tested thoroughly, consider backing up your save files from `%USERPROFILE%\Saved Games\Hades II\[ProfileName].sav`.
 
 ## Features
 
@@ -11,6 +11,7 @@ Even though the mod has been tested thorouhgly, consider backing up your save fi
     - Wrath boons are an equivalent to (or even stronger than) an Olympian's Legendary boon.
     - Their requirements are as strict or even stricter than a Legendary boon, so make sure to check them out in the Book of Shadows!
     - Their value for Pools of Purging and Vow of Hubris are the same as a Legendary boon.
+- Adds 9 Chaos Trials starring all 10 Wrath boons.
 - A new prophecy to collect all 10 Wrath boons.
 
 ## Boon List
