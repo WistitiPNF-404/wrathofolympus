@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.1.1] - 2026-03-31
+
+- Changed the phrasing for Wicked Offspring (Hera) and Hypothermic Shock (Demeter)
+
 ## [2.1.0] - 2026-03-30
 
 - Balancing

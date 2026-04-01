@@ -16,7 +16,7 @@ gods.CreateBoon({
 	StatLines = { "CombustThresholdStatDisplay1" },
 	customStatLine = {
 		ID = "CombustThresholdStatDisplay1",
-		displayName = "{!Icons.Bullet}{#PropertyFormat}Health Threshold for Combustion:",
+		displayName = "{!Icons.Bullet}{#PropertyFormat}Life Threshold for Combustion:",
 		description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
 	},
 	requirements = {

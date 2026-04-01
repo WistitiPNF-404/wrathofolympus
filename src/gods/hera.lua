@@ -12,11 +12,11 @@ gods.CreateBoon({
 	BlockStacking = true,
 
 	displayName = "Wicked Offspring",
-	description = "Your {$Keywords.CastSet} summon a sturdy {$Keywords.Link}-afflicted critter in the binding circle.",
+	description = "Your {$Keywords.CastSet} summon a sturdy {$Keywords.Link}-afflicted sheep in the binding circle.",
 	StatLines = { "HitchPunchingBagStatDisplay1" },
 	customStatLine = {
 		ID = "HitchPunchingBagStatDisplay1",
-		displayName = "{!Icons.Bullet}{#PropertyFormat}Hitch Damage when Striking Critter:",
+		displayName = "{!Icons.Bullet}{#PropertyFormat}Hitch Damage when Striking Sheep:",
 		description = "{#UpgradeFormat}{$TooltipData.StatDisplay1}",
 	},
 	requirements = {

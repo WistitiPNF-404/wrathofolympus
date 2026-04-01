@@ -12,7 +12,7 @@ gods.CreateBoon({
     BlockStacking = true,
 
     displayName = "Hypothermic Shock",
-    description = "Foes suffer from {$Keywords.ModsWistitiFrostbiteDesc} as long as they're inflicted by {$Keywords.Root}.",
+    description = "{$Keywords.Root}-afflicted foes suffer incremental damage from {$Keywords.ModsWistitiFrostbiteDesc} every {#BoldFormatGraft}1 Sec.",
 	StatLines = { "FrostbiteBurstStatDisplay1" },
     customStatLine = {
         Id = "FrostbiteBurstStatDisplay1",
