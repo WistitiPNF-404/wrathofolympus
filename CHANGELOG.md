@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2] - 2026-04-02
+
+- Changed the phrasing for Critical Fiasco (Apollo)
+- Balancing
+    - Critical Fiasco (Apollo): Increased dodge projectile damage (100 -> 200)
+    - Critical Fiasco (Apollo): Added Lucid Gain (Apollo) as an eligible requirement
+
 ## [2.1.1] - 2026-03-31
 
 - Changed the phrasing for Wicked Offspring (Hera) and Hypothermic Shock (Demeter)
