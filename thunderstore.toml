@@ -5,7 +5,7 @@ schemaVersion = "0.0.3"
 [package]
 namespace = "Wistiti"
 name = "WrathOfOlympus"
-versionNumber = "2.1.1"
+versionNumber = "2.1.3"
 description = "Adds a new Wrath boon for each Olympian, an equivalent (if not better) than Legendary boons. Also adds 9 Chaos Trials starring the new boons."
 websiteUrl = "https://github.com/WistitiPNF-404/WrathOfOlympus"
 containsNsfwContent = false

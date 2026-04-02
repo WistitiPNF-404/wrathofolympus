@@ -12,7 +12,7 @@ gods.CreateBoon({
 	BlockStacking = true,
 
 	displayName = "Critical Fiasco",
-	description = "Whenever you {$Keywords.Dodge} an enemy attack, it takes {#BoldFormatGraft}{$TooltipData.ExtractData.MissDamage} {#Prev}damage and becomes {$Keywords.Mark}.",
+	description = "When attacks from {$Keywords.Blind}-afflicted foes miss, they take {#BoldFormatGraft}{$TooltipData.ExtractData.MissDamage} {#Prev}damage and become {$Keywords.Mark}.",
 	StatLines = { "DazeCritStatDisplay1" },
 	customStatLine = {
 		ID = "DazeCritStatDisplay1",
@@ -21,7 +21,7 @@ gods.CreateBoon({
 	},
 	requirements = {
 		OneFromEachSet = {
-			{ "ApolloWeaponBoon", "ApolloSpecialBoon" },
+			{ "ApolloWeaponBoon", "ApolloSpecialBoon", "ApolloManaBoon" },
 			{ "ApolloCastBoon", "ApolloSprintBoon" },
 			{ "BlindChanceBoon", "ApolloRetaliateBoon" },
 		},
@@ -77,7 +77,7 @@ gods.CreateBoon({
 	},
 
 	ExtraFields = {
-		DazeMissDamage = 100, -- used for description only
+		DazeMissDamage = 200, -- used for description only
 		OnDodgeFunction = 
 		{
 			FunctionName = _PLUGIN.guid .. "." .. "ApolloWrath",
@@ -88,7 +88,7 @@ gods.CreateBoon({
 				EffectName = "ArtemisBoonHuntersMark",
 				DamageMultiplier =
 				{
-					BaseValue = 2,
+					BaseValue = 4,
 					MinMultiplier = 0.1,
 					IdenticalMultiplier =
 					{
