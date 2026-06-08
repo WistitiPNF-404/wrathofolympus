@@ -73,7 +73,6 @@ bountyAPI.RegisterBounty({
 			{ Name = "AresSpecialBoon", Rarity = "Epic", },
 			{ Name = "AresManaBoon", Rarity = "Epic", },
 			{ Name = "BloodDropRevengeBoon", Rarity = "Epic", },
-			{ Name = "RendBloodDropBoon", Rarity = "Epic", },
 			{ Name = gods.GetInternalBoonName("AresWrathBoon"), },
             { Name = "AxeSpinSpeedTrait", },
             { Name = "AxeRangedWhirlwindTrait", },

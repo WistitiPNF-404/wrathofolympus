@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.2.2] - 2026-06-07
+
+- Bug fixes
+    - Ferocious Ichor (Ares): Fixed an issue where the double damage chance would exceed an expected cap when gathering more Plasma after reaching the 100 cap
+    - Fixed an issue where Trial of Bloodbath (Ares) would crash when starting the trial
+
+## [2.2.1] - 2026-04-24
+
+- Bug fixes
+    - Fixed an issue where Wicked Offspring (Hera) could affect performance with too many invisible spawn points
+    - Fixed an issue where Eruptive Plating (Hephaestus) would sometimes override (or get overriden by) the armor provided by Heavy Metal (Hephaestus)
+
+## [2.2.0] - 2026-04-15
+
+- Post-Patch 2 update
+
 ## [2.1.2] - 2026-04-02
 
 - Changed the phrasing for Critical Fiasco (Apollo)

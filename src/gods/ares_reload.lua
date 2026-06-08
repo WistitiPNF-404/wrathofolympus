@@ -29,9 +29,9 @@ function mod.CalculatePlasmaDoubleDamageChance ( attacker, victim, weaponData, t
 			end
 			if validWeapon and validTrait and validActiveEffect and validEx then
 				if modifierData.IncreasingPlasmaCritChance then
-					local totalPlasma = CurrentRun.CurrentRoom.BloodDropCount * GetTotalHeroTraitValue( "BloodDropMultiplier", { IsMultiplier = true } )
-					addDdMultiplier( modifierData, modifierData.IncreasingPlasmaCritChance * totalPlasma, triggerArgs)
-					-- modutil.mod.Hades.PrintOverhead("DoubleDamageChance "..(triggerArgs.DdChance))
+					local totalPlasma = CurrentRun.CurrentRoom.BloodDropCount
+					addDdMultiplier( modifierData, math.min(modifierData.IncreasingPlasmaCritChance * totalPlasma, 0.5), triggerArgs)
+					--modutil.mod.Hades.PrintOverhead("DoubleDamageChance "..(triggerArgs.DdChance))
 				end
 			end
 		end
@@ -39,9 +39,10 @@ function mod.CalculatePlasmaDoubleDamageChance ( attacker, victim, weaponData, t
 	return triggerArgs.DdChance
 end
 
---[[modutil.mod.Path.Wrap("FormatExtractedValue", function(baseFunc, value, extractData)
-	if extractData.MultiplyByPlasmaCount then
-		value = value * (CurrentRun.CurrentRoom.BloodDropCount * 0.5)
+modutil.mod.Path.Wrap("FormatExtractedValue", function(baseFunc, value, extractData)
+	if extractData.MultiplyByPlasmaCount and CurrentRun.CurrentRoom ~= nil then
+		value = value * (CurrentRun.CurrentRoom.BloodDropCount)
+		value = math.min(value, 0.5)
 	end
 	return baseFunc(value, extractData)
-end)]]
+end)

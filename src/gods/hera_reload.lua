@@ -81,6 +81,7 @@ function mod.ShawnSummon (enemyName, traitArgs, triggerArgs)
 	SetScale({ Id = newEnemy.ObjectId, Fraction = 1, Duration = 0 })
 	newEnemy.SummonHealthBarEffect = true
 	ApplyDamageShare( newEnemy, args, triggerArgs )
+	Destroy( SpawnPoint )
 	return newEnemy
 end
 

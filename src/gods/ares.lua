@@ -30,8 +30,8 @@ gods.CreateBoon({
 	requirements = {
 		OneFromEachSet = {
 			{ "AresWeaponBoon", "AresSpecialBoon" },
-			{ "AresManaBoon", "BloodDropRevengeBoon", "RendBloodDropBoon" },
-			{ "AresStatusDoubleDamageBoon", "MissingHealthCritBoon" },
+			{ "AresManaBoon", "BloodDropRevengeBoon" },
+			{ "RendBloodDropBoon", "AresStatusDoubleDamageBoon", "MissingHealthCritBoon" },
 		},
 	},
 	flavourText = "Bloodbaths shall stain one's soul when dangerously consumed by wrath.",
@@ -64,5 +64,9 @@ gods.CreateBoon({
 			},
 			ReportValues = { ReportedPlasmaCritMultiplier = "IncreasingPlasmaCritChance" },
 		},
+		TrayStatLines =
+		{
+			"PlasmaDoubleDamageStatDisplay2",
+		}
 	},
 })

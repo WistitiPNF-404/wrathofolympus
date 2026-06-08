@@ -67,7 +67,7 @@ gods.CreateBoon({
 			{
 				Name = "CostumeArmor",
 				Args = {
-					Source = "Tradeoff",
+					Source = "Wrath",
 					Delay = 0.75,
 					BaseAmount = {
 						BaseValue = 200,
