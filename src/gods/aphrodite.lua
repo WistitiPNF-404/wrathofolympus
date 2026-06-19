@@ -26,7 +26,7 @@ gods.CreateBoon({
 			{ "HighHealthOffenseBoon", "HealthRewardBonusBoon", "FocusRawDamageBoon" },
 		},
 	},
-	flavourText = "Love hits like a truck. What is a truck? They don't know yet.",
+	flavourText = "Love is like a hurricane, and she is older than storm itself.",
 	boonIconPath = "GUI\\Screens\\BoonIcons\\Aphrodite_39",
 
 	ExtractValues = {
@@ -50,16 +50,19 @@ gods.CreateBoon({
 	},
 
 	ExtraFields = {
-		HeartthrobBonusDamageModifiers = {
-			ValidProjectiles = "AphroditeBurst",
-			AphroWrathCooldown = 0.10,
-			HeartthrobBonusMultiplier = {
-				BaseValue = 1.25,
-			},
-			SourceIsMultiplier = true,
-			ReportValues = { 
-				ReportedHeartthrobMultiplier = "HeartthrobBonusMultiplier",
-				ReportedCooldown = "AphroWrathCooldown", 
+		OnEnemyDamagedAction = {
+			FunctionName = _PLUGIN.guid .. "." .. "AphroWrath",
+			ValidProjectiles = { "AphroditeBurst" },
+			FunctionArgs = {
+				AphroWrathCooldown = 0.10,
+				HeartthrobBonusMultiplier = {
+					BaseValue = 1.25,
+				},
+				SourceIsMultiplier = true,
+				ReportValues = { 
+					ReportedHeartthrobMultiplier = "HeartthrobBonusMultiplier",
+					ReportedCooldown = "AphroWrathCooldown", 
+				},
 			},
 		},
 	},

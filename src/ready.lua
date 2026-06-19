@@ -29,6 +29,7 @@ mod.ZeusWrathBoon_CombatText = sjson.to_object({
 
 local newKeywords = {
 	"ModsWistitiFrostbiteDesc",
+	"ModsWistitiScapegoatDesc",
 }
 game.ConcatTableValuesIPairs(game.KeywordList, newKeywords)
 
@@ -83,10 +84,16 @@ local newQuestData = {
 }
 game.QuestData["ModsWistiti_QuestGetAllWrathBoons"] = newQuestData.ModsWistiti_QuestGetAllWrathBoons
 
+mod.HeraWrathBoon_ScapegoatDesc = sjson.to_object({
+	Id = "ModsWistitiScapegoatDesc",
+	DisplayName = "Scapegoat",
+	Description = "A tenacious {$Keywords.Link}-afflicted sheep that sends out more damage than it receives to other {$Keywords.Link}-afflicted foes.",
+}, Order)
+
 mod.DemeterWrathBoon_FrostbiteDesc = sjson.to_object({
 	Id = "ModsWistitiFrostbiteDesc",
 	DisplayName = "Frostbite",
-	Description = "Foes take damage every {#BoldFormatGraft}1 Sec. {#Prev}, damage that increases for every hit the longer foes are afflicted by {$Keywords.Root}.",
+	Description = "Foes are found in a deteriorating state, suffering from bursts of incremental damage the longer they are afflicted by {$Keywords.Root}.",
 }, Order)
 
 mod.WrathBoonProphecy_Quest = sjson.to_object({
@@ -97,6 +104,7 @@ mod.WrathBoonProphecy_Quest = sjson.to_object({
 
 sjson.hook(HelpTextFile, function(data)
 	table.insert(data.Texts, mod.ZeusWrathBoon_CombatText)
+	table.insert(data.Texts, mod.HeraWrathBoon_ScapegoatDesc)
 	table.insert(data.Texts, mod.DemeterWrathBoon_FrostbiteDesc)
 	table.insert(data.Texts, mod.WrathBoonProphecy_Quest)
 end)

@@ -17,7 +17,7 @@ function mod.BurnInstaKill ( args, attacker, victim, triggerArgs )
 			return
 		end 
 		
-		CreateAnimation({ Name = "FireballExplosionIcarus", DestinationId = victim.ObjectId })
+		CreateAnimation({ Name = "IcarusExplosionDetonate", DestinationId = victim.ObjectId })
 
 		thread( Kill, victim, { ImpactAngle = 0, AttackerTable = CurrentRun.Hero, AttackerId = CurrentRun.Hero.ObjectId })
 		if victim.UseBossHealthBar then

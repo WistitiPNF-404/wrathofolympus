@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.4] - 2026-06-19
+
+- Wicked Offspring (Hera): Changed the phrasing to include a 'Scapegoat' keyword that further explains that the purpose of the summoned sheep
+- Hypothermic Shock (Demeter): Changed the phrasing of the 'Frostbite' keyword that felt a bit weird
+- Bug fixes:
+    - Lustful Confession (Aphrodite): Fixed an issue where the Omega Casts would not be created when Heartthrobs would strike foes
+    - Cindered Ritual (Hestia): Fixed an issue where the explosion VFX would not be created when combusting a foe
+
 ## [2.2.2] - 2026-06-07
 
 - Bug fixes
