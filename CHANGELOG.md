@@ -1,10 +1,27 @@
 # Changelog
 
+## [2.4.0] - 2026-08-10
+
+- Balancing
+    - Critical Fiasco (Apollo): cut from the mod; replaced with...
+    - (NEW!) Phenomenal Flair (Apollo): Your Omega Cast fires a second time +50% larger, but uses more Magick.
+
+## [2.3.1] - 2026-08-05
+
+- Bug fix:
+    - Trident Squall (Poseidon): Fixed an issue where a crash would occur if Melinoe did not have Ocean Swell (Poseidon) when striking a Froth-afflicted enemy
+
+## [2.3.0] - 2026-07-24
+
+- New release alongside [Hermes Duos](https://thunderstore.io/c/hades-ii/p/Wistiti/HermesDuos/)
+- Bug fix
+    - Trident Squall (Poseidon): Fixed an issue (hopefully) where triggering waves on a Froth-afflicted enemy would crash the game
+
 ## [2.2.4] - 2026-06-19
 
 - Wicked Offspring (Hera): Changed the phrasing to include a 'Scapegoat' keyword that further explains that the purpose of the summoned sheep
 - Hypothermic Shock (Demeter): Changed the phrasing of the 'Frostbite' keyword that felt a bit weird
-- Bug fixes:
+- Bug fixes
     - Lustful Confession (Aphrodite): Fixed an issue where the Omega Casts would not be created when Heartthrobs would strike foes
     - Cindered Ritual (Hestia): Fixed an issue where the explosion VFX would not be created when combusting a foe
 
@@ -17,8 +34,8 @@
 ## [2.2.1] - 2026-04-24
 
 - Bug fixes
-    - Fixed an issue where Wicked Offspring (Hera) could affect performance with too many invisible spawn points
-    - Fixed an issue where Eruptive Plating (Hephaestus) would sometimes override (or get overriden by) the armor provided by Heavy Metal (Hephaestus)
+    - Wicked Offspring (Hera): Fixed an issue where the boon could affect performance with too many invisible spawn points
+    - Eruptive Plating (Hephaestus): Fixed an issue where sometimes the Armor given would override (or get overriden by) the Armor provided by Heavy Metal (Hephaestus)
 
 ## [2.2.0] - 2026-04-15
 
@@ -126,7 +143,7 @@
 ## [1.0.0] - 2026-02-04
 
 - Official release!
-- New boon icons for each Wrath boon
+- (NEW!) Boon icons for each Wrath boon
 - Bug fix
     - Hypothermic Shock (Demeter): Frostbite now properly displays as such on the Victory screens
 

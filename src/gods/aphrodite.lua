@@ -26,7 +26,7 @@ gods.CreateBoon({
 			{ "HighHealthOffenseBoon", "HealthRewardBonusBoon", "FocusRawDamageBoon" },
 		},
 	},
-	flavourText = "Love is like a hurricane, and she is older than storm itself.",
+	flavourText = "Love is like a hurricane, and the goddess of love is older than storm itself.",
 	boonIconPath = "GUI\\Screens\\BoonIcons\\Aphrodite_39",
 
 	ExtractValues = {

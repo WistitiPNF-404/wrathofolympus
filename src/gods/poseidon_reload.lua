@@ -16,6 +16,9 @@ function mod.PoseidonWrath (victim, triggerArgs)
 	local effectData = EffectData.AmplifyKnockbackEffect
 	local omegaWaveChance = GetTotalHeroTraitValue("WaveChance")
 	local traitData = GetHeroTrait("OmegaPoseidonProjectileBoon")
+	if not HeroHasTrait("OmegaPoseidonProjectileBoon") then
+		return
+	end
 	local omegaPoseidonProjectile = 
 	{
 		Name = "PoseidonOmegaWave",
@@ -30,14 +33,11 @@ function mod.PoseidonWrath (victim, triggerArgs)
 			StartDelay = 0
 		},
 	}
-	if not HeroHasTrait("OmegaPoseidonProjectileBoon") then
-		return
-	end
 	if CheckCooldown("PoseidonStatusFont", effectData.Cooldown) then
 		local count = 1
 		CreateProjectileFromUnit({ Name = effectData.ProjectileName, DestinationId = victim.ObjectId, Id = CurrentRun.Hero.ObjectId, FireFromTarget = true, DamageMultiplier = GetTotalHeroTraitValue("PoseidonFontMultiplier", { IsMultiplier = true }) })
 		if RandomChance( omegaWaveChance * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true }) ) then
-			local baseWaveAngle = omegaPoseidonProjectile.Angle
+			local baseWaveAngle = omegaPoseidonProjectile.Angle or 0
 			local doubleChance = GetTotalHeroTraitValue("DoubleOlympianProjectileChance") * GetTotalHeroTraitValue( "LuckMultiplier", { IsMultiplier = true })
 			local duoDoubleWave = RandomChance(doubleChance)
 			for i = 0, 2 do

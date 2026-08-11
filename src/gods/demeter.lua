@@ -28,7 +28,7 @@ gods.CreateBoon({
 			{ "SlowExAttackBoon", "CastAttachBoon", "RootDurationBoon" },
 		},
 	},
-    flavourText = "As limbs turn blue and fall, the Goddess of Seasons does not bat an eye.",
+    flavourText = "As limbs turn blue and fall, the goddess of seasons does not bat an eye.",
     boonIconPath = "Wistiti-WrathOfOlympusBoonIcons\\DemeterWrath",
 	boonIconScale = 1.66,
     

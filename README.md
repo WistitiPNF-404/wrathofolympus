@@ -2,6 +2,8 @@
 
 Ever wondered if the boon pools really reflected a god's full power? How about unleashing the full wrath of these gods? Well look no further!
 
+For a better experience with the mod, please consider also installing [Hermes Duos](https://thunderstore.io/c/hades-ii/p/Wistiti/HermesDuos/)! 
+
 ## Installation
 Even though the mod has been tested thoroughly, consider backing up your save files from `%USERPROFILE%\Saved Games\Hades II\[ProfileName].sav`.
 

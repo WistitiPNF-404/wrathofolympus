@@ -22,7 +22,7 @@ gods.CreateBoon({
 	requirements = {
 		OneOf = { "SprintShieldBoon", "SorcerySpeedBoon", "SlowProjectileBoon", "MoneyMultiplierBoon", "RestockBoon" },
 	},
-	flavourText = "The God of Swiftness shall grant to witches alike the signature ability of distant coven sisters.",
+	flavourText = "The god of swiftness shall grant to witches alike the signature ability of distant coven sisters.",
 	boonIconPath = "Wistiti-WrathOfOlympusBoonIcons\\HermesWrath",
 	boonIconScale = 1.66,
 

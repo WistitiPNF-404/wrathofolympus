@@ -16,6 +16,8 @@ function prefix_SetupMap()
 	mod.LoadBoonIconsPackage()
 end
 
+SessionState.ApolloSecondExCastTarget = {}
+
 --[[function trigger_Gift()
 	-- modutil.mod.Hades.PrintOverhead(config.message)
 	modutil.mod.Hades.PrintOverhead("Comme les 5 doigts de la main")

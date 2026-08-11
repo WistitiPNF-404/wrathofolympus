@@ -1,4 +1,4 @@
-gods.CreateBoon({
+--[[gods.CreateBoon({
 	pluginGUID = _PLUGIN.guid,
 	characterName = "Apollo",
 	internalBoonName = "ApolloWrathBoon",
@@ -26,7 +26,7 @@ gods.CreateBoon({
 			{ "BlindChanceBoon", "ApolloRetaliateBoon" },
 		},
 	},
-	flavourText = "If there's one skill the God of Light never attained, it's his sister's hunting prowesses.",
+	flavourText = "If there's one skill the god of light never attained, it's his sister's hunting prowesses.",
 	boonIconPath = "GUI\\Screens\\BoonIcons\\Apollo_38",
 
 	ExtractValues = {
@@ -104,6 +104,79 @@ gods.CreateBoon({
 			Chance = { BaseValue = 0.1 },
 			ValidActiveEffects = { "BlindEffect" },
 			ReportValues = { ReportedCritBonus = "Chance"},
+		},
+	},
+})]]
+
+gods.CreateBoon({
+	pluginGUID = _PLUGIN.guid,
+	characterName = "Apollo",
+	internalBoonName = "ApolloWrathBoon",
+	isLegendary = false,
+	InheritFrom = {
+		mod.wrathTrait,
+		"AirBoon",
+	},
+	addToExistingGod = { boonPosition = 10 },
+	reuseBaseIcons = true,
+	BlockStacking = true,
+
+	displayName = "Phenomenal Flair",
+	description = "Your {$Keywords.CastEX} fires a second time {#BoldFormatGraft}{$TooltipData.ExtractData.BonusCastSize}% {#Prev}larger, but uses more {!Icons.Mana}.",
+	StatLines = { "OmegaCastCostStatDisplay1" },
+	customStatLine = {
+		ID = "OmegaCastCostStatDisplay1",
+		displayName = "{!Icons.Bullet}{#PropertyFormat}Omega Cast Cost:",
+		description = "{#ManaFormat}+{$TooltipData.ExtractData.ManaCostAddition}",
+	},
+	requirements = {
+		OneFromEachSet = {
+			{ "ApolloWeaponBoon", "ApolloSpecialBoon" },
+			{ "ApolloCastBoon", "ApolloSprintBoon", "ApolloManaBoon" },
+			{ "PerfectDamageBonusBoon", "BlindChanceBoon", "ApolloRetaliateBoon" },
+		},
+	},
+	flavourText = "The god of light shall expand his light as far as he can, just like his ego.",
+	boonIconPath = "GUI\\Screens\\BoonIcons\\Apollo_38",
+
+	ExtractValues = {
+		{
+			Key = "ReportedCastSize",
+			ExtractAs = "BonusCastSize",
+			SkipAutoExtract = true,
+			Format = "PercentDelta",
+			HideSigns = true,
+		},
+		{
+            Key = "ReportedCost",
+            ExtractAs = "ManaCostAddition",
+			SkipAutoExtract = true,
+        },
+	},
+
+	ExtraFields = {
+		ManaCostModifiers = 
+		{
+			WeaponNames = ConcatTableValues(WeaponSets.HeroNonPhysicalWeapons, {"WeaponCastProjectileHades", "WeaponAnywhereCast", "WeaponCastProjectile", "WeaponCastLob" }),
+			ExWeapons = true,
+			ManaCostAdd = 30,
+			ReportValues = 
+			{ 
+				ReportedCost = "ManaCostAdd" 
+			},
+		},
+		OnProjectileDeathFunction = 
+		{
+			Name = _PLUGIN.guid .. "." .. "ApolloWrath",
+			Args = 
+			{
+				ValidProjectileName = "ProjectileCast",
+				ProjectileName = "ProjectileCast",
+				Cooldown = 0.5,
+				SecondCastSize = 1.5,
+				Interval = 0.2,
+				ReportValues = { ReportedCastSize = "SecondCastSize"},
+			}
 		},
 	},
 })
