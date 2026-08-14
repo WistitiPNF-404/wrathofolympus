@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.4.1] - 2026-08-XX
+
+- Balancing
+    - Success Rate (Hermes): Removed Phenomenal Flair (Apollo) as an eligible requirement, as it's not a chance-based boon anymore
+- Bug fixes:
+    - Phenomenal Flair (Apollo): Fixed an issue where the second Omega Cast would not be affected by Super Nova (Apollo)
+    - Phenomenal Flair (Apollo): Fixed an issue where the second Omega Cast would not be affected by the size increase when performing a Cleave-Cast with Aspect of Charon (Axe)
+
 ## [2.4.0] - 2026-08-10
 
 - Balancing
@@ -19,7 +27,7 @@
 
 ## [2.2.4] - 2026-06-19
 
-- Wicked Offspring (Hera): Changed the phrasing to include a 'Scapegoat' keyword that further explains that the purpose of the summoned sheep
+- Wicked Offspring (Hera): Changed the phrasing to include a 'Scapegoat' keyword that further explains the purpose of the summoned sheep
 - Hypothermic Shock (Demeter): Changed the phrasing of the 'Frostbite' keyword that felt a bit weird
 - Bug fixes
     - Lustful Confession (Aphrodite): Fixed an issue where the Omega Casts would not be created when Heartthrobs would strike foes

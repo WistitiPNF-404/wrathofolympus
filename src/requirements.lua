@@ -59,7 +59,6 @@ local traitRequirements = {
 			"MoneyDamageBoon",
             --Wraths
             gods.GetInternalBoonName("ZeusWrathBoon"),
-            gods.GetInternalBoonName("ApolloWrathBoon"),
             gods.GetInternalBoonName("AresWrathBoon"),
 		},
     }

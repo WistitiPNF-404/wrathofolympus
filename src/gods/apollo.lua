@@ -171,10 +171,11 @@ gods.CreateBoon({
 			Args = 
 			{
 				ValidProjectileName = "ProjectileCast",
-				ProjectileName = "ProjectileCast",
+				ProjectileName = {"ProjectileCast"},
 				Cooldown = 0.5,
 				SecondCastSize = 1.5,
-				Interval = 0.2,
+				WaitForSecondCast = 0.2,
+				MaxProjectiles = 1,
 				ReportValues = { ReportedCastSize = "SecondCastSize"},
 			}
 		},

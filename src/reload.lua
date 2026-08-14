@@ -17,6 +17,7 @@ function prefix_SetupMap()
 end
 
 SessionState.ApolloSecondExCastTarget = {}
+SessionState.SecondCleaveCastProjectileIds = {}
 
 --[[function trigger_Gift()
 	-- modutil.mod.Hades.PrintOverhead(config.message)
