@@ -1,12 +1,15 @@
 # Changelog
 
-## [2.4.1] - 2026-08-XX
+## [2.4.1] - 2026-08-14
 
 - Balancing
     - Success Rate (Hermes): Removed Phenomenal Flair (Apollo) as an eligible requirement, as it's not a chance-based boon anymore
 - Bug fixes:
     - Phenomenal Flair (Apollo): Fixed an issue where the second Omega Cast would not be affected by Super Nova (Apollo)
-    - Phenomenal Flair (Apollo): Fixed an issue where the second Omega Cast would not be affected by the size increase when performing a Cleave-Cast with Aspect of Charon (Axe)
+    - Phenomenal Flair (Apollo): Fixed an issue where the second Omega Cast would not be created from the familiar with Aspect of Circe (Staff)
+        - Side note: Currently, the second Omega Cast is created at the familiar's current location and not at the familiar's Cast location. This will be adressed in the next update
+    - Phenomenal Flair (Apollo): Fixed an issue where the Omega Casts would repeat infinitely with Aspect of Momus (Staff)
+    - Phenomenal Flair (Apollo): Fixed an issue where the second Omega Cast would not be affected by the Cleave-Cast size increase with Aspect of Charon (Axe)
 
 ## [2.4.0] - 2026-08-10
 

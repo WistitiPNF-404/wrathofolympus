@@ -121,7 +121,7 @@ gods.CreateBoon({
 	reuseBaseIcons = true,
 	BlockStacking = true,
 
-	displayName = "Phenomenal Flair",
+	displayName = "Finishing Touch",
 	description = "Your {$Keywords.CastEX} fires a second time {#BoldFormatGraft}{$TooltipData.ExtractData.BonusCastSize}% {#Prev}larger, but uses more {!Icons.Mana}.",
 	StatLines = { "OmegaCastCostStatDisplay1" },
 	customStatLine = {

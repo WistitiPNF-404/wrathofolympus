@@ -38,6 +38,7 @@ function mod.BiggerSecondCast (triggerArgs, functionArgs, cleaveCastSizeModifier
 		else
 			SessionState.ApolloSecondExCastTarget[triggerArgs.ProjectileId] = nil
 		end
+		
 		wait (functionArgs.WaitForSecondCast)
 		
 		-- Second Cast Setup
@@ -67,6 +68,9 @@ function mod.BiggerSecondCast (triggerArgs, functionArgs, cleaveCastSizeModifier
 				DataProperties = derivedValues.PropertyChanges, ThingProperties = derivedValues.ThingPropertyChanges }) 
 			local sizeMultiplier = functionArgs.SecondCastSize * cleaveCastSizeModifier
 
+			-- For Momus functionality, to limit it to 2 repeats
+			SessionMapState.InvalidRepeatCastIds = {}
+
 			SetDamageRadiusMultiplier({ Id = projectileId, Fraction = sizeMultiplier, Duration = baseDuration })
 
 			if HeroHasTrait("ApolloCastAreaBoon") then
@@ -76,6 +80,10 @@ function mod.BiggerSecondCast (triggerArgs, functionArgs, cleaveCastSizeModifier
 			end
 			table.insert(createdProjectiles, projectileId)
 			SessionMapState.SecondCastProjectile = projectileId
+
+			-- For Momus functionality, to limit it to 2 repeats
+			SessionMapState.InvalidRepeatCastIds[ projectileId ] = true
+			
 			ArmAndDetonateProjectiles({ Ids = { projectileId }})
 
 			-- Circe Staff stuff
@@ -98,6 +106,20 @@ function mod.BiggerSecondCast (triggerArgs, functionArgs, cleaveCastSizeModifier
 						SetDamageRadiusMultiplier({ Id = circeProjectileId, Fraction = traitArgs.AreaIncrease * sizeMultiplier })
 					end
 				end
+
+				for i, traitData in pairs( GetHeroTraitValues ("OnProjectileDeathFunction")) do
+					if traitData.FunctionName ~= _PLUGIN.guid .. "." .. "ApolloWrath" and traitData.FunctionName ~= nil and ( traitData.ValidWeapons == nil or Contains( traitData.ValidWeapons, "WeaponCast" ) ) then
+						thread( CallFunctionName, traitData.FunctionName, weaponData, traitData.FunctionArgs, 
+						-- Spoofing a weapon fired event here
+						{
+							ProjectileX = familiarLocation.X,
+							ProjectileY = familiarLocation.Y,
+							ProjectileId = circeProjectileId,
+							UnitIdOverride = MapState.FamiliarUnit.ObjectId, -- PoseidonCast, Chaos Curse, and SummonCastTeleport specific
+						})
+					end
+				end
+
 				table.insert(createdProjectiles, circeProjectileId)
 				SessionMapState.SecondCastProjectile = circeProjectileId
 				ArmAndDetonateProjectiles({ Ids = { circeProjectileId }})
